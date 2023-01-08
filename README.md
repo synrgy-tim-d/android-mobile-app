@@ -1,3 +1,4 @@
+<a name="readme-top"></a>
 ## About The Project
 Naqos App
 <a name="readme-top"></a>
@@ -16,7 +17,6 @@ This is how to clone project to your computer
    git clone https://github.com/synrgy-tim-d/android-mobile-app.git
    ```
    
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Push project to Github
 1. Clone the project
@@ -25,7 +25,6 @@ This is how to clone project to your computer
 4. Push to the Branch (`git push origin feature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Contributors
 M Bagus Rizky - [@bagusrizky15](https://github.com/bagusrizky15)  
