@@ -29,7 +29,7 @@ This is how to clone project to your computer
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Contributors
-M Bagus Rizky - [@bagusrizky15](https://github.com/bagusrizky15)
+M Bagus Rizky - [@bagusrizky15](https://github.com/bagusrizky15)  
 Cornelius Chega - [@neoubs](https://github.com/neoubs)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
