@@ -1,9 +1,8 @@
-# android-mobile-app
 ## About The Project
 Naqos App
 
 ### Build with
-* [![Kotlin][Kotlinlang.org][Kotlin-url]
+* [![Kotlin][Kotlinlang.org]][Kotlin-url]
 
 <!-- GETTING STARTED -->
 ## Getting Started
