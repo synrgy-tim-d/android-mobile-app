@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/android-mobile-app.iml" filepath="$PROJECT_DIR$/.idea/android-mobile-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/naqos-app.iml" filepath="$PROJECT_DIR$/.idea/modules/naqos-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/naqos-app.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/naqos-app.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/naqos-app.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/naqos-app.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/naqos-app.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/naqos-app.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/naqos-app.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/naqos-app.app.unitTest.iml" />
     </modules>
   </component>
 </project>
