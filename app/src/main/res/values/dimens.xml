@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="heading_large">29dp</dimen>
+    <dimen name="heading_medium">24dp</dimen>
+    <dimen name="heading_small">20dp</dimen>
+
+    <dimen name="subtitle_large">17dp</dimen>
+    <dimen name="subtitle_medium">14dp</dimen>
+
+    <dimen name="body_large">12dp</dimen>
+    <dimen name="body_medium">10dp</dimen>
+
+    <dimen name="button_large">14dp</dimen>
+    <dimen name="button_medium">12dp</dimen>
+
+    <dimen name="caption">8dp</dimen>
+</resources>
