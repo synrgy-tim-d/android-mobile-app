@@ -25,6 +25,26 @@ This is how to clone project to your computer
 4. Push to the Branch (`git push origin feature`)
 5. Open a Pull Request
 
+### Format Name Drawable Icon
+IC_NAME_PAGE(OP)_COLOR_SIZE(OP)
+
+example : 
+ic_applogo_login_white_24dp
+or
+ic_applogo_blue
+
+### Format Color Name
+COLOR_NAME(OP)_HUE(OP)
+
+example :
+grey_primary_200
+or
+grey_primary
+or
+grey
+
+Where i can find hue of color? Check this one -> [Color Tool](https://m2.material.io/resources/color/#!/?view.left=0&view.right=0) 
+
 
 ### Contributors
 M Bagus Rizky - [@bagusrizky15](https://github.com/bagusrizky15)  
