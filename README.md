@@ -45,6 +45,11 @@ grey
 
 Where i can find hue of color? Check this one -> [Color Tool](https://m2.material.io/resources/color/#!/?view.left=0&view.right=0) 
 
+### How to Export Assets from Figma
+1. Click the icon that you want to export
+2. ![Screen Shot 2023-01-13 at 07 58 52](https://user-images.githubusercontent.com/92450087/212212759-a3aafa8e-6353-4c80-852f-8348f693b0cf.png)
+3. ![Screen Shot 2023-01-13 at 07 59 24](https://user-images.githubusercontent.com/92450087/212212804-c3979c2b-f7aa-41ab-ab50-a0bf0396fddf.png)
+4. Export Assets at least 3x for high resolution
 
 ### Contributors
 M Bagus Rizky - [@bagusrizky15](https://github.com/bagusrizky15)  
