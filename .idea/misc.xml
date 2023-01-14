@@ -6,7 +6,8 @@
         <entry key="app/src/main/res/drawable/bg_button_rounded.xml" value="0.194" />
         <entry key="app/src/main/res/drawable/bg_button_white_rounded.xml" value="0.194" />
         <entry key="app/src/main/res/drawable/bg_textfield_rounded.xml" value="0.194" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25314300537109374" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.231722958529286" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="app/src/main/res/layout/layout_toolbar.xml" value="0.25" />
         <entry key="app/src/main/res/layout/layout_toolbar_login.xml" value="0.231722958529286" />
