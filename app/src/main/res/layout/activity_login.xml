@@ -38,17 +38,19 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="5dp"
+            android:padding="10dp"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/etEmailLayout"
-            android:background="@drawable/bg_button_white_rounded"
+            android:background="@drawable/bg_textfield_rounded"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="60dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_email_login"
-                android:background="@drawable/bg_textfield_rounded"
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@null"
                 android:hint="Ketikkan Alamat Email"
                 android:inputType="textEmailAddress"/>
 
@@ -63,18 +65,20 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="5dp"
+            android:padding="10dp"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/etPasswordLayout"
-            android:background="@drawable/bg_button_white_rounded"
+            android:background="@drawable/bg_textfield_rounded"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:padding="5dp"
                 android:id="@+id/et_password_login"
-                android:background="@drawable/bg_textfield_rounded"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@null"
                 android:hint="Minimal 6 karakter"
                 android:inputType="textPassword"/>
 
@@ -92,15 +96,16 @@
 
         <Button
             android:id="@+id/btn_masuk_akun_login"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="15dp"
             android:textAllCaps="false"
+            android:textColor="@color/white"
             android:text="Masuk"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:background="@drawable/bg_button_rounded"/>
 
         <TextView
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:id="@+id/tv_or"
             android:layout_width="wrap_content"
@@ -108,22 +113,26 @@
             android:text="atau"/>
 
         <Button
+            android:padding="20dp"
+            android:gravity="center"
             android:drawableStart="@drawable/ic_logo_google"
             android:id="@+id/btn_masuk_akun_google"
             android:layout_marginTop="20dp"
             android:textAllCaps="false"
             android:text="Masuk dengan Google"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:background="@drawable/bg_button_white_rounded"/>
 
+
         <TextView
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="15dp"
             android:layout_gravity="center"
             android:id="@+id/tv_daftar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Belum punya akun? Daftar"/>
+            android:text="Belum punya akun? Daftar"
+            android:layout_marginBottom="30dp"/>
 
     </LinearLayout>
 
