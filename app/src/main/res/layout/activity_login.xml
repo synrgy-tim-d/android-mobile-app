@@ -71,6 +71,7 @@
             android:background="@drawable/bg_textfield_rounded"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:textColorHint="@drawable/hint_focus"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -79,6 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:textColorHint="@drawable/hint_focus"
                 android:hint="Minimal 6 karakter"
                 android:inputType="textPassword"/>
 
