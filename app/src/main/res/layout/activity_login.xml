@@ -36,25 +36,15 @@
             android:layout_height="wrap_content"
             android:text="Email"/>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:layout_marginTop="5dp"
-            android:padding="10dp"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/etEmailLayout"
-            android:background="@drawable/bg_textfield_rounded"
+            android:id="@+id/et_email_login"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_email_login"
-                android:padding="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:hint="Ketikkan Alamat Email"
-                android:inputType="textEmailAddress"/>
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:background="@drawable/bg_textfield_rounded"
+            android:hint="Ketikan alamat email"
+            android:inputType="text" />
 
         <TextView
             android:id="@+id/tv_password_login"

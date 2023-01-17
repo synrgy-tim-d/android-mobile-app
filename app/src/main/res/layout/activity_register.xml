@@ -14,6 +14,7 @@
 
     <LinearLayout
         android:padding="15dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutToolbar"
         android:id="@+id/line_up"
         android:orientation="vertical"
@@ -29,7 +30,7 @@
 
         <TextView
             android:id="@+id/tv_fullname"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nama Lengkap"/>
@@ -46,7 +47,7 @@
 
         <TextView
             android:id="@+id/tv_phone"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nomor Handphone"/>
@@ -63,7 +64,7 @@
 
         <TextView
             android:id="@+id/tv_email"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Email"/>
@@ -80,27 +81,28 @@
 
         <TextView
             android:id="@+id/tv_password_login"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Password"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_marginTop="5dp"
+            android:padding="10dp"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/etPasswordLayout"
-            android:padding="5dp"
             android:background="@drawable/bg_button_white_rounded"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_password_login"
+                android:padding="5dp"
+                android:id="@+id/et_password_register"
                 android:layout_width="match_parent"
-                android:padding="10dp"
-                android:backgroundTint="@null"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@null"
+                android:textColorHint="@drawable/hint_focus"
                 android:hint="Minimal 6 karakter"
                 android:inputType="textPassword"/>
 
@@ -118,7 +120,6 @@
 
         <Button
             android:id="@+id/btn_daftar_akun"
-            android:layout_marginTop="15dp"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:text="Daftarkan Akun"
@@ -139,7 +140,7 @@
             android:gravity="center"
             android:drawableStart="@drawable/ic_logo_google"
             android:id="@+id/btn_masuk_akun_google"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:textAllCaps="false"
             android:text="Daftar dengan Google"
             android:layout_width="match_parent"
@@ -148,13 +149,12 @@
 
 
         <TextView
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:id="@+id/tv_daftar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Sudah punya akun? Masuk"
-            android:layout_marginBottom="30dp"/>
+            android:text="Sudah punya akun? Masuk"/>
 
     </LinearLayout>
 
