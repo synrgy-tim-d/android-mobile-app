@@ -1,11 +1,8 @@
-package com.rivvana.naqos_app.auth
+package com.rivvana.naqos_app.auth.view
 
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_NO_HISTORY
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
 import com.rivvana.naqos_app.MainActivity
 import com.rivvana.naqos_app.databinding.ActivityLoginBinding
 
@@ -40,8 +37,6 @@ class LoginActivity : AppCompatActivity() {
     fun doLogin(){
         startActivity(Intent(this, MainActivity::class.java))
     }
-
-
 
 
 }

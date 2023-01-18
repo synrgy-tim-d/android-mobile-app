@@ -1,4 +1,4 @@
-package com.rivvana.naqos_app.auth
+package com.rivvana.naqos_app.auth.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

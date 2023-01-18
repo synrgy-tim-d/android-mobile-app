@@ -1,15 +1,13 @@
-package com.rivvana.naqos_app.auth
+package com.rivvana.naqos_app.auth.view
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.app.Register
-import com.rivvana.naqos_app.auth.model.ResponseModel
+import com.rivvana.naqos_app.auth.viewmodel.ResponseModel
 import com.rivvana.naqos_app.databinding.ActivityRegisterBinding
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
