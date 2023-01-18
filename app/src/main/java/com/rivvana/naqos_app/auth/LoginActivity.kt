@@ -7,11 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
 import com.rivvana.naqos_app.MainActivity
-import com.rivvana.naqos_app.R
-import com.rivvana.naqos_app.auth.api.BaseResponse
-import com.rivvana.naqos_app.auth.api.LoginResponse
 import com.rivvana.naqos_app.auth.api.LoginViewModel
 import com.rivvana.naqos_app.auth.api.SessionManager
 import com.rivvana.naqos_app.databinding.ActivityLoginBinding
