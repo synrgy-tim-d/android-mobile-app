@@ -1,6 +1,5 @@
 package com.rivvana.naqos_app.auth.app
 
-
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -9,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ApiConfig {
-    private const val BASE_URL = "http://192.168.1.129/blog/public/api/"
+    private const val BASE_URL = "https://be-naqos.up.railway.app/api/"
     private val client: Retrofit
         get() {
             val gson = GsonBuilder()

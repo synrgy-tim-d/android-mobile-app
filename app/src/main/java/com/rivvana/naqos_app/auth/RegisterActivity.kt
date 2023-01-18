@@ -3,8 +3,11 @@ package com.rivvana.naqos_app.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.app.ApiConfig
+import com.rivvana.naqos_app.auth.app.Register
+import com.rivvana.naqos_app.auth.model.ResponseModel
 import com.rivvana.naqos_app.databinding.ActivityRegisterBinding
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -26,19 +29,30 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.btnDaftarAkun.setOnClickListener{
             signUp()
+            sendOtp()
         }
     }
 
+    private fun sendOtp() {
+    }
+
     private fun signUp() {
-        ApiConfig.instanceRetrofit.register(binding.etEmailRegister.text.toString(),
-        binding.etFullname.text.toString(),
-        binding.etPasswordRegister.text.toString()).enqueue(object : Callback<ResponseBody>{
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                TODO("Not yet implemented")
+        val register = Register(
+            binding.etFullname.text.toString(),
+            binding.etPhone.text.toString(),
+            binding.etEmailRegister.text.toString(),
+            binding.etPasswordRegister.text.toString()
+        )
+        ApiConfig.instanceRetrofit.register(
+        register).enqueue(object : Callback<ResponseModel>{
+            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+                Toast.makeText(this@RegisterActivity, "Error"+t.message, Toast.LENGTH_SHORT).show()
             }
 
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                TODO("Not yet implemented")
+            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+                Toast.makeText(this@RegisterActivity, "Success", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this@RegisterActivity, OtpActivity::class.java))
+                finish()
             }
         })
     }
