@@ -6,10 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".auth.view.OtpActivity">
 
+    <include
+        android:id="@+id/layoutToolbar"
+        layout="@layout/layout_toolbar_verifikasi"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/img_cek_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_cek_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar"
+        android:layout_marginTop="@dimen/_100sdp"/>
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/tv_cek"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cek email kamu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_cek_email"/>
+
+    <TextView
+        android:padding="@dimen/_20sdp"
+        android:id="@+id/tv_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Link verifikasi telah kami kirimkan ke alamat email kamu. Segera lakukan verifikasi akun untuk mendapatkan akses login."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_cek"/>
+
     <Button
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_desc"
         app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/btn_open_email"
         android:text="Open Email"

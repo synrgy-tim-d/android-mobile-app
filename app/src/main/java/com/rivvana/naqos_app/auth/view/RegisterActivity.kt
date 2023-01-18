@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.rivvana.naqos_app.auth.app.ApiConfig
-import com.rivvana.naqos_app.auth.app.Register
+import com.rivvana.naqos_app.auth.model.Register
 import com.rivvana.naqos_app.auth.viewmodel.ResponseModel
 import com.rivvana.naqos_app.databinding.ActivityRegisterBinding
 import retrofit2.Call

@@ -15,7 +15,6 @@ class OtpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnOpenEmail.setOnClickListener{
-
             openEmail()
         }
     }
