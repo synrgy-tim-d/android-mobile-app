@@ -7,6 +7,7 @@ import android.util.Patterns
 import android.widget.Toast
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.model.Register
+import com.rivvana.naqos_app.auth.model.User
 import com.rivvana.naqos_app.auth.viewmodel.ResponseModel
 import com.rivvana.naqos_app.databinding.ActivityRegisterBinding
 import retrofit2.Call
@@ -95,6 +96,7 @@ class RegisterActivity : AppCompatActivity() {
             binding.etEmailRegister.text.toString(),
             binding.etPasswordRegister.text.toString()
         )
+
         ApiConfig.instanceRetrofit.register(
         register).enqueue(object : Callback<ResponseModel>{
             override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
@@ -104,9 +106,10 @@ class RegisterActivity : AppCompatActivity() {
             override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
                 val respon = response.body()!!
                 if (respon.status == 200){
-                    Toast.makeText(this@RegisterActivity, "Success "+respon.message, Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this@RegisterActivity, OtpActivity::class.java))
-                    finish()
+//                    Toast.makeText(this@RegisterActivity, "Success "+respon.message, Toast.LENGTH_SHORT).show()
+                      Toast.makeText(this@RegisterActivity, "Success "+respon.message, Toast.LENGTH_SHORT).show()
+//                    startActivity(Intent(this@RegisterActivity, OtpActivity::class.java))
+//                    finish()
                 }else {
                     Toast.makeText(this@RegisterActivity, "Error "+respon.message, Toast.LENGTH_SHORT).show()
                 }
