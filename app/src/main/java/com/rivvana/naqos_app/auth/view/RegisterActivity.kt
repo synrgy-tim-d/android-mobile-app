@@ -3,6 +3,7 @@ package com.rivvana.naqos_app.auth.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Toast
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.model.Register
@@ -28,23 +29,62 @@ class RegisterActivity : AppCompatActivity() {
         binding.btnDaftarAkun.setOnClickListener{
             signUp()
         }
+
+        binding.btnDaftarAkunGoogle.setOnClickListener{
+            signUpWithGoogle()
+        }
+    }
+
+    private fun signUpWithGoogle() {
+        TODO("Not yet implemented")
     }
 
     private fun signUp() {
+        //validasi nama
         if (binding.etFullname.text.isEmpty()) {
             binding.etFullname.error = "Kolom Nama tidak boleh kosong"
             binding.etFullname.requestFocus()
             return
-        } else if (binding.etEmailRegister.text.isEmpty()) {
+        } else if(binding.etFullname.text.contains("[0-9]".toRegex())) {
+            binding.etFullname.error = "Nama tidak boleh mengandung angka"
+            binding.etFullname.requestFocus()
+            return
+        } else if (binding.etFullname.text.contains("[!\\\"#\$%&'()*+,-./:;\\\\\\\\<=>?@\\\\[\\\\]^_`{|}~]".toRegex())){
+            binding.etFullname.error = "Nama tidak boleh mengandung simbol"
+            binding.etFullname.requestFocus()
+            return
+        }
+        //validasi email
+        else if (binding.etEmailRegister.text.isEmpty()) {
             binding.etEmailRegister.error = "Kolom Email tidak boleh kosong"
             binding.etEmailRegister.requestFocus()
             return
-        } else if (binding.etPhone.text.isEmpty()) {
+        }else if (!Patterns.EMAIL_ADDRESS.matcher(binding.etEmailRegister.text).matches()){
+            binding.etEmailRegister.error = "Email tidak valid"
+            binding.etEmailRegister.requestFocus()
+            return
+        }
+        //validasi hp
+        else if (binding.etPhone.text.isEmpty()) {
             binding.etPhone.error = "Kolom Nomor Telepon tidak boleh kosong"
             binding.etPhone.requestFocus()
             return
-        } else if (binding.etPasswordRegister.text!!.isEmpty()) {
+        }else if (binding.etPhone.text.contains("[a-z]".toRegex())){
+            binding.etPhone.error = "Nomor Telepon tidak valid"
+            binding.etPhone.requestFocus()
+            return
+        }else if (binding.etPhone.text.contains("[A-Za-z!\\\"#\$%&'()*+,-./:;\\\\\\\\<=>?@\\\\[\\\\]^_`{|}~]".toRegex())) {
+            binding.etPhone.error = "Nomor Telepon tidak valid"
+            binding.etPhone.requestFocus()
+            return
+        }
+        //validasi pass
+        else if (binding.etPasswordRegister.text!!.isEmpty()) {
             binding.etPasswordRegister.error = "Kolom Password tidak boleh kosong"
+            binding.etPasswordRegister.requestFocus()
+            return
+        } else if (binding.etPasswordRegister.text!!.length < 6){
+            binding.etPasswordRegister.error = "Password minimal 6 karakter"
             binding.etPasswordRegister.requestFocus()
             return
         }
@@ -63,12 +103,12 @@ class RegisterActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
                 val respon = response.body()!!
-                if (respon.success == 200){
-                    Toast.makeText(this@RegisterActivity, "Success"+respon.message, Toast.LENGTH_SHORT).show()
+                if (respon.status == 200){
+                    Toast.makeText(this@RegisterActivity, "Success "+respon.message, Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@RegisterActivity, OtpActivity::class.java))
                     finish()
                 }else {
-                    Toast.makeText(this@RegisterActivity, "Error"+respon.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, "Error "+respon.message, Toast.LENGTH_SHORT).show()
                 }
             }
         })

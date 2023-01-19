@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".auth.view.OtpActivity">
+    tools:context=".auth.view.OtpSuccessActivity">
 
     <include
         android:id="@+id/layoutToolbar"
@@ -23,7 +23,7 @@
             android:id="@+id/img_cek_email"
             android:layout_width="@dimen/_125sdp"
             android:layout_height="wrap_content"
-            android:src="@drawable/img_cek_email"
+            android:src="@drawable/img_otp_success"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutToolbar"
@@ -35,7 +35,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cek email kamu"
+            android:text="Verifikasi Berhasil"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/img_cek_email"/>
@@ -45,7 +45,7 @@
             android:id="@+id/tv_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Link verifikasi telah kami kirimkan ke alamat email kamu. Segera lakukan verifikasi akun untuk mendapatkan akses login."
+            android:text="Selamat! Akun kamu sudah berhasil terverifikasi. Klik tombol di bawah untuk masuk ke akun kamu."
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_cek"/>
@@ -54,8 +54,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_desc"
             app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/btn_open_email"
-            android:text="Open Email"
+            android:id="@+id/btn_back_login"
+            android:text="Kembali ke Login"
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:layout_width="match_parent"
@@ -63,6 +63,5 @@
             android:background="@drawable/bg_button_rounded"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

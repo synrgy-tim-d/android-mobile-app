@@ -1,12 +1,11 @@
 package com.rivvana.naqos_app.auth.app
 
+import com.rivvana.naqos_app.auth.model.Login
 import com.rivvana.naqos_app.auth.model.Register
 import com.rivvana.naqos_app.auth.viewmodel.ResponseModel
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 interface ApiService {
@@ -15,16 +14,8 @@ interface ApiService {
         @Body register: Register
    ): Call<ResponseModel>
 
-    @FormUrlEncoded
     @POST("user-login/login")
     fun login(
-        @Field("email") email: String,
-        @Field("password") password: String,
-    ): Call<ResponseBody>
-
-    @FormUrlEncoded
-    @POST("user-register/send-otp")
-    fun sendOtp(
-        @Field("email") email:String,
+        @Body login: Login
     ): Call<ResponseBody>
 }
