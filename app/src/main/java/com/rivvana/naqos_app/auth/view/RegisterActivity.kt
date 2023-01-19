@@ -49,8 +49,6 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        encrypt()
-
         val register = Register(
             binding.etFullname.text.toString(),
             binding.etPhone.text.toString(),
@@ -76,7 +74,4 @@ class RegisterActivity : AppCompatActivity() {
         })
     }
 
-    private fun encrypt() {
-        TODO("Not yet implemented")
-    }
 }
