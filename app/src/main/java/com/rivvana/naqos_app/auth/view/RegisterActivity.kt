@@ -27,14 +27,30 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.btnDaftarAkun.setOnClickListener{
             signUp()
-            sendOtp()
         }
     }
 
-    private fun sendOtp() {
-    }
-
     private fun signUp() {
+        if (binding.etFullname.text.isEmpty()) {
+            binding.etFullname.error = "Kolom Nama tidak boleh kosong"
+            binding.etFullname.requestFocus()
+            return
+        } else if (binding.etEmailRegister.text.isEmpty()) {
+            binding.etEmailRegister.error = "Kolom Email tidak boleh kosong"
+            binding.etEmailRegister.requestFocus()
+            return
+        } else if (binding.etPhone.text.isEmpty()) {
+            binding.etPhone.error = "Kolom Nomor Telepon tidak boleh kosong"
+            binding.etPhone.requestFocus()
+            return
+        } else if (binding.etPasswordRegister.text!!.isEmpty()) {
+            binding.etPasswordRegister.error = "Kolom Password tidak boleh kosong"
+            binding.etPasswordRegister.requestFocus()
+            return
+        }
+
+        encrypt()
+
         val register = Register(
             binding.etFullname.text.toString(),
             binding.etPhone.text.toString(),
@@ -48,10 +64,19 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
-                Toast.makeText(this@RegisterActivity, "Success", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this@RegisterActivity, OtpActivity::class.java))
-                finish()
+                val respon = response.body()!!
+                if (respon.success == 200){
+                    Toast.makeText(this@RegisterActivity, "Success"+respon.message, Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@RegisterActivity, OtpActivity::class.java))
+                    finish()
+                }else {
+                    Toast.makeText(this@RegisterActivity, "Error"+respon.message, Toast.LENGTH_SHORT).show()
+                }
             }
         })
+    }
+
+    private fun encrypt() {
+        TODO("Not yet implemented")
     }
 }
