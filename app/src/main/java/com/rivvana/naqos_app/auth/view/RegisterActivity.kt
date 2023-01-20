@@ -102,12 +102,11 @@ class RegisterActivity : AppCompatActivity() {
             override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
                 Toast.makeText(this@RegisterActivity, "Error"+t.message, Toast.LENGTH_SHORT).show()
             }
-
             override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
                 val respon = response.body()!!
                 if (respon.status == 200){
 //                    Toast.makeText(this@RegisterActivity, "Success "+respon.message, Toast.LENGTH_SHORT).show()
-                      Toast.makeText(this@RegisterActivity, "Success "+respon.message, Toast.LENGTH_SHORT).show()
+                      Toast.makeText(this@RegisterActivity, "Selamat datang "+respon.message, Toast.LENGTH_SHORT).show()
 //                    startActivity(Intent(this@RegisterActivity, OtpActivity::class.java))
 //                    finish()
                 }else {

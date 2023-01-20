@@ -3,7 +3,6 @@ package com.rivvana.naqos_app.auth.app
 import com.rivvana.naqos_app.auth.model.Login
 import com.rivvana.naqos_app.auth.model.Register
 import com.rivvana.naqos_app.auth.viewmodel.ResponseModel
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -17,5 +16,5 @@ interface ApiService {
     @POST("user-login/login")
     fun login(
         @Body login: Login
-    ): Call<ResponseBody>
+    ): Call<ResponseModel>
 }

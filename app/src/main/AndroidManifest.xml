@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
-                    android:host="www.be-naqos.up.railway.app"
+                    android:host="be-naqos.up.railway.app"
                     android:scheme="https" />
             </intent-filter>
             <intent-filter>
@@ -32,7 +32,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
-                    android:host="www.be-naqos.up.railway.app"
+                    android:host="be-naqos.up.railway.app"
                     android:scheme="http" />
             </intent-filter>
         </activity>
