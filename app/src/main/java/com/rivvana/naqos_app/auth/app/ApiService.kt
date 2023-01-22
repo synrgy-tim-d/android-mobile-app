@@ -1,8 +1,6 @@
 package com.rivvana.naqos_app.auth.app
 
-import com.rivvana.naqos_app.auth.model.Login
-import com.rivvana.naqos_app.auth.model.Register
-import com.rivvana.naqos_app.auth.viewmodel.ResponseModel
+import com.rivvana.naqos_app.auth.model.*
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -10,11 +8,11 @@ import retrofit2.http.POST
 interface ApiService {
     @POST("user-register/register")
     fun register(
-        @Body register: Register
-   ): Call<ResponseModel>
+        @Body register: RegisterRequest
+   ): Call<RegisterResponse>
 
     @POST("user-login/login")
     fun login(
-        @Body login: Login
-    ): Call<ResponseModel>
+        @Body login: LoginRequest
+    ): Call<LoginResponse>
 }

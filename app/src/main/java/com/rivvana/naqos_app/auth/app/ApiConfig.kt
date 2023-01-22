@@ -1,5 +1,6 @@
 package com.rivvana.naqos_app.auth.app
 
+import android.content.Context
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -32,4 +33,10 @@ object ApiConfig {
 
     val instanceRetrofit: ApiService
         get() = client.create(ApiService::class.java)
+
+    private fun okhttpClient(context: Context): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(AuthInterceptor(context))
+            .build()
+    }
 }

@@ -6,15 +6,15 @@ import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
 import com.rivvana.naqos_app.auth.app.ApiConfig
-import com.rivvana.naqos_app.auth.model.Register
-import com.rivvana.naqos_app.auth.model.User
-import com.rivvana.naqos_app.auth.viewmodel.ResponseModel
+import com.rivvana.naqos_app.auth.model.RegisterRequest
+import com.rivvana.naqos_app.auth.model.RegisterResponse
 import com.rivvana.naqos_app.databinding.ActivityRegisterBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class RegisterActivity : AppCompatActivity() {
+
     lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
             binding.etFullname.error = "Nama tidak boleh mengandung angka"
             binding.etFullname.requestFocus()
             return
-        } else if (binding.etFullname.text.contains("[!\\\"#\$%&'()*+,-./:;\\\\\\\\<=>?@\\\\[\\\\]^_`{|}~]".toRegex())){
+        } else if (!binding.etFullname.text.contains("[A-Za-z][^.]*".toRegex())){
             binding.etFullname.error = "Nama tidak boleh mengandung simbol"
             binding.etFullname.requestFocus()
             return
@@ -74,7 +74,7 @@ class RegisterActivity : AppCompatActivity() {
             binding.etPhone.error = "Nomor Telepon tidak valid"
             binding.etPhone.requestFocus()
             return
-        }else if (binding.etPhone.text.contains("[A-Za-z!\\\"#\$%&'()*+,-./:;\\\\\\\\<=>?@\\\\[\\\\]^_`{|}~]".toRegex())) {
+        }else if (binding.etPhone.text!!.length < 10 || binding.etPhone.text!!.length > 13 ) {
             binding.etPhone.error = "Nomor Telepon tidak valid"
             binding.etPhone.requestFocus()
             return
@@ -90,7 +90,7 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
 
-        val register = Register(
+        val register = RegisterRequest(
             binding.etFullname.text.toString(),
             binding.etPhone.text.toString(),
             binding.etEmailRegister.text.toString(),
@@ -98,19 +98,19 @@ class RegisterActivity : AppCompatActivity() {
         )
 
         ApiConfig.instanceRetrofit.register(
-        register).enqueue(object : Callback<ResponseModel>{
-            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+        register).enqueue(object : Callback<RegisterResponse>{
+            override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
                 Toast.makeText(this@RegisterActivity, "Error"+t.message, Toast.LENGTH_SHORT).show()
             }
-            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+            override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                 val respon = response.body()!!
-                if (respon.status == 200){
+                if (respon.code == 200){
 //                    Toast.makeText(this@RegisterActivity, "Success "+respon.message, Toast.LENGTH_SHORT).show()
-                      Toast.makeText(this@RegisterActivity, "Selamat datang "+respon.message, Toast.LENGTH_SHORT).show()
+                      Toast.makeText(this@RegisterActivity, "Selamat datang "+respon.data, Toast.LENGTH_SHORT).show()
 //                    startActivity(Intent(this@RegisterActivity, OtpActivity::class.java))
 //                    finish()
                 }else {
-                    Toast.makeText(this@RegisterActivity, "Error "+respon.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, "Error "+respon.data, Toast.LENGTH_SHORT).show()
                 }
             }
         })
