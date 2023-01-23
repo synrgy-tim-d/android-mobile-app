@@ -87,11 +87,9 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 val loginRespon = response.body()!!
-                if (loginRespon?.access_token != null){
-                    Log.d("RESPON", "${loginRespon.user}" )
+                if (loginRespon.access_token != null){
                     Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
                     sessionManager.saveAuthToken(loginRespon.access_token)
-                    Log.d("RESPON", "${loginRespon.access_token}")
                     sp.setStatusLogin(true)
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
 //                    startActivity(Intent(this@RegisterActivity, OtpActivity::class.java))

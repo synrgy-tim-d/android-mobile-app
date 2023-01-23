@@ -24,14 +24,14 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    override fun onStart() {
-        super.onStart()
-        if (sp.getStatusLogin()){
-            startActivity(Intent(this, MainActivity::class.java))
-        } else {
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        if (sp.getStatusLogin()){
+//            startActivity(Intent(this, MainActivity::class.java))
+//        } else {
+//            startActivity(Intent(this, LoginActivity::class.java))
+//        }
+//    }
 
 
 }
