@@ -5,56 +5,64 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.rivvana.naqos_app.R
+import com.rivvana.naqos_app.adapter.AdapterRekomendasi
+import com.rivvana.naqos_app.model.Rekomendasi
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SearchFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var rvRekomendasi: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
+
+        rvRekomendasi = view.findViewById(R.id.rv_rekomendasi)
+
+        val layoutManager = LinearLayoutManager(activity)
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+
+        rvRekomendasi.adapter = AdapterRekomendasi(arrRekomendasi)
+        rvRekomendasi.layoutManager = layoutManager
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SearchFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+    val arrRekomendasi: ArrayList<Rekomendasi>
+        get() {
+            val arr = ArrayList<Rekomendasi>()
+            val p1 = Rekomendasi()
+            p1.gambar = R.drawable.dummy_rekomendasi_kos1
+            p1.nama = "Nama Kos"
+            p1.deskripsi = "Rincian alamat kos secara lengkap dan kode pos"
+            p1.rate = "4.5"
+            p1.kota = "Kota"
+            p1.harga = "Rp.2.000.000/bln"
+
+            val p2 = Rekomendasi()
+            p2.gambar = R.drawable.dummy_rekomendasi_kos1
+            p2.nama = "Nama Kos"
+            p2.deskripsi = "Rincian alamat kos secara lengkap dan kode pos"
+            p2.rate = "4.5"
+            p2.kota = "Kota"
+            p2.harga = "Rp.2.000.000/bln"
+
+            val p3 = Rekomendasi()
+            p3.gambar = R.drawable.dummy_rekomendasi_kos1
+            p3.nama = "Nama Kos"
+            p3.deskripsi = "Rincian alamat kos secara lengkap dan kode pos"
+            p3.rate = "4.5"
+            p3.kota = "Kota"
+            p3.harga = "Rp.2.000.000/bln"
+
+            arr.add(p1)
+            arr.add(p2)
+            arr.add(p3)
+
+            return arr
+        }
 }
