@@ -22,7 +22,7 @@ class SearchFragment : Fragment() {
 
     lateinit var spinnerRekomendasi: Spinner
     lateinit var spinnerKosMurah: Spinner
-    val arrSpinerRekomendasi = arrayOf("Bekasi", "Jakarta", "Bandung")
+    val arrSpinerRekomendasi = arrayOf("Bekasi", "Jakarta", "Bandung", "Surabaya", "Tangerang", "Depok", "Semarang", "Bogor")
     val arrSpinerKosMurah= arrayOf("Bekasi", "Jakarta", "Bandung")
 
     override fun onCreateView(
@@ -47,7 +47,7 @@ class SearchFragment : Fragment() {
                 position: Int,
                 id: Long
             ){
-                Toast.makeText(activity, "selected city is = "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Daftar rekomendasi di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -63,7 +63,7 @@ class SearchFragment : Fragment() {
                 position: Int,
                 id: Long
             ){
-                Toast.makeText(activity, "selected city is = "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Daftar kos murah di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
