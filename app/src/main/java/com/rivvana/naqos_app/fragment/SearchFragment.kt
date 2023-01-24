@@ -37,26 +37,26 @@ class SearchFragment : Fragment() {
             val arr = ArrayList<Rekomendasi>()
             val p1 = Rekomendasi()
             p1.gambar = R.drawable.dummy_rekomendasi_kos1
-            p1.nama = "Nama Kos"
-            p1.deskripsi = "Rincian alamat kos secara lengkap dan kode pos"
-            p1.rate = "4.5"
-            p1.kota = "Kota"
-            p1.harga = "Rp.2.000.000/bln"
+            p1.nama = "Kos Bunga"
+            p1.deskripsi = "Kosan khusus perempuan dan wanita termurah di Bekasi"
+            p1.rate = "4.3"
+            p1.kota = "Bekasi"
+            p1.harga = "Rp.700.000/bln"
 
             val p2 = Rekomendasi()
-            p2.gambar = R.drawable.dummy_rekomendasi_kos1
-            p2.nama = "Nama Kos"
-            p2.deskripsi = "Rincian alamat kos secara lengkap dan kode pos"
-            p2.rate = "4.5"
-            p2.kota = "Kota"
-            p2.harga = "Rp.2.000.000/bln"
+            p2.gambar = R.drawable.dummy_rekomendasi_kos2
+            p2.nama = "Kos Elite"
+            p2.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
+            p2.rate = "4.4"
+            p2.kota = "Bekasi"
+            p2.harga = "Rp.1.200.000/bln"
 
             val p3 = Rekomendasi()
-            p3.gambar = R.drawable.dummy_rekomendasi_kos1
-            p3.nama = "Nama Kos"
-            p3.deskripsi = "Rincian alamat kos secara lengkap dan kode pos"
-            p3.rate = "4.5"
-            p3.kota = "Kota"
+            p3.gambar = R.drawable.dummy_rekomendasi_kos3
+            p3.nama = "Kos Wkwkw"
+            p3.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
+            p3.rate = "4.1"
+            p3.kota = "Bekasi"
             p3.harga = "Rp.2.000.000/bln"
 
             arr.add(p1)
