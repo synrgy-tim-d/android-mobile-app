@@ -81,13 +81,20 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onResponse(call: retrofit2.Call<LoginResponse>, response: retrofit2.Response<LoginResponse>) {
                 val loginRespon = response.body()!!
-                if (!loginRespon.access_token.isNullOrBlank()){
+                if (loginRespon.access_token.isNotEmpty() && loginRespon.code == 200){
                     Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
                     sessionManager.saveAuthToken(loginRespon.access_token)
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     finish()
-                }else {
-                    Toast.makeText(this@LoginActivity, "Error "+loginRespon.message, Toast.LENGTH_SHORT).show()
+                }
+                else if (loginRespon.code == 500) {
+                    Toast.makeText(this@LoginActivity, "Akun belum terdaftar", Toast.LENGTH_SHORT).show()
+                }
+                else if (loginRespon.code == 404) {
+                    Toast.makeText(this@LoginActivity, "Akun belum verifikasi", Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    Toast.makeText(this@LoginActivity, "Akun belum terdaftar", Toast.LENGTH_SHORT).show()
                 }
             }
         })

@@ -15,4 +15,9 @@ interface ApiService {
     fun login(
         @Body login: LoginRequest
     ): Call<LoginResponse>
+
+    @POST("user-register/send-otp")
+    fun otpRequest(
+        @Body otpReq: OtpRequest
+    ): Call<LoginResponse>
 }
