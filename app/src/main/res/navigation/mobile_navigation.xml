@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_search">
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.rivvana.naqos_app.fragment.SearchFragment"
+        android:label="Cari"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/navigation_wishlist"
+        android:name="com.rivvana.naqos_app.fragment.WishlistFragment"
+        android:label="Whishlist"
+        tools:layout="@layout/fragment_wishlist" />
+
+    <fragment
+        android:id="@+id/navigation_history"
+        android:name="com.rivvana.naqos_app.fragment.HistoryFragment"
+        android:label="Riwayat"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.rivvana.naqos_app.fragment.ProfileFragment"
+        android:label="Profil"
+        tools:layout="@layout/fragment_profile" />
+
+
+</navigation>
