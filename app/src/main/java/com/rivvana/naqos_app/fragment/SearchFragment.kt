@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rivvana.naqos_app.R
@@ -16,6 +20,11 @@ class SearchFragment : Fragment() {
     lateinit var rvRekomendasi: RecyclerView
     lateinit var rvKosMurah: RecyclerView
 
+    lateinit var spinnerRekomendasi: Spinner
+    lateinit var spinnerKosMurah: Spinner
+    val arrSpinerRekomendasi = arrayOf("Bekasi", "Jakarta", "Bandung")
+    val arrSpinerKosMurah= arrayOf("Bekasi", "Jakarta", "Bandung")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,6 +33,44 @@ class SearchFragment : Fragment() {
 
         rvRekomendasi = view.findViewById(R.id.rv_rekomendasi)
         rvKosMurah = view.findViewById(R.id.rv_kosmurah)
+        spinnerRekomendasi = view.findViewById(R.id.spiner_rekomendasi)
+        spinnerKosMurah = view.findViewById(R.id.spiner_kosmurah)
+
+        val arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrSpinerRekomendasi)
+        val arrayAdapter2 = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrSpinerKosMurah)
+        spinnerRekomendasi.adapter = arrayAdapter
+        spinnerKosMurah.adapter = arrayAdapter2
+        spinnerRekomendasi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ){
+                Toast.makeText(activity, "selected city is = "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+        }
+
+        spinnerKosMurah.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ){
+                Toast.makeText(activity, "selected city is = "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+        }
 
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -105,4 +152,5 @@ class SearchFragment : Fragment() {
 
         return arr
     }
+
 }
