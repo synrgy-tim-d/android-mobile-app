@@ -3,22 +3,23 @@
 
     <item
         android:id="@+id/navigation_search"
-        android:icon="@drawable/ic_search_navbar"
-        android:title="Cari" />
+        android:icon="@drawable/ic_search_selector"
+        android:title="Cari"
+        android:checked="true"/>
 
     <item
         android:id="@+id/navigation_wishlist"
-        android:icon="@drawable/ic_wishlist_navbar"
+        android:icon="@drawable/ic_wishlist_selector"
         android:title="Wishlist" />
 
     <item
         android:id="@+id/navigation_history"
-        android:icon="@drawable/ic_history_navbar"
+        android:icon="@drawable/ic_history_selector"
         android:title="Riwayat" />
 
     <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_profile_navbar"
+        android:icon="@drawable/ic_profile_selector"
         android:title="Masuk" />
 
 </menu>

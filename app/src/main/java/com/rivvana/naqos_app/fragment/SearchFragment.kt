@@ -14,6 +14,7 @@ import com.rivvana.naqos_app.model.Rekomendasi
 class SearchFragment : Fragment() {
 
     lateinit var rvRekomendasi: RecyclerView
+    lateinit var rvKosMurah: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,18 +23,24 @@ class SearchFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
         rvRekomendasi = view.findViewById(R.id.rv_rekomendasi)
+        rvKosMurah = view.findViewById(R.id.rv_kosmurah)
 
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
 
+        val layoutManager2 = LinearLayoutManager(activity)
+        layoutManager2.orientation = LinearLayoutManager.HORIZONTAL
+
         rvRekomendasi.adapter = AdapterRekomendasi(arrRekomendasi)
         rvRekomendasi.layoutManager = layoutManager
+
+        rvKosMurah.adapter = AdapterRekomendasi(arrKosMurah)
+        rvKosMurah.layoutManager = layoutManager2
 
         return view
     }
 
-    val arrRekomendasi: ArrayList<Rekomendasi>
-        get() {
+    val arrRekomendasi: ArrayList<Rekomendasi> get() {
             val arr = ArrayList<Rekomendasi>()
             val p1 = Rekomendasi()
             p1.gambar = R.drawable.dummy_rekomendasi_kos1
@@ -65,4 +72,37 @@ class SearchFragment : Fragment() {
 
             return arr
         }
+
+    val arrKosMurah: ArrayList<Rekomendasi> get() {
+        val arr = ArrayList<Rekomendasi>()
+        val p1 = Rekomendasi()
+        p1.gambar = R.drawable.dummy_rekomendasi_kos1
+        p1.nama = "Kos Bunga"
+        p1.deskripsi = "Kosan khusus perempuan dan wanita termurah di Bekasi"
+        p1.rate = "4.3"
+        p1.kota = "Bekasi"
+        p1.harga = "Rp.700.000/bln"
+
+        val p2 = Rekomendasi()
+        p2.gambar = R.drawable.dummy_rekomendasi_kos2
+        p2.nama = "Kos Elite"
+        p2.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
+        p2.rate = "4.4"
+        p2.kota = "Bekasi"
+        p2.harga = "Rp.1.200.000/bln"
+
+        val p3 = Rekomendasi()
+        p3.gambar = R.drawable.dummy_rekomendasi_kos3
+        p3.nama = "Kos Wkwkw"
+        p3.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
+        p3.rate = "4.1"
+        p3.kota = "Bekasi"
+        p3.harga = "Rp.2.000.000/bln"
+
+        arr.add(p1)
+        arr.add(p2)
+        arr.add(p3)
+
+        return arr
+    }
 }
