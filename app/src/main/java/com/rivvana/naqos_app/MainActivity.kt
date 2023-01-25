@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.rivvana.naqos_app
 
 import androidx.appcompat.app.AppCompatActivity
