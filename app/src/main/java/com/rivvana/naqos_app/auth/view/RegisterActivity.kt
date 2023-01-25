@@ -22,7 +22,8 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.layoutToolbar.btnBackRegister.setOnClickListener{
+        binding.layoutToolbar.tvToolbar.text = "Daftar"
+        binding.layoutToolbar.btnBackToolbar.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
@@ -107,8 +108,8 @@ class RegisterActivity : AppCompatActivity() {
                 if (respon.code == 200){
 //                    Toast.makeText(this@RegisterActivity, "Success "+respon.message, Toast.LENGTH_SHORT).show()
                       Toast.makeText(this@RegisterActivity, "Selamat datang "+respon.data, Toast.LENGTH_SHORT).show()
-//                    startActivity(Intent(this@RegisterActivity, OtpActivity::class.java))
-//                    finish()
+                    startActivity(Intent(this@RegisterActivity, OtpActivity::class.java))
+                    finish()
                 }else {
                     Toast.makeText(this@RegisterActivity, "Error "+respon.data, Toast.LENGTH_SHORT).show()
                 }

@@ -14,6 +14,7 @@ class OtpActivity : AppCompatActivity() {
         binding = ActivityOtpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.layoutToolbar.tvToolbar.text = "Verifikasi"
         binding.btnOpenEmail.setOnClickListener{
             openEmail()
         }
