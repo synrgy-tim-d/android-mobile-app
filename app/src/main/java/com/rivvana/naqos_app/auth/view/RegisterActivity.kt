@@ -100,7 +100,8 @@ class RegisterActivity : AppCompatActivity() {
             binding.etFullname.text.toString(),
             binding.etPhone.text.toString(),
             binding.etEmailRegister.text.toString(),
-            binding.etPasswordRegister.text.toString()
+            binding.etPasswordRegister.text.toString(),
+            "penyewa"
         )
 
         ApiConfig.instanceRetrofit.register(
@@ -110,13 +111,14 @@ class RegisterActivity : AppCompatActivity() {
             }
             override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                 val respon = response.body()!!
+                val responError = response.errorBody()!!
                 if (respon.code == 200){
 //                    Toast.makeText(this@RegisterActivity, "Success "+respon.message, Toast.LENGTH_SHORT).show()
-                      Toast.makeText(this@RegisterActivity, "Selamat datang "+respon.data, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, "Selamat datang "+respon.data, Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@RegisterActivity, OtpActivity::class.java))
                     finish()
                 }else {
-                    Toast.makeText(this@RegisterActivity, "Error "+respon.data, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegisterActivity, "Error "+responError.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
         })

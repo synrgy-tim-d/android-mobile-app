@@ -83,32 +83,19 @@ class LoginActivity : AppCompatActivity() {
 
         ApiConfig.instanceRetrofit.login(
             login).enqueue(object : Callback<LoginResponse> {
-//
-//            override fun onResponse(call: retrofit2.Call<LoginResponse>, response: retrofit2.Response<LoginResponse>) {
-//                val loginRespon = response.body()!!
-//                if (loginRespon.access_token.isNotEmpty() && loginRespon.code == 200){
-//                    Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
-//                    sessionManager.saveAuthToken(loginRespon.access_token)
-//                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-//                    finish()
-//                }
-//                else if (loginRespon.status == 500) {
-//                    Toast.makeText(this@LoginActivity, "Akun belum terdaftar", Toast.LENGTH_SHORT).show()
-//                }
-//                else if (loginRespon.code == 404) {
-//                    Toast.makeText(this@LoginActivity, "Akun belum verifikasi", Toast.LENGTH_SHORT).show()
-//                }
-//                else{
-//                    Toast.makeText(this@LoginActivity, "Akun belum terdaftar", Toast.LENGTH_SHORT).show()
-//                }
-//            }
+
 //            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//                var loginRespon = response.body()
 //                if (response.body()!=null){
 //                    response.body()?.string()?.let { Log.d("RESPON", it) }
+//                    sessionManager.saveAuthToken(loginRespon.)
 //                } else {
 //                    response.errorBody()?.string()?.let { Log.d("RESPON ERROR", it) }
 //                    if (response.errorBody()?.string().toString().contains("\"status\":500")){
-//
+//                        Toast.makeText(this@LoginActivity, "User not Found", Toast.LENGTH_SHORT).show()
+//                    }
+//                    if (response.errorBody()?.string().toString().contains("\"code\":404")){
+//                        Toast.makeText(this@LoginActivity, "User not Found", Toast.LENGTH_SHORT).show()
 //                    }
 //                }
 //            }
@@ -118,15 +105,25 @@ class LoginActivity : AppCompatActivity() {
 //            }
 
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                val loginRespon = response.body()
+                val loginError = response.errorBody()
                 if (response.body()!=null){
                     Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
-                    sessionManager.saveAuthToken(response.body()!!.access_token)
+                    loginRespon?.data?.access_token.toString().let { Log.d("RESPON BERHASIL", it) }
+                    sessionManager.saveAuthToken(loginRespon?.data?.access_token)
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     finish()
                 }
                 else {
-                    response.errorBody()?.string()?.let { Log.d("RESPON GAGAL", it) }
+                    loginError?.string()?.let { Log.d("RESPON GAGAL", it) }
                     Toast.makeText(this@LoginActivity, "Akun belum terdaftar", Toast.LENGTH_SHORT).show()
+                    response.errorBody()?.string()?.let { Log.d("RESPON ERROR", it) }
+                    if (response.errorBody()?.string().toString().contains("\"status\":500")){
+                        Toast.makeText(this@LoginActivity, "User not Found", Toast.LENGTH_SHORT).show()
+                    }
+                    if (response.errorBody()?.string().toString().contains("\"code\":404")){
+                        Toast.makeText(this@LoginActivity, "User not Found", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
 

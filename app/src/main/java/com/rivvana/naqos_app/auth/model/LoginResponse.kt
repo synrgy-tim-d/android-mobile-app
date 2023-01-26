@@ -2,16 +2,16 @@ package com.rivvana.naqos_app.auth.model
 
 import com.google.gson.annotations.SerializedName
 
-data class LoginResponse (
-    @SerializedName("status")
-    var status: String,
+class LoginResponse {
+    lateinit var message: String
+    var data = Data()
+}
 
-    @SerializedName("access_token")
-    var access_token: String,
+class Data(){
+    var user_id: Int = 0
+    var code: Int = 0
+    lateinit var access_token: String
+    lateinit var status: String
+    lateinit var refresh_token: String
 
-    @SerializedName("code")
-    var code: Int,
-
-    @SerializedName("user_id")
-    var user_id: Int
-        )
+}

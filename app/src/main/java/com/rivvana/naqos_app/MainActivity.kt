@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
 
         sessionManager = SessionManager(this)
 
+        binding.token.text = sessionManager.fetchAuthToken().toString()
+
         binding.btnLogout.setOnClickListener {
             sessionManager.removeToken()
             startActivity(Intent(this, LoginActivity::class.java))

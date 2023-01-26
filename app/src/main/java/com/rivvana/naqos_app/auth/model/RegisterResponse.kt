@@ -2,6 +2,7 @@ package com.rivvana.naqos_app.auth.model
 
 import com.google.gson.annotations.SerializedName
 
+
 data class RegisterResponse (
     @SerializedName("code")
     var code: Int,
@@ -10,5 +11,5 @@ data class RegisterResponse (
     var data: String,
 
     @SerializedName("status")
-    var status: String
+    var message: String,
         )
