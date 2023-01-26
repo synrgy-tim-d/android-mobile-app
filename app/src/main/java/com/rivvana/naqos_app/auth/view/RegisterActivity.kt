@@ -101,7 +101,7 @@ class RegisterActivity : AppCompatActivity() {
             binding.etPhone.text.toString(),
             binding.etEmailRegister.text.toString(),
             binding.etPasswordRegister.text.toString(),
-            "penyewa"
+            "ROLE_PENYEWA"
         )
 
         ApiConfig.instanceRetrofit.register(
