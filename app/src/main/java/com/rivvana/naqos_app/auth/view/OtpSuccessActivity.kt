@@ -15,12 +15,6 @@ class OtpSuccessActivity : AppCompatActivity() {
         setContentView(binding.root)
         uri = intent.data
 
-        if (uri != null){
-            val parameters = uri!!.pathSegments
-            val param = parameters[parameters.size - 1]
-            binding.msg.text = "Your OTP code is" + param
-        }
-
         binding.layoutToolbar.tvToolbar.text = "Verifikasi"
         binding.btnBackLogin.setOnClickListener{
             backLogin()
