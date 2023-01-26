@@ -35,10 +35,15 @@ class RegisterActivity : AppCompatActivity() {
         binding.btnDaftarAkunGoogle.setOnClickListener{
             signUpWithGoogle()
         }
+
+        binding.tvMasuk.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
     }
 
     private fun signUpWithGoogle() {
-        TODO("Not yet implemented")
+        Toast.makeText(this,"Daftar dengan Akun Google", Toast.LENGTH_SHORT).show()
     }
 
     private fun signUp() {

@@ -37,14 +37,13 @@
 
         <EditText
             android:layout_marginTop="5dp"
-            su
             android:id="@+id/et_email_login"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:padding="10dp"
             android:background="@drawable/bg_textfield_rounded"
             android:hint="Ketikan alamat email"
-            android:inputType="text" />
+            android:inputType="textNoSuggestions" />
 
         <TextView
             android:id="@+id/tv_password_login"

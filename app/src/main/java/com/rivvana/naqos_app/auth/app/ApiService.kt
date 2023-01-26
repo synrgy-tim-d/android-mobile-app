@@ -15,10 +15,10 @@ interface ApiService {
     @POST("user-login/login")
     fun login(
         @Body login: LoginRequest
-    ): Call<ResponseBody>
+    ): Call<LoginResponse>
 
     @POST("user-register/send-otp")
     fun otpRequest(
         @Body otpReq: OtpRequest
-    ): Call<LoginResponse>
+    ): Call<OtpResponse>
 }

@@ -43,7 +43,7 @@
             android:padding="10dp"
             android:background="@drawable/bg_textfield_rounded"
             android:hint="Ketikkan nama lengkapmu disini"
-            android:inputType="text" />
+            android:inputType="textNoSuggestions" />
 
         <TextView
             android:id="@+id/tv_phone"
@@ -60,7 +60,7 @@
             android:padding="10dp"
             android:background="@drawable/bg_textfield_rounded"
             android:hint="Isi nomor handphone Whatsapp aktif"
-            android:inputType="text"/>
+            android:inputType="textNoSuggestions"/>
 
         <TextView
             android:id="@+id/tv_email"
@@ -77,7 +77,7 @@
             android:padding="10dp"
             android:background="@drawable/bg_textfield_rounded"
             android:hint="Ketikan alamat email"
-            android:inputType="text" />
+            android:inputType="textNoSuggestions" />
 
         <TextView
             android:id="@+id/tv_password_login"
@@ -91,9 +91,10 @@
             android:padding="10dp"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/etPasswordLayout"
-            android:background="@drawable/bg_button_white_rounded"
+            android:background="@drawable/bg_textfield_rounded"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:textColorHint="@drawable/hint_focus"
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -101,7 +102,7 @@
                 android:id="@+id/et_password_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@null"
+                android:background="@null"
                 android:textColorHint="@drawable/hint_focus"
                 android:hint="Minimal 6 karakter"
                 android:inputType="textPassword"/>
@@ -151,7 +152,7 @@
         <TextView
             android:layout_marginTop="10dp"
             android:layout_gravity="center"
-            android:id="@+id/tv_daftar"
+            android:id="@+id/tv_masuk"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Sudah punya akun? Masuk"/>

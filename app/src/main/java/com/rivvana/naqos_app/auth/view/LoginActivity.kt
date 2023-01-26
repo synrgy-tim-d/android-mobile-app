@@ -38,6 +38,10 @@ class LoginActivity : AppCompatActivity() {
             doLogin()
         }
 
+        binding.btnMasukAkunGoogle.setOnClickListener{
+            Toast.makeText(this,"Daftar dengan Akun Google", Toast.LENGTH_SHORT).show()
+        }
+
         binding.tvDaftar.setOnClickListener{
             doSignUp()
         }
@@ -78,11 +82,7 @@ class LoginActivity : AppCompatActivity() {
         )
 
         ApiConfig.instanceRetrofit.login(
-            login).enqueue(object : Callback<ResponseBody> {
-
-            //            override fun onFailure(call: retrofit2.Call<LoginResponse>, t: Throwable) {
-//                Toast.makeText(this@LoginActivity, "Error"+t.message, Toast.LENGTH_SHORT).show()
-//            }
+            login).enqueue(object : Callback<LoginResponse> {
 //
 //            override fun onResponse(call: retrofit2.Call<LoginResponse>, response: retrofit2.Response<LoginResponse>) {
 //                val loginRespon = response.body()!!
@@ -102,22 +102,37 @@ class LoginActivity : AppCompatActivity() {
 //                    Toast.makeText(this@LoginActivity, "Akun belum terdaftar", Toast.LENGTH_SHORT).show()
 //                }
 //            }
-            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-                if (response.body()!=null){
-                    response.body()?.string()?.let { Log.d("RESPON", it) }
-                } else {
-                    response.errorBody()?.string()?.let { Log.d("RESPON ERROR", it) }
-                    if (response.errorBody()?.string().toString().contains("\"status\":500")){
+//            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+//                if (response.body()!=null){
+//                    response.body()?.string()?.let { Log.d("RESPON", it) }
+//                } else {
+//                    response.errorBody()?.string()?.let { Log.d("RESPON ERROR", it) }
+//                    if (response.errorBody()?.string().toString().contains("\"status\":500")){
+//
+//                    }
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+//                Log.d("RESPON", t.message.toString())
+//            }
 
-                    }
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                if (response.body()!=null){
+                    Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
+                    sessionManager.saveAuthToken(response.body()!!.access_token)
+                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                    finish()
+                }
+                else {
+                    response.errorBody()?.string()?.let { Log.d("RESPON GAGAL", it) }
+                    Toast.makeText(this@LoginActivity, "Akun belum terdaftar", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                Log.d("RESPON", t.message.toString())
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                Log.d("RESPON ERROR", t.message.toString())
             }
         })
     }
-
-
 }
