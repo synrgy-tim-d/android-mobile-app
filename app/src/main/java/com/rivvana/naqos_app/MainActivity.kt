@@ -1,7 +1,6 @@
-@file:Suppress("DEPRECATION")
-
 package com.rivvana.naqos_app
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -14,8 +13,13 @@ import com.rivvana.naqos_app.fragment.HistoryFragment
 import com.rivvana.naqos_app.fragment.ProfileFragment
 import com.rivvana.naqos_app.fragment.SearchFragment
 import com.rivvana.naqos_app.fragment.WishlistFragment
+import com.rivvana.naqos_app.auth.app.SessionManager
+import com.rivvana.naqos_app.auth.view.LoginActivity
+import com.rivvana.naqos_app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMainBinding
+    private lateinit var sessionManager: SessionManager
 
     lateinit var binding: ActivityMainBinding
     val fragmentSearch: Fragment = SearchFragment()
@@ -77,5 +81,24 @@ class MainActivity : AppCompatActivity() {
         menuItem.isChecked = true
         fm.beginTransaction().hide(active).show(fragment).commit()
         active = fragment
+        sessionManager = SessionManager(this)
+
+        binding.token.text = sessionManager.fetchAuthToken().toString()
+
+        binding.btnLogout.setOnClickListener {
+            sessionManager.removeToken()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
     }
+
+
+    override fun onStart() {
+        super.onStart()
+        if (sessionManager.fetchAuthToken().isNullOrBlank()){ //sp.fetchToken.isEmpty
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+    }
+
+
 }
