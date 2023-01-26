@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.model.RegisterRequest
@@ -101,15 +102,18 @@ class RegisterActivity : AppCompatActivity() {
             binding.etPhone.text.toString(),
             binding.etEmailRegister.text.toString(),
             binding.etPasswordRegister.text.toString(),
-            "ROLE_PENYEWA"
+            "PENYEWA"
         )
 
+        binding.animationView.visibility = View.VISIBLE
         ApiConfig.instanceRetrofit.register(
         register).enqueue(object : Callback<RegisterResponse>{
             override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
+                binding.animationView.visibility = View.GONE
                 Toast.makeText(this@RegisterActivity, "Error"+t.message, Toast.LENGTH_SHORT).show()
             }
             override fun onResponse(call: Call<RegisterResponse>, response: Response<RegisterResponse>) {
+                binding.animationView.visibility = View.GONE
                 val respon = response.body()
                 val responError = response.errorBody()
                 if (respon!=null){

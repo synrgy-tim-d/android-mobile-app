@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
 import com.rivvana.naqos_app.MainActivity
+import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.app.SessionManager
 import com.rivvana.naqos_app.auth.model.LoginRequest
@@ -81,6 +83,7 @@ class LoginActivity : AppCompatActivity() {
             binding.etPasswordLogin.text.toString()
         )
 
+        binding.animationView.visibility = View.VISIBLE
         ApiConfig.instanceRetrofit.login(
             login).enqueue(object : Callback<LoginResponse> {
 
@@ -105,6 +108,7 @@ class LoginActivity : AppCompatActivity() {
 //            }
 
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                binding.animationView.visibility = View.GONE
                 val loginRespon = response.body()
                 val loginError = response.errorBody()
                 if (response.body()!=null){
@@ -128,6 +132,7 @@ class LoginActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                binding.animationView.visibility = View.GONE
                 Log.d("RESPON ERROR", t.message.toString())
             }
         })
