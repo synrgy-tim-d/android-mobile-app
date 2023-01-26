@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.webkit.WebViewClient
 import com.rivvana.naqos_app.databinding.ActivityWebViewBinding
-import kotlinx.android.synthetic.main.activity_web_view.*
 
 class WebViewActivity : AppCompatActivity() {
     private var uri: Uri? = null
@@ -19,11 +18,11 @@ class WebViewActivity : AppCompatActivity() {
         uri = intent.data
         val parameters = uri?.pathSegments
         val param = parameters?.get(parameters.size - 1)
-        webView.webViewClient = WebViewClient()
+        binding.webView.webViewClient = WebViewClient()
 
-        webView.loadUrl("https://be-naqos.up.railway.app/api/user-register/register-confirm-otp/"+param)
-        webView.settings.javaScriptEnabled = true
-        webView.settings.setSupportZoom(true)
+        binding.webView.loadUrl("https://be-naqos.up.railway.app/api/user-register/register-confirm-otp/"+param)
+        binding.webView.settings.javaScriptEnabled = true
+        binding.webView.settings.setSupportZoom(true)
 
         val handler = Handler()
         handler.postDelayed({gotoOTP()},3000)
@@ -36,8 +35,8 @@ class WebViewActivity : AppCompatActivity() {
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        if (webView.canGoBack())
-            webView.goBack()
+        if (binding.webView.canGoBack())
+            binding.webView.goBack()
         else
             super.onBackPressed()
     }

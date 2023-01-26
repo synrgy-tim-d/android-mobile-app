@@ -15,13 +15,11 @@ import com.rivvana.naqos_app.fragment.SearchFragment
 import com.rivvana.naqos_app.fragment.WishlistFragment
 import com.rivvana.naqos_app.auth.app.SessionManager
 import com.rivvana.naqos_app.auth.view.LoginActivity
-import com.rivvana.naqos_app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    private lateinit var sessionManager: SessionManager
+    lateinit var sessionManager: SessionManager
 
-    lateinit var binding: ActivityMainBinding
     val fragmentSearch: Fragment = SearchFragment()
     val fragmentWishlist: Fragment = WishlistFragment()
     val fragmentHistory: Fragment = HistoryFragment()
@@ -37,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        sessionManager = SessionManager(this)
         setupBottomNav()
     }
 
@@ -83,15 +81,12 @@ class MainActivity : AppCompatActivity() {
         active = fragment
         sessionManager = SessionManager(this)
 
-        binding.token.text = sessionManager.fetchAuthToken().toString()
-
-        binding.btnLogout.setOnClickListener {
-            sessionManager.removeToken()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
+//        binding.btnLogout.setOnClickListener {
+//            sessionManager.removeToken()
+//            startActivity(Intent(this, LoginActivity::class.java))
+//            finish()
+//        }
     }
-
 
     override fun onStart() {
         super.onStart()
