@@ -13,5 +13,4 @@ class Data(){
     lateinit var access_token: String
     lateinit var status: String
     lateinit var refresh_token: String
-
 }
