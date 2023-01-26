@@ -13,7 +13,7 @@ import com.rivvana.naqos_app.fragment.HistoryFragment
 import com.rivvana.naqos_app.fragment.ProfileFragment
 import com.rivvana.naqos_app.fragment.SearchFragment
 import com.rivvana.naqos_app.fragment.WishlistFragment
-import com.rivvana.naqos_app.auth.app.SessionManager
+import com.rivvana.naqos_app.auth.viewmodel.SessionManager
 import com.rivvana.naqos_app.auth.view.LoginActivity
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +37,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         sessionManager = SessionManager(this)
         setupBottomNav()
+        if (sessionManager.fetchAuthToken().isNullOrBlank()){
+            binding.navView.menu.findItem(R.id.navigation_profile).setTitle("Masuk")
+        }
     }
 
     private fun setupBottomNav() {
@@ -66,7 +69,12 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.navigation_profile -> {
-                    callFragment(3, fragmentProfile)
+                    if (sessionManager.fetchAuthToken().isNullOrBlank()){ //sp.fetchToken.isEmpty
+                        startActivity(Intent(this, LoginActivity::class.java))
+                    }else {
+                        callFragment(3, fragmentProfile)
+                    }
+
                 }
             }
             false
@@ -79,20 +87,11 @@ class MainActivity : AppCompatActivity() {
         menuItem.isChecked = true
         fm.beginTransaction().hide(active).show(fragment).commit()
         active = fragment
-        sessionManager = SessionManager(this)
-
-//        binding.btnLogout.setOnClickListener {
-//            sessionManager.removeToken()
-//            startActivity(Intent(this, LoginActivity::class.java))
-//            finish()
-//        }
     }
 
     override fun onStart() {
         super.onStart()
-        if (sessionManager.fetchAuthToken().isNullOrBlank()){ //sp.fetchToken.isEmpty
-            startActivity(Intent(this, LoginActivity::class.java))
-        }
+
     }
 
 

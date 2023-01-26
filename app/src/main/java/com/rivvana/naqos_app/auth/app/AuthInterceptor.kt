@@ -1,6 +1,7 @@
 package com.rivvana.naqos_app.auth.app
 
 import android.content.Context
+import com.rivvana.naqos_app.auth.viewmodel.SessionManager
 import okhttp3.Interceptor
 import okhttp3.Response
 

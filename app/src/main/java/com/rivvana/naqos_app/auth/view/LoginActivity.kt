@@ -8,13 +8,11 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import com.rivvana.naqos_app.MainActivity
-import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.app.ApiConfig
-import com.rivvana.naqos_app.auth.app.SessionManager
+import com.rivvana.naqos_app.auth.viewmodel.SessionManager
 import com.rivvana.naqos_app.auth.model.LoginRequest
 import com.rivvana.naqos_app.auth.model.LoginResponse
 import com.rivvana.naqos_app.databinding.ActivityLoginBinding
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
