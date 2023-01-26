@@ -13,17 +13,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <ProgressBar
-        android:id="@+id/pgrbar"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-
     <LinearLayout
         android:padding="15dp"
         app:layout_constraintTop_toBottomOf="@+id/layoutToolbar"
@@ -48,6 +37,7 @@
 
         <EditText
             android:layout_marginTop="5dp"
+            su
             android:id="@+id/et_email_login"
             android:layout_width="match_parent"
             android:layout_height="60dp"
