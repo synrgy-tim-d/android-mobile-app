@@ -10,5 +10,5 @@ data class UserResponse (
     var message: String,
 
     @SerializedName("data")
-    val data: List<User>
+    val data: User = User()
 )

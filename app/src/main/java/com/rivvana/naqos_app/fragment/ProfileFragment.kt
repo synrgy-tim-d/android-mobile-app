@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.Toast
 import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.app.ApiConfig
+import com.rivvana.naqos_app.auth.model.User
 import com.rivvana.naqos_app.auth.model.UserResponse
 import com.rivvana.naqos_app.auth.view.LoginActivity
 import com.rivvana.naqos_app.auth.viewmodel.SessionManager
@@ -55,7 +56,12 @@ class ProfileFragment : Fragment() {
                     call: Call<UserResponse>,
                     response: Response<UserResponse>
                 ) {
+                    val userRespon = response.body()!!
                     Log.d("RESPON USER BERHASIL", response.body().toString())
+                    Log.d("RESPON USER BERHASIL", response.body()!!.data.username)
+                    binding.etEmail.text = userRespon.data.username
+                    binding.etNamaLengkap.text = userRespon.data.fullname
+                    binding.etNomorHP.text = userRespon.data.phoneNumber
 //                    val user = sessionManager.getUser()
 //                    binding.etEmail.text = user?.username
 //                    Log.d("RESPON USER GET", sessionManager.getUser()?.username.toString())
