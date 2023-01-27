@@ -18,6 +18,7 @@ import com.rivvana.naqos_app.auth.view.LoginActivity
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
+
     lateinit var sessionManager: SessionManager
 
     val fragmentSearch: Fragment = SearchFragment()

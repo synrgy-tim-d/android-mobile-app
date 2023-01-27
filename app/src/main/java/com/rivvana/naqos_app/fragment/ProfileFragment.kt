@@ -12,7 +12,6 @@ import android.widget.Button
 import android.widget.Toast
 import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.app.ApiConfig
-import com.rivvana.naqos_app.auth.model.User
 import com.rivvana.naqos_app.auth.model.UserResponse
 import com.rivvana.naqos_app.auth.view.LoginActivity
 import com.rivvana.naqos_app.auth.viewmodel.SessionManager
@@ -25,7 +24,7 @@ import retrofit2.Response
 class ProfileFragment : Fragment() {
     private var _binding : FragmentProfileBinding? = null
     private val binding get() = _binding!!
-    lateinit var sessionManager: SessionManager
+    private lateinit var sessionManager: SessionManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,10 +48,8 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
-    val addToken = sessionManager.fetchAuthToken()
-
     private fun fetchUser() {
-        ApiConfig.instanceRetrofit.getUser(token = "Bearer ${addToken}"
+        ApiConfig.instanceRetrofit.getUser(token = "Bearer ${sessionManager.fetchAuthToken()}"
         ).enqueue(object : Callback<UserResponse> {
                 override fun onResponse(
                     call: Call<UserResponse>,
