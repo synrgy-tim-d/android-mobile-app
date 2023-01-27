@@ -20,7 +20,9 @@ interface ApiService {
     ): Call<LoginResponse>
 
     @GET("users/get")
-    fun getUser():Call<UserResponse>
+    fun getUser(
+        @Header("Authorization") token: String
+    ):Call<UserResponse>
 
     @POST("/auth/send-otp")
     fun otpRequest(
