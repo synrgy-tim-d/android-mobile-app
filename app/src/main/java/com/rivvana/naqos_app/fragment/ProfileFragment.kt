@@ -33,8 +33,6 @@ class ProfileFragment : Fragment() {
 
         binding.tvLogout.setOnClickListener{
             showDialog()
-            sessionManager.removeToken()
-            startActivity(Intent(context, LoginActivity::class.java))
         }
 
         return binding.root
@@ -50,6 +48,12 @@ class ProfileFragment : Fragment() {
         val btnDismiss = dialog.findViewById<Button>(R.id.btDismissCustomDialog)
         btnDismiss.setOnClickListener{
             customDialog.dismiss()
+        }
+
+        val btnLogout = dialog.findViewById<Button>(R.id.btLogoutCustomDialog)
+        btnLogout.setOnClickListener{
+            sessionManager.removeToken()
+            startActivity(Intent(context, LoginActivity::class.java))
         }
     }
 

@@ -14,7 +14,7 @@
         android:gravity="center"/>
 
     <TextView
-        android:color="#000000"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         android:layout_marginBottom="5dp" />
 
     <TextView
-        android:color="#000000"
+        android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lines="2"
@@ -39,12 +39,28 @@
         android:layout_height="1dp"
         android:background="#DEDEDE"/>
 
-    <Button
-        android:id="@+id/btDismissCustomDialog"
+    <LinearLayout
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="?selectableItemBackground"
-        android:text="Dismiss"
-        />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btDismissCustomDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="?selectableItemBackground"
+            android:text="Batalkan" />
+
+        <Button
+            android:layout_marginLeft="15dp"
+            android:id="@+id/btLogoutCustomDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:background="?selectableItemBackground"
+            android:text="Keluar" />
+
+    </LinearLayout>
+
 
 </LinearLayout>
