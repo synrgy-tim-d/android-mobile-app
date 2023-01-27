@@ -3,6 +3,7 @@ package com.rivvana.naqos_app.auth.model
 class LoginResponse {
     lateinit var message: String
     var data = Data()
+    var user = User()
 }
 
 class Data(){

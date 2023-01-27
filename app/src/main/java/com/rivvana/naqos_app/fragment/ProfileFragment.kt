@@ -19,6 +19,7 @@ class ProfileFragment : Fragment() {
     private var _binding : FragmentProfileBinding? = null
     private val binding get() = _binding!!
     lateinit var sessionManager: SessionManager
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,6 +28,9 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         binding.layoutToolbar.tvToolbar.text = "Profile"
         sessionManager = context?.let { SessionManager(it) }!!
+
+        setDataUser()
+
         binding.layoutToolbar.btnBackToolbar.setOnClickListener{
             Toast.makeText(context, "Button Back", Toast.LENGTH_SHORT).show()
         }
@@ -36,6 +40,10 @@ class ProfileFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun setDataUser() {
+
     }
 
     private fun showDialog() {
