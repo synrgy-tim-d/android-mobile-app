@@ -3,6 +3,7 @@ package com.rivvana.naqos_app.fragment
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import com.rivvana.naqos_app.R
+import com.rivvana.naqos_app.auth.app.ApiConfig
+import com.rivvana.naqos_app.auth.model.User
+import com.rivvana.naqos_app.auth.model.UserResponse
 import com.rivvana.naqos_app.auth.view.LoginActivity
 import com.rivvana.naqos_app.auth.viewmodel.SessionManager
 import com.rivvana.naqos_app.databinding.FragmentProfileBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ProfileFragment : Fragment() {
@@ -28,9 +35,9 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         binding.layoutToolbar.tvToolbar.text = "Profile"
         sessionManager = context?.let { SessionManager(it) }!!
+        //val token = sessionManager.fetchAuthToken()
 
-        setDataUser()
-
+        getUser()
         binding.layoutToolbar.btnBackToolbar.setOnClickListener{
             Toast.makeText(context, "Button Back", Toast.LENGTH_SHORT).show()
         }
@@ -42,8 +49,20 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
-    private fun setDataUser() {
+    private fun getUser() {
+        ApiConfig.instanceRetrofit.getUser()
+            .enqueue(object : Callback<UserResponse>{
+                override fun onResponse(
+                    call: Call<UserResponse>,
+                    response: Response<UserResponse>
+                ) {
+                    Log.d("RESPON USER GET", sessionManager.getUser()?.username.toString())
+                }
 
+                override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+            })
     }
 
     private fun showDialog() {

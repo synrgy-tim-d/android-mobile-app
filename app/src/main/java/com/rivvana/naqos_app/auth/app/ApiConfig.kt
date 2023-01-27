@@ -34,9 +34,4 @@ object ApiConfig {
     val instanceRetrofit: ApiService
         get() = client.create(ApiService::class.java)
 
-    private fun okhttpClient(context: Context): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(AuthInterceptor(context))
-            .build()
-    }
 }

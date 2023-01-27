@@ -84,27 +84,6 @@ class LoginActivity : AppCompatActivity() {
         binding.animationView.visibility = View.VISIBLE
         ApiConfig.instanceRetrofit.login(
             login).enqueue(object : Callback<LoginResponse> {
-
-//            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
-//                var loginRespon = response.body()
-//                if (response.body()!=null){
-//                    response.body()?.string()?.let { Log.d("RESPON", it) }
-//                    sessionManager.saveAuthToken(loginRespon.)
-//                } else {
-//                    response.errorBody()?.string()?.let { Log.d("RESPON ERROR", it) }
-//                    if (response.errorBody()?.string().toString().contains("\"status\":500")){
-//                        Toast.makeText(this@LoginActivity, "User not Found", Toast.LENGTH_SHORT).show()
-//                    }
-//                    if (response.errorBody()?.string().toString().contains("\"code\":404")){
-//                        Toast.makeText(this@LoginActivity, "User not Found", Toast.LENGTH_SHORT).show()
-//                    }
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-//                Log.d("RESPON", t.message.toString())
-//            }
-
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 binding.animationView.visibility = View.GONE
                 val loginRespon = response.body()
@@ -113,10 +92,7 @@ class LoginActivity : AppCompatActivity() {
                    Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
                     loginRespon?.data?.access_token.toString().let { Log.d("RESPON BERHASIL", it) }
                     sessionManager.saveAuthToken(loginRespon?.data?.access_token)
-                    if (loginRespon != null) {
-                        sessionManager.setUser(loginRespon.user)
-                        Log.d("RESPON USER", loginRespon.user.toString())
-                    }
+
                     //sessionManager.saveString("user_id", loginRespon?.data.toString())
                    // Toast.makeText(this@LoginActivity, loginRespon?.data.toString(), Toast.LENGTH_LONG).show()
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
@@ -141,4 +117,5 @@ class LoginActivity : AppCompatActivity() {
             }
         })
     }
+
 }

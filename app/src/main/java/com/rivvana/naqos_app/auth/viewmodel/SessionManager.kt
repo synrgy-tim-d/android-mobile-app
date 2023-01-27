@@ -9,7 +9,7 @@ import com.rivvana.naqos_app.auth.model.User
 
 class SessionManager (context: Context) {
 
-    val user = "User"
+    val user = "user"
 
     private var prefs: SharedPreferences
     = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
@@ -29,10 +29,9 @@ class SessionManager (context: Context) {
         prefs.edit().putString(user, data).apply()
     }
     //Get data user
-    fun saveString(key: String, value: String){
-        val editor = prefs.edit()
-        editor.putString(key, value)
-        editor.apply()
+    fun getUser(): User? {
+        val data:String = prefs.getString(user, null) ?: return null
+        return Gson().fromJson<User>(data, User::class.java)
     }
     //Function to fetch auth token
     fun fetchAuthToken(): String? {
