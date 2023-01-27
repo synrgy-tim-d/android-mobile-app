@@ -35,7 +35,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         sessionManager = SessionManager(this)
+
         setupBottomNav()
         if (sessionManager.fetchAuthToken().isNullOrBlank()){
             binding.navView.menu.findItem(R.id.navigation_profile).setTitle("Masuk")
