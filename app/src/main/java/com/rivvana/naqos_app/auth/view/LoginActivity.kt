@@ -113,6 +113,7 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
                     loginRespon?.data?.access_token.toString().let { Log.d("RESPON BERHASIL", it) }
                     sessionManager.saveAuthToken(loginRespon?.data?.access_token)
+
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     finish()
                 }

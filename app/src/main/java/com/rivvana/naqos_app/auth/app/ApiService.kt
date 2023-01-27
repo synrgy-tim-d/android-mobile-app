@@ -7,17 +7,17 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface ApiService {
-    @POST("user-register/register")
+    @POST("auth/register")
     fun register(
         @Body register: RegisterRequest
    ): Call<RegisterResponse>
 
-    @POST("user-login/login")
+    @POST("auth/login")
     fun login(
         @Body login: LoginRequest
     ): Call<LoginResponse>
 
-    @POST("user-register/send-otp")
+    @POST("/auth/send-otp")
     fun otpRequest(
         @Body otpReq: OtpRequest
     ): Call<OtpResponse>

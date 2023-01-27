@@ -71,9 +71,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_profile -> {
                     if (sessionManager.fetchAuthToken().isNullOrBlank()){ //sp.fetchToken.isEmpty
                         startActivity(Intent(this, LoginActivity::class.java))
-                    }else {
-                        callFragment(3, fragmentProfile)
+                        finish()
                     }
+
+                    callFragment(3, fragmentProfile)
+
 
                 }
             }

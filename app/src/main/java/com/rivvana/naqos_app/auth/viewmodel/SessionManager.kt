@@ -5,7 +5,8 @@ import android.content.SharedPreferences
 import com.rivvana.naqos_app.R
 
 class SessionManager (context: Context) {
-    private var prefs: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
+    private var prefs: SharedPreferences
+    = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
     companion object {
         const val USER_TOKEN = "user_token"
     }
@@ -23,6 +24,12 @@ class SessionManager (context: Context) {
     fun removeToken() {
        val editor = prefs.edit()
         editor.putString(USER_TOKEN, null)
+        editor.apply()
+    }
+
+    fun clearSession() {
+        val editor = prefs.edit()
+        editor.clear()
         editor.apply()
     }
 }
