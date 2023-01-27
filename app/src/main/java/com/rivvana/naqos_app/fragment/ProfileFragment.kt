@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.Toast
 import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.app.ApiConfig
+import com.rivvana.naqos_app.auth.model.User
 import com.rivvana.naqos_app.auth.model.UserResponse
 import com.rivvana.naqos_app.auth.view.LoginActivity
 import com.rivvana.naqos_app.auth.viewmodel.SessionManager
@@ -48,17 +49,16 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
+    val addToken = sessionManager.fetchAuthToken()
+
     private fun fetchUser() {
-        ApiConfig.instanceRetrofit.getUser(
-            token = "Bearer ${sessionManager.fetchAuthToken()}"
-        )
-            .enqueue(object : Callback<UserResponse>{
+        ApiConfig.instanceRetrofit.getUser(token = "Bearer ${addToken}"
+        ).enqueue(object : Callback<UserResponse> {
                 override fun onResponse(
                     call: Call<UserResponse>,
                     response: Response<UserResponse>
                 ) {
                     Log.d("RESPON USER BERHASIL", response.body().toString())
-
 //                    val user = sessionManager.getUser()
 //                    binding.etEmail.text = user?.username
 //                    Log.d("RESPON USER GET", sessionManager.getUser()?.username.toString())
@@ -67,7 +67,7 @@ class ProfileFragment : Fragment() {
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                     Log.d("RESPON USER ERROR", t.message.toString())
                 }
-            })
+        })
     }
 
     private fun showDialog() {

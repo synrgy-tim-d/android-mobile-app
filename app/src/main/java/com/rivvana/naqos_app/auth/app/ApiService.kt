@@ -1,7 +1,6 @@
 package com.rivvana.naqos_app.auth.app
 
 import com.rivvana.naqos_app.auth.model.*
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET

@@ -76,7 +76,6 @@ class MainActivity : AppCompatActivity() {
 
                     callFragment(3, fragmentProfile)
 
-
                 }
             }
             false
