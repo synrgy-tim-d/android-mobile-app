@@ -18,7 +18,6 @@ import com.rivvana.naqos_app.auth.view.LoginActivity
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-
     lateinit var sessionManager: SessionManager
 
     val fragmentSearch: Fragment = SearchFragment()
@@ -72,12 +71,14 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.navigation_profile -> {
-                    if (sessionManager.fetchAuthToken().isNullOrBlank()){ //sp.fetchToken.isEmpty
+                    if (sessionManager.getStatusLogin()){ //sp.fetchToken.isEmpty
+                        callFragment(3, fragmentProfile)
+                    } else {
                         startActivity(Intent(this, LoginActivity::class.java))
                         finish()
                     }
 
-                    callFragment(3, fragmentProfile)
+
 
                 }
             }

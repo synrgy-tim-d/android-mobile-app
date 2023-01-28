@@ -56,15 +56,22 @@ class ProfileFragment : Fragment() {
                     call: Call<UserResponse>,
                     response: Response<UserResponse>
                 ) {
-                    val userRespon = response.body()!!
-                    Log.d("RESPON USER BERHASIL", response.body().toString())
-                    Log.d("RESPON USER BERHASIL", response.body()!!.data.username)
-                    binding.etEmail.text = userRespon.data.username
-                    binding.etNamaLengkap.text = userRespon.data.fullname
-                    binding.etNomorHP.text = userRespon.data.phoneNumber
-//                    val user = sessionManager.getUser()
-//                    binding.etEmail.text = user?.username
-//                    Log.d("RESPON USER GET", sessionManager.getUser()?.username.toString())
+                    val userRespon = response.body()
+                    val userResponError = response.errorBody()
+                    if (userRespon!=null){
+                        sessionManager.setUser(userRespon.data)
+                        if (sessionManager.getUser()!=null){
+                            Log.d("RESPON USER BERHASIL", response.body().toString())
+                            val user = sessionManager.getUser()
+                            binding.etEmail.text = user?.username
+                            binding.etNamaLengkap.text = user?.fullname
+                            binding.etNomorHP.text = user?.phoneNumber
+                        }
+                    }
+                    else {
+                        Log.d("RESPON USER GAGAL", userResponError.toString())
+                    }
+
                 }
 
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
@@ -88,6 +95,7 @@ class ProfileFragment : Fragment() {
         val btnLogout = dialog.findViewById<Button>(R.id.btLogoutCustomDialog)
         btnLogout.setOnClickListener{
             sessionManager.removeToken()
+            sessionManager.clearSession()
             startActivity(Intent(context, LoginActivity::class.java))
         }
     }

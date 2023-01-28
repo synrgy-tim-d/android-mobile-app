@@ -89,12 +89,10 @@ class LoginActivity : AppCompatActivity() {
                 val loginRespon = response.body()
                 val loginError = response.errorBody()
                 if (response.body()!=null){
-                   Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
+                    sessionManager.setStatusLogin(true)
+                    Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
                     loginRespon?.data?.access_token.toString().let { Log.d("RESPON BERHASIL", it) }
                     sessionManager.saveAuthToken(loginRespon?.data?.access_token)
-
-                    //sessionManager.saveString("user_id", loginRespon?.data.toString())
-                   // Toast.makeText(this@LoginActivity, loginRespon?.data.toString(), Toast.LENGTH_LONG).show()
                     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                     finish()
                 }
