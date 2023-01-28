@@ -1,6 +1,7 @@
 package com.rivvana.naqos_app.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +13,13 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rivvana.naqos_app.R
-import com.rivvana.naqos_app.adapter.AdapterRekomendasi
-import com.rivvana.naqos_app.model.Rekomendasi
+import com.rivvana.naqos_app.adapter.AdapterProduk
+import com.rivvana.naqos_app.auth.app.ApiConfig
+import com.rivvana.naqos_app.auth.model.ResponseModel
+import com.rivvana.naqos_app.model.Produk
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SearchFragment : Fragment() {
 
@@ -22,6 +28,7 @@ class SearchFragment : Fragment() {
 
     lateinit var spinnerRekomendasi: Spinner
     lateinit var spinnerKosMurah: Spinner
+
     val arrSpinerRekomendasi = arrayOf("Bekasi", "Jakarta", "Bandung", "Surabaya", "Tangerang", "Depok", "Semarang", "Bogor")
     val arrSpinerKosMurah= arrayOf("Bekasi", "Jakarta", "Bandung")
 
@@ -31,10 +38,13 @@ class SearchFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
-        rvRekomendasi = view.findViewById(R.id.rv_rekomendasi)
-        rvKosMurah = view.findViewById(R.id.rv_kosmurah)
-        spinnerRekomendasi = view.findViewById(R.id.spiner_rekomendasi)
-        spinnerKosMurah = view.findViewById(R.id.spiner_kosmurah)
+        init(view)
+        getProduk()
+
+        return view
+    }
+
+    private fun displayProduk() {
 
         val arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrSpinerRekomendasi)
         val arrayAdapter2 = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrSpinerKosMurah)
@@ -78,79 +88,106 @@ class SearchFragment : Fragment() {
         val layoutManager2 = LinearLayoutManager(activity)
         layoutManager2.orientation = LinearLayoutManager.HORIZONTAL
 
-        rvRekomendasi.adapter = AdapterRekomendasi(arrRekomendasi)
+        rvRekomendasi.adapter = AdapterProduk(listProduk)
         rvRekomendasi.layoutManager = layoutManager
 
-        rvKosMurah.adapter = AdapterRekomendasi(arrKosMurah)
+        rvKosMurah.adapter = AdapterProduk(listProduk)
         rvKosMurah.layoutManager = layoutManager2
-
-        return view
     }
 
-    val arrRekomendasi: ArrayList<Rekomendasi> get() {
-            val arr = ArrayList<Rekomendasi>()
-            val p1 = Rekomendasi()
-            p1.gambar = R.drawable.dummy_rekomendasi_kos1
-            p1.nama = "Kos Bunga"
-            p1.deskripsi = "Kosan khusus perempuan dan wanita termurah di Bekasi"
-            p1.rate = "4.3"
-            p1.kota = "Bekasi"
-            p1.harga = "Rp.700.000/bln"
+    private var listProduk: ArrayList<Produk> = ArrayList()
+    private fun getProduk() {
+        ApiConfig.instanceRetrofit.getProduk().enqueue(object : Callback<ResponseModel>{
+            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+                val res = response.body()
+                if (res!=null){
+                    Log.d("RESPON GET BERHASIL", response.body().toString())
+                    listProduk = res.data
+                    displayProduk()
+                }else{
+                    Log.d("RESPON GET GAGAL", response.errorBody().toString())
+                }
 
-            val p2 = Rekomendasi()
-            p2.gambar = R.drawable.dummy_rekomendasi_kos2
-            p2.nama = "Kos Elite"
-            p2.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
-            p2.rate = "4.4"
-            p2.kota = "Bekasi"
-            p2.harga = "Rp.1.200.000/bln"
+            }
 
-            val p3 = Rekomendasi()
-            p3.gambar = R.drawable.dummy_rekomendasi_kos3
-            p3.nama = "Kos Wkwkw"
-            p3.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
-            p3.rate = "4.1"
-            p3.kota = "Bekasi"
-            p3.harga = "Rp.2.000.000/bln"
+            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+                Log.d("RESPON GET ERROR", t.message.toString())
+            }
 
-            arr.add(p1)
-            arr.add(p2)
-            arr.add(p3)
-
-            return arr
-        }
-
-    val arrKosMurah: ArrayList<Rekomendasi> get() {
-        val arr = ArrayList<Rekomendasi>()
-        val p1 = Rekomendasi()
-        p1.gambar = R.drawable.dummy_rekomendasi_kos1
-        p1.nama = "Kos Bunga"
-        p1.deskripsi = "Kosan khusus perempuan dan wanita termurah di Bekasi"
-        p1.rate = "4.3"
-        p1.kota = "Bekasi"
-        p1.harga = "Rp.700.000/bln"
-
-        val p2 = Rekomendasi()
-        p2.gambar = R.drawable.dummy_rekomendasi_kos2
-        p2.nama = "Kos Elite"
-        p2.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
-        p2.rate = "4.4"
-        p2.kota = "Bekasi"
-        p2.harga = "Rp.1.200.000/bln"
-
-        val p3 = Rekomendasi()
-        p3.gambar = R.drawable.dummy_rekomendasi_kos3
-        p3.nama = "Kos Wkwkw"
-        p3.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
-        p3.rate = "4.1"
-        p3.kota = "Bekasi"
-        p3.harga = "Rp.2.000.000/bln"
-
-        arr.add(p1)
-        arr.add(p2)
-        arr.add(p3)
-
-        return arr
+        })
     }
+
+    private fun init(view: View) {
+        rvRekomendasi = view.findViewById(R.id.rv_rekomendasi)
+        rvKosMurah = view.findViewById(R.id.rv_kosmurah)
+        spinnerRekomendasi = view.findViewById(R.id.spiner_rekomendasi)
+        spinnerKosMurah = view.findViewById(R.id.spiner_kosmurah)
+    }
+
+//    val arrRekomendasi: ArrayList<Rekomendasi> get() {
+//            val arr = ArrayList<Rekomendasi>()
+//            val p1 = Rekomendasi()
+//            p1.gambar = R.drawable.dummy_rekomendasi_kos1
+//            p1.nama = "Kos Bunga"
+//            p1.deskripsi = "Kosan khusus perempuan dan wanita termurah di Bekasi"
+//            p1.rate = "4.3"
+//            p1.kota = "Bekasi"
+//            p1.harga = "Rp.700.000/bln"
+//
+//            val p2 = Rekomendasi()
+//            p2.gambar = R.drawable.dummy_rekomendasi_kos2
+//            p2.nama = "Kos Elite"
+//            p2.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
+//            p2.rate = "4.4"
+//            p2.kota = "Bekasi"
+//            p2.harga = "Rp.1.200.000/bln"
+//
+//            val p3 = Rekomendasi()
+//            p3.gambar = R.drawable.dummy_rekomendasi_kos3
+//            p3.nama = "Kos Wkwkw"
+//            p3.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
+//            p3.rate = "4.1"
+//            p3.kota = "Bekasi"
+//            p3.harga = "Rp.2.000.000/bln"
+//
+//            arr.add(p1)
+//            arr.add(p2)
+//            arr.add(p3)
+//
+//            return arr
+//        }
+//
+//    val arrKosMurah: ArrayList<Rekomendasi> get() {
+//        val arr = ArrayList<Rekomendasi>()
+//        val p1 = Rekomendasi()
+//        p1.gambar = R.drawable.dummy_rekomendasi_kos1
+//        p1.nama = "Kos Bunga"
+//        p1.deskripsi = "Kosan khusus perempuan dan wanita termurah di Bekasi"
+//        p1.rate = "4.3"
+//        p1.kota = "Bekasi"
+//        p1.harga = "Rp.700.000/bln"
+//
+//        val p2 = Rekomendasi()
+//        p2.gambar = R.drawable.dummy_rekomendasi_kos2
+//        p2.nama = "Kos Elite"
+//        p2.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
+//        p2.rate = "4.4"
+//        p2.kota = "Bekasi"
+//        p2.harga = "Rp.1.200.000/bln"
+//
+//        val p3 = Rekomendasi()
+//        p3.gambar = R.drawable.dummy_rekomendasi_kos3
+//        p3.nama = "Kos Wkwkw"
+//        p3.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
+//        p3.rate = "4.1"
+//        p3.kota = "Bekasi"
+//        p3.harga = "Rp.2.000.000/bln"
+//
+//        arr.add(p1)
+//        arr.add(p2)
+//        arr.add(p3)
+//
+//        return arr
+//    }
 
 }
