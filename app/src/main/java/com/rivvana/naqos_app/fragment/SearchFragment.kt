@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -97,10 +98,12 @@ class SearchFragment : Fragment() {
 
     private var listProduk: ArrayList<Produk> = ArrayList()
     private fun getProduk() {
+
         ApiConfig.instanceRetrofit.getProduk().enqueue(object : Callback<ResponseModel>{
             override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
                 val res = response.body()
                 if (res!=null){
+
                     Log.d("RESPON GET BERHASIL", response.body().toString())
                     listProduk = res.data
                     displayProduk()

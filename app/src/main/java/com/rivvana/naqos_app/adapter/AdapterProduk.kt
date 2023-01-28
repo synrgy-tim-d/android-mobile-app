@@ -3,7 +3,6 @@ package com.rivvana.naqos_app.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.rivvana.naqos_app.R
@@ -22,7 +21,7 @@ class AdapterProduk(var data: ArrayList<Produk>):
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_rekomendasi, parent, false)
+        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.item_produk, parent, false)
         return Holder(view)
     }
 
