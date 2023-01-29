@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.view.DetailActivity
 import com.rivvana.naqos_app.model.Produk
@@ -44,18 +45,17 @@ class AdapterProduk(
 //        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].harga))
         holder.tvDesc.text = data[position].description
         holder.tvKota.text = data[position].address
-//        val image = "https://be-naqos.up.railway.app/api/"+data[position].image
+//        val img = "https://be-naqos.up.railway.app/api/"+data[position].image
 //        Picasso.get()
-//            .load(image)
+//            .load(img)
 //            .placeholder(R.drawable.dummy_rekomendasi_kos1)
 //            .error(R.drawable.dummy_rekomendasi_kos1)
 //            .into(holder.imgKos)
 
         holder.layoutProduk.setOnClickListener{
             val intent = Intent(activity, DetailActivity::class.java)
-            intent.putExtra("name", data[position].name)
-            intent.putExtra("desc", data[position].description)
-            intent.putExtra("address", data[position].address)
+            val str = Gson().toJson(data[position], Produk::class.java)
+            intent.putExtra("extra", str)
             activity.startActivity(intent)
         }
     }

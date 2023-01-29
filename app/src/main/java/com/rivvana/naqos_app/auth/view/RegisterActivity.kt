@@ -3,9 +3,11 @@ package com.rivvana.naqos_app.auth.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
+import com.rivvana.naqos_app.MainActivity
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.model.RegisterRequest
 import com.rivvana.naqos_app.auth.model.RegisterResponse
@@ -23,11 +25,7 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.layoutToolbar.tvToolbar.text = "Daftar"
-        binding.layoutToolbar.btnBackToolbar.setOnClickListener{
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
-        }
+        setToolbar()
 
         binding.btnDaftarAkun.setOnClickListener{
             signUp()
@@ -40,6 +38,17 @@ class RegisterActivity : AppCompatActivity() {
         binding.tvMasuk.setOnClickListener{
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
+        }
+    }
+
+    private fun setToolbar() {
+        binding.layoutToolbar.tvToolbar.text = "Daftar"
+        binding.layoutToolbar.btnBackToolbar.setOnClickListener{
+            Log.d("LAYOUT BACK", "onBackPressed Called")
+            val setIntent = Intent(Intent(this, MainActivity::class.java))
+            setIntent.addCategory(Intent.CATEGORY_HOME)
+            setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(setIntent)
         }
     }
 

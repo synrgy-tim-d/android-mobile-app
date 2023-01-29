@@ -7,6 +7,7 @@ import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.rivvana.naqos_app.MainActivity
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.viewmodel.SessionManager
@@ -28,11 +29,7 @@ class LoginActivity : AppCompatActivity() {
 
         sessionManager = SessionManager(this)
 
-        binding.layoutToolbar.tvToolbar.text = "Masuk"
-        binding.layoutToolbar.btnBackToolbar.setOnClickListener{
-            startActivity(Intent(this, RegisterActivity::class.java))
-            finish()
-        }
+        setToolbar()
 
         binding.btnMasukAkunLogin.setOnClickListener{
             doLogin()
@@ -46,6 +43,17 @@ class LoginActivity : AppCompatActivity() {
             doSignUp()
         }
 
+    }
+
+    private fun setToolbar() {
+        binding.layoutToolbar.tvToolbar.text = "Masuk"
+        binding.layoutToolbar.btnBackToolbar.setOnClickListener{
+            Log.d("LAYOUT BACK", "onBackPressed Called")
+            val setIntent = Intent(Intent(this, MainActivity::class.java))
+            setIntent.addCategory(Intent.CATEGORY_HOME)
+            setIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(setIntent)
+        }
     }
 
     private fun doSignUp() {
@@ -115,5 +123,6 @@ class LoginActivity : AppCompatActivity() {
             }
         })
     }
+
 
 }
