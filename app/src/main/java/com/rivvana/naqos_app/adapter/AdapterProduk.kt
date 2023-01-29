@@ -1,20 +1,26 @@
 package com.rivvana.naqos_app.adapter
 
+import android.app.Activity
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.rivvana.naqos_app.R
+import com.rivvana.naqos_app.auth.view.DetailActivity
 import com.rivvana.naqos_app.model.Produk
 import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class AdapterProduk(var data: ArrayList<Produk>):
-    RecyclerView.Adapter<AdapterProduk.Holder>() {
+class AdapterProduk(
+    var activity: Activity,
+    var data: ArrayList<Produk>
+    ): RecyclerView.Adapter<AdapterProduk.Holder>() {
 
     class Holder(view: View): RecyclerView.ViewHolder(view){
         val imgKos = view.findViewById<ImageView>(R.id.img_gambar)
@@ -23,6 +29,7 @@ class AdapterProduk(var data: ArrayList<Produk>):
         val tvRate = view.findViewById<TextView>(R.id.tv_rate)
         val tvKota = view.findViewById<TextView>(R.id.tv_loc)
         val tvHarga = view.findViewById<TextView>(R.id.tv_harga)
+        val layoutProduk = view.findViewById<CardView>(R.id.layout_produk)
 
     }
 
@@ -44,7 +51,13 @@ class AdapterProduk(var data: ArrayList<Produk>):
 //            .error(R.drawable.dummy_rekomendasi_kos1)
 //            .into(holder.imgKos)
 
-
+        holder.layoutProduk.setOnClickListener{
+            val intent = Intent(activity, DetailActivity::class.java)
+            intent.putExtra("name", data[position].name)
+            intent.putExtra("desc", data[position].description)
+            intent.putExtra("address", data[position].address)
+            activity.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
