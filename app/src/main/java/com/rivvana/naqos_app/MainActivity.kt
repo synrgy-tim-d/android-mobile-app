@@ -15,6 +15,8 @@ import com.rivvana.naqos_app.fragment.SearchFragment
 import com.rivvana.naqos_app.fragment.WishlistFragment
 import com.rivvana.naqos_app.auth.viewmodel.SessionManager
 import com.rivvana.naqos_app.auth.view.LoginActivity
+import org.imaginativeworld.oopsnointernet.callbacks.ConnectionCallback
+import org.imaginativeworld.oopsnointernet.dialogs.signal.NoInternetDialogSignal
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -38,10 +40,39 @@ class MainActivity : AppCompatActivity() {
 
         sessionManager = SessionManager(this)
 
+        checkInternet()
+
         setupBottomNav()
         if (sessionManager.fetchAuthToken().isNullOrBlank()){
             binding.navView.menu.findItem(R.id.navigation_profile).setTitle("Masuk")
         }
+    }
+
+    private fun checkInternet() {
+        NoInternetDialogSignal.Builder(
+            this,
+            lifecycle
+        ).apply {
+            dialogProperties.apply {
+                connectionCallback = object : ConnectionCallback{
+                    override fun hasActiveConnection(hasActiveConnection: Boolean) {
+
+                    }
+                }
+                cancelable = false
+                noInternetConnectionTitle = "Yahh Internetnya putus" // Optional
+                noInternetConnectionMessage =
+                    "Coba sambungin lagi gan" // Optional
+                showInternetOnButtons = true // Optional
+                wifiOnButtonText = "Wifi" // Optional
+                mobileDataOnButtonText = "Mobile data" // Optional
+
+                onAirplaneModeTitle = "No Internet" // Optional
+                onAirplaneModeMessage = "Mode pesawatnya dimatikan dulu gan" // Optional
+                airplaneModeOffButtonText = "Airplane mode" // Optional
+                showAirplaneModeOffButtons = true // Optional
+            }
+        }.build()
     }
 
     private fun setupBottomNav() {
