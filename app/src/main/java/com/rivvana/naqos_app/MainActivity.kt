@@ -78,8 +78,6 @@ class MainActivity : AppCompatActivity() {
                         finish()
                     }
 
-
-
                 }
             }
             false
