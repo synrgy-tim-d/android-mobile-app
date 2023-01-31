@@ -89,10 +89,10 @@ class SearchFragment : Fragment() {
         val layoutManager2 = LinearLayoutManager(activity)
         layoutManager2.orientation = LinearLayoutManager.HORIZONTAL
 
-        rvRekomendasi.adapter = AdapterProduk(listProduk)
+        rvRekomendasi.adapter = AdapterProduk(requireActivity(), listProduk)
         rvRekomendasi.layoutManager = layoutManager
 
-        rvKosMurah.adapter = AdapterProduk(listProduk)
+        rvKosMurah.adapter = AdapterProduk(requireActivity(), listProduk)
         rvKosMurah.layoutManager = layoutManager2
     }
 
