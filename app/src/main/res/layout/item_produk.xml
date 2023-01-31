@@ -18,6 +18,7 @@
             android:src="@drawable/dummy_rekomendasi_kos1"/>
         
         <TextView
+            android:ellipsize="marquee"
             android:layout_marginTop="4dp"
             android:textStyle="bold"
             android:textSize="18dp"
@@ -25,7 +26,8 @@
             android:layout_marginHorizontal="5dp"
             android:id="@+id/tv_nama"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:singleLine="true" />
 
         <TextView
             android:layout_marginTop="4dp"
