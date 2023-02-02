@@ -1,6 +1,7 @@
 package com.rivvana.naqos_app.auth.app
 
 import com.rivvana.naqos_app.auth.model.*
+import com.rivvana.naqos_app.model.ProdukKos
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -22,7 +23,7 @@ interface ApiService {
     fun getUser(@Header("Authorization") token: String):Call<UserResponse>
 
     @GET("public/get")
-    fun getProduk():Call<ResponseModel>
+    fun getProduk():Call<ProdukKos>
 
     @POST("/auth/send-otp")
     fun otpRequest(

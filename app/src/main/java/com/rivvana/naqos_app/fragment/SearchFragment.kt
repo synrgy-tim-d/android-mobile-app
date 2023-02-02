@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +16,8 @@ import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.adapter.AdapterProduk
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.model.ResponseModel
-import com.rivvana.naqos_app.model.Produk
+import com.rivvana.naqos_app.model.Data
+import com.rivvana.naqos_app.model.ProdukKos
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,6 +29,7 @@ class SearchFragment : Fragment() {
 
     lateinit var spinnerRekomendasi: Spinner
     lateinit var spinnerKosMurah: Spinner
+    private lateinit var listProduk: List<Data>
 
     val arrSpinerRekomendasi = arrayOf("Bekasi", "Jakarta", "Bandung", "Surabaya", "Tangerang", "Depok", "Semarang", "Bogor")
     val arrSpinerKosMurah= arrayOf("Bekasi", "Jakarta", "Bandung")
@@ -96,24 +97,24 @@ class SearchFragment : Fragment() {
         rvKosMurah.layoutManager = layoutManager2
     }
 
-    private var listProduk: ArrayList<Produk> = ArrayList()
+
     private fun getProduk() {
 
-        ApiConfig.instanceRetrofit.getProduk().enqueue(object : Callback<ResponseModel>{
-            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+        ApiConfig.instanceRetrofit.getProduk().enqueue(object : Callback<ProdukKos>{
+            override fun onResponse(call: Call<ProdukKos>, response: Response<ProdukKos>) {
                 val res = response.body()
                 if (res!=null){
 
-                    Log.d("RESPON GET BERHASIL", response.body().toString())
-                    listProduk = res.data
+                    listProduk = res.datakos
                     displayProduk()
+                    Log.d("RESPON GET BERHASIL", listProduk.toString())
                 }else{
                     Log.d("RESPON GET GAGAL", response.errorBody().toString())
                 }
 
             }
 
-            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
+            override fun onFailure(call: Call<ProdukKos>, t: Throwable) {
                 Log.d("RESPON GET ERROR", t.message.toString())
             }
 

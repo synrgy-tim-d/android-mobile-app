@@ -1,10 +1,10 @@
 package com.rivvana.naqos_app.auth.view
 
-import androidx.appcompat.app.AppCompatActivity
+import  androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.gson.Gson
 import com.rivvana.naqos_app.databinding.ActivityDetailBinding
-import com.rivvana.naqos_app.model.Produk
+import com.rivvana.naqos_app.model.Data
 
 class DetailActivity : AppCompatActivity() {
     lateinit var binding : ActivityDetailBinding
@@ -19,7 +19,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun getInfo() {
         val data = intent.getStringExtra("extra")
-        val produk = Gson().fromJson<Produk>(data, Produk::class.java)
+        val produk = Gson().fromJson<Data>(data, Data::class.java)
+        binding.tvNama.text = produk.name
         //set img
         //val img = "https://be-naqos.up.railway.app/api/"+data[position].image
 //        Picasso.get()
