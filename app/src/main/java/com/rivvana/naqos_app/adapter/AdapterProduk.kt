@@ -39,7 +39,7 @@ class AdapterProduk(
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        //        holder.imgKos.setImageResource(dataposition].gambar)[
+        //        holder.imgKos.setImageResource(dataposition].gambar)
          holder.tvNama.text = data[position].name
 //        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].harga))
 //        holder.tvDesc.text = data[position].description
