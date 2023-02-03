@@ -40,10 +40,12 @@ class AdapterProduk(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         //        holder.imgKos.setImageResource(dataposition].gambar)
-         holder.tvNama.text = data[position].name
+        holder.tvNama.text = data[position].name
+        holder.tvDesc.text = data[position].description
+//        holder.tvRate.text = data[position].rate
+        holder.tvKota.text = data[position].city?.city
 //        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].harga))
-//        holder.tvDesc.text = data[position].description
-//        holder.tvKota.text = data[position].address
+
 //        val img = "https://be-naqos.up.railway.app/api/"+data[position].image
 //        Picasso.get()
 //            .load(img)

@@ -104,7 +104,6 @@ class SearchFragment : Fragment() {
             override fun onResponse(call: Call<ProdukKos>, response: Response<ProdukKos>) {
                 val res = response.body()
                 if (res!=null){
-
                     listProduk = res.datakos
                     displayProduk()
                     Log.d("RESPON GET BERHASIL", listProduk.toString())
