@@ -20,7 +20,7 @@ class WebViewActivity : AppCompatActivity() {
         val param = parameters?.get(parameters.size - 1)
         binding.webView.webViewClient = WebViewClient()
 
-        binding.webView.loadUrl("https://be-naqos.up.railway.app/api/user-register/register-confirm-otp/"+param)
+        binding.webView.loadUrl("https://be-naqos.up.railway.app/api/auth/register-confirm-otp/"+param)
         binding.webView.settings.javaScriptEnabled = true
         binding.webView.settings.setSupportZoom(true)
 
