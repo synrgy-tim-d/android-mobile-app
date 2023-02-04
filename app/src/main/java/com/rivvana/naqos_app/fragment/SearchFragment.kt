@@ -17,6 +17,7 @@ import com.rivvana.naqos_app.adapter.AdapterProduk
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.model.ResponseModel
 import com.rivvana.naqos_app.model.Data
+import com.rivvana.naqos_app.model.ImageKost
 import com.rivvana.naqos_app.model.ProdukKos
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,7 +30,8 @@ class SearchFragment : Fragment() {
 
     lateinit var spinnerRekomendasi: Spinner
     lateinit var spinnerKosMurah: Spinner
-    private lateinit var listProduk: List<Data>
+    lateinit var listProduk: List<Data>
+    lateinit var listImage: List<ImageKost>
 
     val arrSpinerRekomendasi = arrayOf("Bekasi", "Jakarta", "Bandung", "Surabaya", "Tangerang", "Depok", "Semarang", "Bogor")
     val arrSpinerKosMurah= arrayOf("Bekasi", "Jakarta", "Bandung")
@@ -90,10 +92,10 @@ class SearchFragment : Fragment() {
         val layoutManager2 = LinearLayoutManager(activity)
         layoutManager2.orientation = LinearLayoutManager.HORIZONTAL
 
-        rvRekomendasi.adapter = AdapterProduk(requireActivity(), listProduk)
+        rvRekomendasi.adapter = AdapterProduk(requireActivity(), listProduk, listImage)
         rvRekomendasi.layoutManager = layoutManager
 
-        rvKosMurah.adapter = AdapterProduk(requireActivity(), listProduk)
+        rvKosMurah.adapter = AdapterProduk(requireActivity(), listProduk, listImage)
         rvKosMurah.layoutManager = layoutManager2
     }
 
@@ -105,8 +107,10 @@ class SearchFragment : Fragment() {
                 val res = response.body()
                 if (res!=null){
                     listProduk = res.datakos
+                    listImage = res.datagambar
                     displayProduk()
                     Log.d("RESPON GET BERHASIL", listProduk.toString())
+                    Log.d("RESPON GET IMAGE", listImage.toString())
                 }else{
                     Log.d("RESPON GET GAGAL", response.errorBody().toString())
                 }

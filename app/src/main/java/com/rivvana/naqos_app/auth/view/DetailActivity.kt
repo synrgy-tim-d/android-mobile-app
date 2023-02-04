@@ -14,8 +14,14 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        btnSewa()
         getInfo()
+    }
+
+    private fun btnSewa() {
+        binding.btnSewa.setOnClickListener{
+
+        }
     }
 
     private fun getInfo() {

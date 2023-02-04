@@ -13,13 +13,16 @@ import com.google.gson.Gson
 import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.view.DetailActivity
 import com.rivvana.naqos_app.model.Data
+import com.rivvana.naqos_app.model.ImageKost
 import com.rivvana.naqos_app.model.ProdukKos
+import com.squareup.picasso.Picasso
 import java.util.*
 import kotlin.collections.ArrayList
 
 class AdapterProduk(
     var activity: Activity,
-    var data: List<Data>
+    var data: List<Data>,
+    var gambar: List<ImageKost>
     ): RecyclerView.Adapter<AdapterProduk.Holder>() {
 
     class Holder(view: View): RecyclerView.ViewHolder(view){
@@ -45,13 +48,13 @@ class AdapterProduk(
 //        holder.tvRate.text = data[position].rate
         holder.tvKota.text = data[position].city?.city
 //        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].harga))
-
-//        val img = "https://be-naqos.up.railway.app/api/"+data[position].image
-//        Picasso.get()
-//            .load(img)
-//            .placeholder(R.drawable.dummy_rekomendasi_kos1)
-//            .error(R.drawable.dummy_rekomendasi_kos1)
-//            .into(holder.imgKos)
+        //set image
+        val img = "${gambar[position].url}"
+        Picasso.get()
+            .load(img)
+            .placeholder(R.drawable.dummy_rekomendasi_kos1)
+            .error(R.drawable.dummy_rekomendasi_kos1)
+            .into(holder.imgKos)
 
         holder.layoutProduk.setOnClickListener{
             val intent = Intent(activity, DetailActivity::class.java)
