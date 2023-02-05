@@ -6,7 +6,6 @@ data class ProdukKos(
     var code: Int?,
     @SerializedName("data")
     val datakos: List<Data> = arrayListOf(),
-    val datagambar: List<ImageKost> = arrayListOf(),
 //    var `data`: List<Data?>?,
     var message: String?
 )

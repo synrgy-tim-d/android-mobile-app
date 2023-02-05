@@ -2,6 +2,7 @@ package com.rivvana.naqos_app.adapter
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,8 +22,7 @@ import kotlin.collections.ArrayList
 
 class AdapterProduk(
     var activity: Activity,
-    var data: List<Data>,
-    var gambar: List<ImageKost>
+    var data: List<Data>
     ): RecyclerView.Adapter<AdapterProduk.Holder>() {
 
     class Holder(view: View): RecyclerView.ViewHolder(view){
@@ -49,12 +49,13 @@ class AdapterProduk(
         holder.tvKota.text = data[position].city?.city
 //        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].harga))
         //set image
-        val img = "${gambar[position].url}"
-        Picasso.get()
-            .load(img)
-            .placeholder(R.drawable.dummy_rekomendasi_kos1)
-            .error(R.drawable.dummy_rekomendasi_kos1)
-            .into(holder.imgKos)
+//        val img = data[position].imageKosts.
+//        Log.d("ISI IMG", img.toString())
+//        Picasso.get()
+//            .load(img)
+//            .placeholder(R.drawable.dummy_rekomendasi_kos1)
+//            .error(R.drawable.dummy_rekomendasi_kos1)
+//            .into(holder.imgKos)
 
         holder.layoutProduk.setOnClickListener{
             val intent = Intent(activity, DetailActivity::class.java)

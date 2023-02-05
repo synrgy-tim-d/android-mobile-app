@@ -7,7 +7,7 @@ data class Data(
     var description: String? = null,
     var district: String? = null,
     var id: String? = null,
-    var imageKosts: List<ImageKost?>? = null,
+    var imageKosts: List<ImageKost> = arrayListOf<ImageKost>(),
     var isAvailable: Boolean? = null,
     var kostType: String? = null,
     var latitude: Double? = null,
