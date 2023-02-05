@@ -1,6 +1,7 @@
 package com.rivvana.naqos_app.model
 
 data class Data(
+
     var address: String? = null,
     var city: City? = null,
     var createdAt: String? = null,

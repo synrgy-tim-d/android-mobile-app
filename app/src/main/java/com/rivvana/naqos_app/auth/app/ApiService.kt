@@ -22,11 +22,13 @@ interface ApiService {
     @GET("users/get")
     fun getUser(@Header("Authorization") token: String):Call<UserResponse>
 
-    @GET("public/get")
+    @GET("public/kost")
     fun getProduk():Call<ProdukKos>
 
     @POST("/auth/send-otp")
     fun otpRequest(
         @Body otpReq: OtpRequest
     ): Call<OtpResponse>
+
+
 }

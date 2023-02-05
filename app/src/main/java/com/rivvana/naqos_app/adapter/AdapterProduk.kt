@@ -26,12 +26,12 @@ class AdapterProduk(
     ): RecyclerView.Adapter<AdapterProduk.Holder>() {
 
     class Holder(view: View): RecyclerView.ViewHolder(view){
-        val imgKos = view.findViewById<ImageView>(R.id.img_gambar)
+//        val imgKos = view.findViewById<ImageView>(R.id.img_gambar)
         val tvNama = view.findViewById<TextView>(R.id.tv_nama)
         val tvDesc = view.findViewById<TextView>(R.id.tv_desc)
-        val tvRate = view.findViewById<TextView>(R.id.tv_rate)
+//        val tvRate = view.findViewById<TextView>(R.id.tv_rate)
         val tvKota = view.findViewById<TextView>(R.id.tv_loc)
-        val tvHarga = view.findViewById<TextView>(R.id.tv_harga)
+//        val tvHarga = view.findViewById<TextView>(R.id.tv_harga)
         val layoutProduk = view.findViewById<CardView>(R.id.layout_produk)
 
     }

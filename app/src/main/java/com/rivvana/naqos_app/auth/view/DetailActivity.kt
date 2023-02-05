@@ -6,6 +6,12 @@ import android.util.Log
 import com.google.gson.Gson
 import com.rivvana.naqos_app.databinding.ActivityDetailBinding
 import com.rivvana.naqos_app.model.Data
+import com.rivvana.naqos_app.model.WishlistModel
+import com.rivvana.naqos_app.room.MyDatabase
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 class DetailActivity : AppCompatActivity() {
     lateinit var binding : ActivityDetailBinding
@@ -14,8 +20,28 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        btnSave()
         btnSewa()
         getInfo()
+    }
+
+    private fun btnSave() {
+        binding.btnSave.setOnClickListener{
+            insert()
+        }
+    }
+
+    fun insert(){
+        val myDb: MyDatabase = MyDatabase.getInstance(this)!! // call database
+        val wishlist = WishlistModel() //create new note
+        wishlist.name = "First Note"
+
+        CompositeDisposable().add(Observable.fromCallable { myDb.daoWishlist().insert(wishlist) }
+            .subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                Log.d("RESPON ADD", "DATA MASUK")
+            })
     }
 
     private fun btnSewa() {

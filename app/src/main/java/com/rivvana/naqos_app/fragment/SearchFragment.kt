@@ -107,7 +107,7 @@ class SearchFragment : Fragment() {
                     displayProduk()
                     Log.d("RESPON GET BERHASIL", listProduk.toString())
                 }else{
-                    Log.d("RESPON GET GAGAL", response.errorBody().toString())
+                    Log.d("RESPON GET GAGAL", response.errorBody()!!.string())
                 }
 
             }

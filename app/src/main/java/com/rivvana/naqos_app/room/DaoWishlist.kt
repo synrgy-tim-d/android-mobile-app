@@ -1,12 +1,10 @@
 package com.rivvana.naqos_app.room
 
-import androidx.room.Delete
-import androidx.room.Insert
+import androidx.room.*
 import androidx.room.OnConflictStrategy.Companion.REPLACE
-import androidx.room.Query
-import androidx.room.Update
 import com.rivvana.naqos_app.model.WishlistModel
 
+@Dao
 interface DaoWishlist {
     @Insert(onConflict = REPLACE)
     fun insert(data: WishlistModel)
@@ -21,8 +19,8 @@ interface DaoWishlist {
     fun getAll(): List<WishlistModel>
 
     @Query("SELECT * FROM wishlist WHERE id = :id LIMIT 1")
-    fun getNote(id: Int): WishlistModel
+    fun getWishlist(id: Int): WishlistModel
 
-    @Query("DELETE FROM note")
+    @Query("DELETE FROM wishlist")
     fun deleteAll(): Int
 }

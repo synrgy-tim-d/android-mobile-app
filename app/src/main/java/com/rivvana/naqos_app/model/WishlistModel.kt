@@ -10,11 +10,5 @@ class WishlistModel {
     @ColumnInfo(name = "id")
     var id: Int? = null
 
-    lateinit var id_kost:String
-    lateinit var img:String
     lateinit var name: String
-    lateinit var description: String
-    lateinit var rate: String
-    lateinit var city: String
-    var price: Int=0
 }
