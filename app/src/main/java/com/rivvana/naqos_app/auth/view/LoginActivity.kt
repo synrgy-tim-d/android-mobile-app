@@ -90,6 +90,7 @@ class LoginActivity : AppCompatActivity() {
         )
 
         binding.animationView.visibility = View.VISIBLE
+
         ApiConfig.instanceRetrofit.login(
             login).enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {

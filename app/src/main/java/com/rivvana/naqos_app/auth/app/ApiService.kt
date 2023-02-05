@@ -25,10 +25,13 @@ interface ApiService {
     @GET("public/kost")
     fun getProduk():Call<ProdukKos>
 
-    @POST("/auth/send-otp")
+    @POST("auth/send-otp")
     fun otpRequest(
         @Body otpReq: OtpRequest
     ): Call<OtpResponse>
+
+    @POST("wishlists/add")
+    fun addWishlist(@Body addWishlist: WishlistReq, @Header("Authorization") token: String): Call<WishlistResponse>
 
 
 }
