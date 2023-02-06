@@ -95,12 +95,10 @@ class DetailActivity : AppCompatActivity() {
     private fun getInfo() {
         val data = intent.getStringExtra("extra")
         val produk = Gson().fromJson<Data>(data, Data::class.java)
-
-        val data2 = intent.getStringExtra("extra2")
-        val dtImg = Gson().fromJson<ImageKost>(data2, ImageKost::class.java)
         Log.d("RESPON PRODUK", produk.toString())
 
         val imgKos = findViewById<ImageView>(R.id.img_kos_detail)
+        val imgPKos = findViewById<ImageView>(R.id.img_profile)
         binding.tvNama.text = produk.name
         binding.tvAddress.text = produk.address
 //        binding.tvRate.text = produk.rate
@@ -110,13 +108,21 @@ class DetailActivity : AppCompatActivity() {
         binding.tvNamaKos.text = "Pemilik "+produk.name
         binding.btnWa.text = produk.ownerId?.phoneNumber
 
-//        set img
-        val img = dtImg.url
+        //set img kos
+        val img = produk.imageKosts[0].url
         Picasso.get()
             .load(img)
             .placeholder(R.drawable.dummy_rekomendasi_kos1)
             .error(R.drawable.dummy_rekomendasi_kos1)
             .into(imgKos)
+
+        //set image profile
+        val imgProfile = produk.ownerId?.imgUrl
+        Picasso.get()
+            .load(imgProfile)
+            .placeholder(R.drawable.dummy_photo_profil)
+            .error(R.drawable.dummy_photo_profil)
+            .into(imgPKos)
     }
 
 }

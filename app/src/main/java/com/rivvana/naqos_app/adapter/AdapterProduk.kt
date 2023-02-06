@@ -49,8 +49,8 @@ class AdapterProduk(
         holder.tvKota.text = data[position].city?.city
 //        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].harga))
         //set image
-        val dt : List<ImageKost> = arrayListOf()
-        val img = dt[position].url
+//        val dt : List<ImageKost> = arrayListOf()
+        val img = data[position].imageKosts[0].url
         Log.d("ISI IMG", img.toString())
         Picasso.get()
             .load(img)
@@ -61,9 +61,7 @@ class AdapterProduk(
         holder.layoutProduk.setOnClickListener{
             val intent = Intent(activity, DetailActivity::class.java)
             val str = Gson().toJson(data[position], Data::class.java)
-            val dtImg = Gson().toJson(dt[position], Data::class.java)
             intent.putExtra("extra", str)
-            intent.putExtra("extra2", dtImg)
             activity.startActivity(intent)
         }
     }
