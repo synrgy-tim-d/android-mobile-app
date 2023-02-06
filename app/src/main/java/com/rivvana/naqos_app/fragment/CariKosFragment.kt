@@ -1,15 +1,18 @@
 package com.rivvana.naqos_app.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.adapter.AdapterCity
 import com.rivvana.naqos_app.auth.app.ApiConfig
+import com.rivvana.naqos_app.auth.view.LoginActivity
+import com.rivvana.naqos_app.auth.viewmodel.SessionManager
 import com.rivvana.naqos_app.databinding.FragmentCariKosBinding
 import com.rivvana.naqos_app.model.AllDataCity
 import com.rivvana.naqos_app.model.DataX
@@ -21,12 +24,14 @@ class CariKosFragment : Fragment() {
     lateinit var listCity: List<DataX>
     var _binding: FragmentCariKosBinding? = null
     private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentCariKosBinding.inflate(inflater, container, false)
+
         getDataCity()
         btnBack()
         return binding.root
