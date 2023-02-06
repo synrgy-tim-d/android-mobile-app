@@ -9,6 +9,7 @@ import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.model.WishlistReq
 import com.rivvana.naqos_app.auth.model.WishlistResponse
 import com.rivvana.naqos_app.auth.viewmodel.SessionManager
+import com.rivvana.naqos_app.components.DialogInputFragment
 import com.rivvana.naqos_app.databinding.ActivityDetailBinding
 import com.rivvana.naqos_app.model.Data
 import retrofit2.Call

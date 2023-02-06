@@ -8,8 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rivvana.naqos_app.R
@@ -30,6 +34,8 @@ class SearchFragment : Fragment() {
     lateinit var spinnerKosMurah: Spinner
     lateinit var listProduk: List<Data>
 
+    lateinit var btnCari:TextView
+
     val arrSpinerRekomendasi = arrayOf("Bekasi", "Jakarta", "Bandung", "Surabaya", "Tangerang", "Depok", "Semarang", "Bogor")
     val arrSpinerKosMurah= arrayOf("Bekasi", "Jakarta", "Bandung")
 
@@ -38,17 +44,24 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
-
         init(view)
         getProduk()
+        btnCariKos()
 
         return view
     }
 
-    private fun displayProduk() {
+    private fun btnCariKos() {
+        btnCari.setOnClickListener{
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.container, CariKosFragment())
+            transaction?.commit()
+        }
+    }
 
-        val arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrSpinerRekomendasi)
-        val arrayAdapter2 = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrSpinerKosMurah)
+    private fun displayProduk() {
+        val arrayAdapter = ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_dropdown_item, arrSpinerRekomendasi)
+        val arrayAdapter2 = ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_dropdown_item, arrSpinerKosMurah)
         spinnerRekomendasi.adapter = arrayAdapter
         spinnerKosMurah.adapter = arrayAdapter2
         spinnerRekomendasi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -120,6 +133,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun init(view: View) {
+        btnCari = view.findViewById(R.id.et_cari_kos)
         rvRekomendasi = view.findViewById(R.id.rv_rekomendasi)
         rvKosMurah = view.findViewById(R.id.rv_kosmurah)
         spinnerRekomendasi = view.findViewById(R.id.spiner_rekomendasi)

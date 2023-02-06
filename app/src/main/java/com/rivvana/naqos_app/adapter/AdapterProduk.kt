@@ -64,7 +64,5 @@ class AdapterProduk(
         }
     }
 
-    override fun getItemCount(): Int {
-        return data.size
-    }
+    override fun getItemCount(): Int = 5
 }
