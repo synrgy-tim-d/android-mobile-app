@@ -83,7 +83,8 @@ class DetailActivity : AppCompatActivity() {
 
     private fun btnSewa() {
         binding.btnSewa.setOnClickListener{
-
+            val showInputDate = DialogInputFragment()
+            showInputDate.show((this as AppCompatActivity).supportFragmentManager, "showInputDate")
         }
     }
 
