@@ -3,8 +3,10 @@ package com.rivvana.naqos_app.auth.view
 import  androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
 import com.google.gson.Gson
+import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.model.WishlistReq
 import com.rivvana.naqos_app.auth.model.WishlistResponse
@@ -12,6 +14,8 @@ import com.rivvana.naqos_app.auth.viewmodel.SessionManager
 import com.rivvana.naqos_app.components.DialogInputFragment
 import com.rivvana.naqos_app.databinding.ActivityDetailBinding
 import com.rivvana.naqos_app.model.Data
+import com.rivvana.naqos_app.model.ImageKost
+import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -91,8 +95,12 @@ class DetailActivity : AppCompatActivity() {
     private fun getInfo() {
         val data = intent.getStringExtra("extra")
         val produk = Gson().fromJson<Data>(data, Data::class.java)
+
+        val data2 = intent.getStringExtra("extra2")
+        val dtImg = Gson().fromJson<ImageKost>(data2, ImageKost::class.java)
         Log.d("RESPON PRODUK", produk.toString())
-//        binding.imgKosDetail
+
+        val imgKos = findViewById<ImageView>(R.id.img_kos_detail)
         binding.tvNama.text = produk.name
         binding.tvAddress.text = produk.address
 //        binding.tvRate.text = produk.rate
@@ -102,13 +110,13 @@ class DetailActivity : AppCompatActivity() {
         binding.tvNamaKos.text = "Pemilik "+produk.name
         binding.btnWa.text = produk.ownerId?.phoneNumber
 
-        //set img
-        //val img = "https://be-naqos.up.railway.app/api/"+data[position].image
-//        Picasso.get()
-//            .load(img)
-//            .placeholder(R.drawable.dummy_rekomendasi_kos1)
-//            .error(R.drawable.dummy_rekomendasi_kos1)
-//            .into(imgKos)
+//        set img
+        val img = dtImg.url
+        Picasso.get()
+            .load(img)
+            .placeholder(R.drawable.dummy_rekomendasi_kos1)
+            .error(R.drawable.dummy_rekomendasi_kos1)
+            .into(imgKos)
     }
 
 }

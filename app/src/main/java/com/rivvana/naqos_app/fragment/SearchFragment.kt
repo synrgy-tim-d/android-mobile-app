@@ -20,6 +20,7 @@ import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.adapter.AdapterProduk
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.model.Data
+import com.rivvana.naqos_app.model.ImageKost
 import com.rivvana.naqos_app.model.ProdukKos
 import retrofit2.Call
 import retrofit2.Callback
@@ -62,6 +63,7 @@ class SearchFragment : Fragment() {
     private fun displayProduk() {
         val arrayAdapter = ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_dropdown_item, arrSpinerRekomendasi)
         val arrayAdapter2 = ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_dropdown_item, arrSpinerKosMurah)
+
         spinnerRekomendasi.adapter = arrayAdapter
         spinnerKosMurah.adapter = arrayAdapter2
         spinnerRekomendasi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -118,7 +120,7 @@ class SearchFragment : Fragment() {
                 if (res!=null){
                     listProduk = res.datakos
                     displayProduk()
-                    Log.d("RESPON GET BERHASIL", listProduk.toString())
+                    Log.d("RESPON GET LIST", listProduk.toString())
                 }else{
                     Log.d("RESPON GET GAGAL", response.errorBody()!!.string())
                 }

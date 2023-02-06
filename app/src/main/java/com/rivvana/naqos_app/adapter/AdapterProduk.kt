@@ -2,6 +2,7 @@ package com.rivvana.naqos_app.adapter
 
 import android.app.Activity
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +26,7 @@ class AdapterProduk(
     ): RecyclerView.Adapter<AdapterProduk.Holder>() {
 
     class Holder(view: View): RecyclerView.ViewHolder(view){
-//        val imgKos = view.findViewById<ImageView>(R.id.img_gambar)
+        val imgKos = view.findViewById<ImageView>(R.id.img_gambar)
         val tvNama = view.findViewById<TextView>(R.id.tv_nama)
         val tvDesc = view.findViewById<TextView>(R.id.tv_desc)
 //        val tvRate = view.findViewById<TextView>(R.id.tv_rate)
@@ -48,18 +49,21 @@ class AdapterProduk(
         holder.tvKota.text = data[position].city?.city
 //        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].harga))
         //set image
-//        val img = data[position].imageKosts.
-//        Log.d("ISI IMG", img.toString())
-//        Picasso.get()
-//            .load(img)
-//            .placeholder(R.drawable.dummy_rekomendasi_kos1)
-//            .error(R.drawable.dummy_rekomendasi_kos1)
-//            .into(holder.imgKos)
+        val dt : List<ImageKost> = arrayListOf()
+        val img = dt[position].url
+        Log.d("ISI IMG", img.toString())
+        Picasso.get()
+            .load(img)
+            .placeholder(R.drawable.dummy_rekomendasi_kos1)
+            .error(R.drawable.dummy_rekomendasi_kos1)
+            .into(holder.imgKos)
 
         holder.layoutProduk.setOnClickListener{
             val intent = Intent(activity, DetailActivity::class.java)
             val str = Gson().toJson(data[position], Data::class.java)
+            val dtImg = Gson().toJson(dt[position], Data::class.java)
             intent.putExtra("extra", str)
+            intent.putExtra("extra2", dtImg)
             activity.startActivity(intent)
         }
     }
