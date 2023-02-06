@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.rivvana.naqos_app.MainActivity
 import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.adapter.AdapterCity
 import com.rivvana.naqos_app.auth.app.ApiConfig
@@ -67,9 +68,12 @@ class CariKosFragment : Fragment() {
 
     private fun btnBack() {
         binding.btnBack.setOnClickListener{
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.container, SearchFragment())
-            transaction?.commit()
+//            val transaction = activity?.supportFragmentManager?.beginTransaction()
+//            transaction?.replace(R.id.container, SearchFragment())
+//            transaction?.commit()
+
+            val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 
