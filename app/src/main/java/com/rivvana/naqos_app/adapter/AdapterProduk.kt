@@ -42,7 +42,7 @@ class AdapterProduk(
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        //        holder.imgKos.setImageResource(dataposition].gambar)
+        //holder.imgKos.setImageResource(dataposition].gambar)
         holder.tvNama.text = data[position].name
         holder.tvDesc.text = data[position].description
 //        holder.tvRate.text = data[position].rate
