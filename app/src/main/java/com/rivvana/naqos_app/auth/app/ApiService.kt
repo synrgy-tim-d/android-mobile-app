@@ -1,6 +1,7 @@
 package com.rivvana.naqos_app.auth.app
 
 import com.rivvana.naqos_app.auth.model.*
+import com.rivvana.naqos_app.auth.model.wishlist.WishlistRespons
 import com.rivvana.naqos_app.model.AllDataCity
 import com.rivvana.naqos_app.model.ProdukKos
 import retrofit2.Call
@@ -35,7 +36,7 @@ interface ApiService {
     fun addWishlist(@Body addWishlist: WishlistReq, @Header("Authorization") token: String): Call<WishlistResponse>
 
     @GET("wishlists/get")
-    fun getWishlist(@Header("Authorization") token: String):Call<WishlistResponse>
+    fun getWishlist(@Header("Authorization") token: String):Call<WishlistRespons>
 
     @GET("cities")
     fun getCity():Call<AllDataCity>

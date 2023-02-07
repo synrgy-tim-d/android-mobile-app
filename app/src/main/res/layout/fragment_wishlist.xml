@@ -12,39 +12,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <ImageView
-        android:id="@+id/img_house"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/img_house"
+    <androidx.recyclerview.widget.RecyclerView
+        app:layout_constraintTop_toBottomOf="@id/layoutToolbar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <TextView
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:id="@+id/tv_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Udah ada isinya"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_house"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-    <TextView
-        android:textColor="@color/black"
-        android:layout_marginTop="4dp"
-        android:id="@+id/tv_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="2"
-        android:textAlignment="center"
-        android:text="Cari kos idaman kamu dan tekan tombol love untuk menyimpannya ke dalam Wishlist!"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_header"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:id="@+id/rv_wishlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

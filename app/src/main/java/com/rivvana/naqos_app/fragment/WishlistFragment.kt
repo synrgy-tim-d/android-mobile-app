@@ -5,10 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rivvana.naqos_app.R
+import com.rivvana.naqos_app.adapter.AdapterWishlist
 import com.rivvana.naqos_app.auth.app.ApiConfig
-import com.rivvana.naqos_app.auth.model.WishlistResponse
+import com.rivvana.naqos_app.auth.model.wishlist.Data
+import com.rivvana.naqos_app.auth.model.wishlist.WishlistRespons
 import com.rivvana.naqos_app.auth.viewmodel.SessionManager
 import com.rivvana.naqos_app.databinding.FragmentWishlistBinding
 import retrofit2.Call
@@ -19,6 +23,7 @@ class WishlistFragment : Fragment() {
     private var _binding: FragmentWishlistBinding? = null
     private val binding get() = _binding!!
     private lateinit var sessionManager: SessionManager
+    lateinit var listWishlist: List<Data>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,19 +39,36 @@ class WishlistFragment : Fragment() {
 
     private fun getWishlist() {
         ApiConfig.instanceRetrofit.getWishlist(token = "Bearer ${sessionManager.fetchAuthToken()}"
-        ).enqueue(object : Callback<WishlistResponse>{
+        ).enqueue(object : Callback<WishlistRespons>{
             override fun onResponse(
-                call: Call<WishlistResponse>,
-                response: Response<WishlistResponse>
+                call: Call<WishlistRespons>,
+                response: Response<WishlistRespons>
             ) {
-                Toast.makeText(context, "GET DATA", Toast.LENGTH_SHORT).show()
+                val res = response.body()
+                if (res==null){
+                    val transaction = activity?.supportFragmentManager?.beginTransaction()
+                    transaction?.replace(R.id.container, WishlistEmpty())
+                    transaction?.commit()
+                } else {
+                    listWishlist = res.data
+                    displayWishlist()
+                }
             }
 
-            override fun onFailure(call: Call<WishlistResponse>, t: Throwable) {
+            override fun onFailure(call: Call<WishlistRespons>, t: Throwable) {
                 TODO("Not yet implemented")
             }
 
         })
+    }
+
+    private fun displayWishlist() {
+        val layoutManager = LinearLayoutManager(activity)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+
+        binding.rvWishlist.adapter = AdapterWishlist(requireContext(), listWishlist)
+        binding.rvWishlist.layoutManager = layoutManager
+
     }
 
     companion object {

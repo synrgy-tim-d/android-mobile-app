@@ -94,6 +94,7 @@ class ProfileFragment : Fragment() {
             sessionManager.removeToken()
             sessionManager.clearSession()
             startActivity(Intent(context, LoginActivity::class.java))
+
         }
     }
 
