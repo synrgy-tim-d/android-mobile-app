@@ -9,7 +9,7 @@
 
     <include
         android:id="@+id/layoutToolbar"
-        layout="@layout/layout_toolbar_main"
+        layout="@layout/layout_toolbar_without_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 

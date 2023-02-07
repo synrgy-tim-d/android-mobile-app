@@ -34,6 +34,9 @@ interface ApiService {
     @POST("wishlists/add")
     fun addWishlist(@Body addWishlist: WishlistReq, @Header("Authorization") token: String): Call<WishlistResponse>
 
+    @GET("wishlists/get")
+    fun getWishlist(@Header("Authorization") token: String):Call<WishlistResponse>
+
     @GET("cities")
     fun getCity():Call<AllDataCity>
 

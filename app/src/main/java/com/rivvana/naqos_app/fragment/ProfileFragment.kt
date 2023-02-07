@@ -38,9 +38,6 @@ class ProfileFragment : Fragment() {
         //val token = sessionManager.fetchAuthToken()
 
         fetchUser()
-        binding.layoutToolbar.btnBackToolbar.setOnClickListener{
-            Toast.makeText(context, "Button Back", Toast.LENGTH_SHORT).show()
-        }
 
         binding.tvLogout.setOnClickListener{
             showDialog()
