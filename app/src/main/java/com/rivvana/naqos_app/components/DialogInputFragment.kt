@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
@@ -19,6 +21,7 @@ import java.util.*
 class DialogInputFragment : DialogFragment(){
     private var _binding : FragmentDialogInputBinding? = null
     private val binding get() = _binding!!
+    val arrSpinnerBook = arrayOf("Per Hari", "Per Minggu", "Per Bulan")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +29,8 @@ class DialogInputFragment : DialogFragment(){
     ): View? {
         _binding = FragmentDialogInputBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
+
+        initSpinner()
 
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -52,6 +57,21 @@ class DialogInputFragment : DialogFragment(){
         }
 
         return binding.root
+    }
+
+    private fun initSpinner() {
+        val arrayAdapter = ArrayAdapter<String>(requireContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, arrSpinnerBook)
+        binding.spinnerDate.adapter = arrayAdapter
+        binding.spinnerDate.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, parent: View?, position: Int, Id: Long) {
+                Toast.makeText(context, arrSpinnerBook[position], Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
     }
 
     companion object {

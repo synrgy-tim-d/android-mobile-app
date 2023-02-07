@@ -3,6 +3,7 @@ package com.rivvana.naqos_app.auth.view
 import  androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
 import com.google.gson.Gson
@@ -35,6 +36,7 @@ class DetailActivity : AppCompatActivity() {
         btnSewa()
         getInfo()
     }
+
 
     private fun btnSave() {
         binding.btnSave.setOnClickListener{
