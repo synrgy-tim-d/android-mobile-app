@@ -1,22 +1,15 @@
 package com.rivvana.naqos_app.components
 
 import android.app.DatePickerDialog
-import android.app.Dialog
-import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
-import com.google.gson.Gson
-import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.databinding.FragmentDialogInputBinding
-import com.rivvana.naqos_app.model.Data
 import java.text.SimpleDateFormat
 import java.util.*
 

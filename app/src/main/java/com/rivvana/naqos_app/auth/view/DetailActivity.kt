@@ -20,6 +20,8 @@ import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.NumberFormat
+import java.util.*
 
 class DetailActivity : AppCompatActivity() {
     lateinit var binding : ActivityDetailBinding
@@ -100,7 +102,7 @@ class DetailActivity : AppCompatActivity() {
         binding.tvNamaPemilik.text = produk.ownerId?.fullname
         binding.tvNamaKos.text = "Pemilik "+produk.name
         binding.btnWa.text = produk.ownerId?.phoneNumber
-        binding.tvHarga.text = produk.rooms?.pricePerMonthly.toString()
+        binding.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(produk.rooms[0].pricePerMonthly!!.toInt()))
 
         //set img kos
         val img = produk.imageKosts[0].url
