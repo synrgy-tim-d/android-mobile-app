@@ -100,6 +100,7 @@ class DetailActivity : AppCompatActivity() {
         binding.tvNamaPemilik.text = produk.ownerId?.fullname
         binding.tvNamaKos.text = "Pemilik "+produk.name
         binding.btnWa.text = produk.ownerId?.phoneNumber
+        binding.tvHarga.text = produk.rooms?.pricePerMonthly.toString()
 
         //set img kos
         val img = produk.imageKosts[0].url
