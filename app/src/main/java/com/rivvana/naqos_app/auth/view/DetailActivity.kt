@@ -31,10 +31,13 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         sessionManager = SessionManager(this)
+        buttonManager()
+        getInfo()
+    }
 
+    private fun buttonManager() {
         btnSave()
         btnSewa()
-        getInfo()
     }
 
 
@@ -45,23 +48,12 @@ class DetailActivity : AppCompatActivity() {
     }
 
     fun insert(){
-//        val myDb: MyDatabase = MyDatabase.getInstance(this)!! // call database
-//        val wishlist = WishlistModel() //create new note
-//        wishlist.name = "First Note"
-//
-//        CompositeDisposable().add(Observable.fromCallable { myDb.daoWishlist().insert(wishlist) }
-//            .subscribeOn(Schedulers.computation())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe {
-//                Log.d("RESPON ADD", "DATA MASUK")
-//            })
 
         val data = intent.getStringExtra("extra")
         val produk = Gson().fromJson<Data>(data, Data::class.java)
         val wishlist = WishlistReq(
             produk.id.toString()
         )
-
 
         ApiConfig.instanceRetrofit.addWishlist(wishlist,token = "Bearer ${sessionManager.fetchAuthToken()}"
         ).enqueue(object : Callback<WishlistResponse>{
@@ -103,9 +95,8 @@ class DetailActivity : AppCompatActivity() {
         val imgPKos = findViewById<ImageView>(R.id.img_profile)
         binding.tvNama.text = produk.name
         binding.tvAddress.text = produk.address
-//        binding.tvRate.text = produk.rate
+        binding.tvRate.text = produk.kostRating.toString()
         binding.tvLoc.text = produk.city?.city
-//        binding.imgProfile
         binding.tvNamaPemilik.text = produk.ownerId?.fullname
         binding.tvNamaKos.text = "Pemilik "+produk.name
         binding.btnWa.text = produk.ownerId?.phoneNumber

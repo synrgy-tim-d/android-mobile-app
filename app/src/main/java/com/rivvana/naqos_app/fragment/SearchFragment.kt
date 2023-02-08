@@ -73,7 +73,7 @@ class SearchFragment : Fragment() {
                 position: Int,
                 id: Long
             ){
-                Toast.makeText(activity, "Daftar rekomendasi di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
+//                Toast.makeText(activity, "Daftar rekomendasi di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -89,7 +89,7 @@ class SearchFragment : Fragment() {
                 position: Int,
                 id: Long
             ){
-                Toast.makeText(activity, "Daftar kos murah di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
+//                Toast.makeText(activity, "Daftar kos murah di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {

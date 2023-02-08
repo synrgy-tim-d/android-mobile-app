@@ -13,8 +13,10 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.DialogFragment
+import com.google.gson.Gson
 import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.databinding.FragmentDialogInputBinding
+import com.rivvana.naqos_app.model.Data
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -29,7 +31,6 @@ class DialogInputFragment : DialogFragment(){
     ): View? {
         _binding = FragmentDialogInputBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
-
         initSpinner()
 
         val c = Calendar.getInstance()

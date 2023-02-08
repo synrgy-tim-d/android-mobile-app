@@ -18,6 +18,7 @@ import com.rivvana.naqos_app.model.Data
 import com.rivvana.naqos_app.model.ImageKost
 import com.rivvana.naqos_app.model.ProdukKos
 import com.squareup.picasso.Picasso
+import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -30,9 +31,9 @@ class AdapterProduk(
         val imgKos = view.findViewById<ImageView>(R.id.img_gambar)
         val tvNama = view.findViewById<TextView>(R.id.tv_nama)
         val tvDesc = view.findViewById<TextView>(R.id.tv_desc)
-//        val tvRate = view.findViewById<TextView>(R.id.tv_rate)
+        val tvRate = view.findViewById<TextView>(R.id.tv_rate)
         val tvKota = view.findViewById<TextView>(R.id.tv_loc)
-//        val tvHarga = view.findViewById<TextView>(R.id.tv_harga)
+        val tvHarga = view.findViewById<TextView>(R.id.tv_harga)
         val layoutProduk = view.findViewById<CardView>(R.id.layout_produk)
 
     }
@@ -43,14 +44,13 @@ class AdapterProduk(
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        //holder.imgKos.setImageResource(dataposition].gambar)
         holder.tvNama.text = data[position].name
         holder.tvDesc.text = data[position].description
-//        holder.tvRate.text = data[position].rate
+        holder.tvRate.text = data[position].kostRating.toString()
         holder.tvKota.text = data[position].city?.city
-//        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].harga))
+        holder.tvHarga.text = data[position].rooms[position].pricePerMonthly.toString()
+//        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].rooms[0].pricePerMonthly.toString()))
         //set image
-//        val dt : List<ImageKost> = arrayListOf()
         val img = data[position].imageKosts[0].url
         Log.d("ISI IMG", img.toString())
         Picasso.get()
