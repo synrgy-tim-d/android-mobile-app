@@ -1,6 +1,7 @@
 package com.rivvana.naqos_app.adapter
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -21,7 +22,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class AdapterProduk(
-    var activity: Activity,
+    var context: Context,
     var data: List<Data>
     ): RecyclerView.Adapter<AdapterProduk.Holder>() {
 
@@ -59,10 +60,10 @@ class AdapterProduk(
             .into(holder.imgKos)
 
         holder.layoutProduk.setOnClickListener{
-            val intent = Intent(activity, DetailActivity::class.java)
+            val intent = Intent(context, DetailActivity::class.java)
             val str = Gson().toJson(data[position], Data::class.java)
             intent.putExtra("extra", str)
-            activity.startActivity(intent)
+            context.startActivity(intent)
         }
     }
 

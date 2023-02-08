@@ -1,17 +1,15 @@
 package com.rivvana.naqos_app.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.adapter.AdapterWishlist
 import com.rivvana.naqos_app.auth.app.ApiConfig
-import com.rivvana.naqos_app.auth.model.wishlist.Data
+import com.rivvana.naqos_app.auth.model.wishlist.DataWishlist
 import com.rivvana.naqos_app.auth.model.wishlist.WishlistRespons
 import com.rivvana.naqos_app.auth.viewmodel.SessionManager
 import com.rivvana.naqos_app.databinding.FragmentWishlistBinding
@@ -21,9 +19,9 @@ import retrofit2.Response
 
 class WishlistFragment : Fragment() {
     private var _binding: FragmentWishlistBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var sessionManager: SessionManager
-    lateinit var listWishlist: List<Data>
+    val binding get() = _binding!!
+    lateinit var sessionManager: SessionManager
+    lateinit var listWishlist: List<DataWishlist>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +31,7 @@ class WishlistFragment : Fragment() {
         _binding = FragmentWishlistBinding.inflate(inflater, container, false)
         binding.layoutToolbar.tvToolbar.text = "Wishlist"
         sessionManager = context?.let { SessionManager(it) }!!
+
         getWishlist()
         return binding.root
     }
@@ -45,18 +44,21 @@ class WishlistFragment : Fragment() {
                 response: Response<WishlistRespons>
             ) {
                 val res = response.body()
-                if (res==null){
-                    val transaction = activity?.supportFragmentManager?.beginTransaction()
-                    transaction?.replace(R.id.container, WishlistEmpty())
-                    transaction?.commit()
-                } else {
+                if (res!=null && sessionManager.getStatusLogin()){
                     listWishlist = res.data
+                    binding.imgHouse.visibility = View.GONE
+                    binding.tvHeader.visibility = View.GONE
+                    binding.tvContent.visibility = View.GONE
                     displayWishlist()
+                    Log.d("RESPON GET LIST", response.body().toString())
+                }
+                else {
+                    binding.rvWishlist.visibility = View.GONE
                 }
             }
 
             override fun onFailure(call: Call<WishlistRespons>, t: Throwable) {
-                TODO("Not yet implemented")
+                Log.d("ERROR WISHLIST", t.message.toString())
             }
 
         })
@@ -66,7 +68,7 @@ class WishlistFragment : Fragment() {
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
 
-        binding.rvWishlist.adapter = AdapterWishlist(requireContext(), listWishlist)
+        binding.rvWishlist.adapter = AdapterWishlist(requireActivity(), listWishlist)
         binding.rvWishlist.layoutManager = layoutManager
 
     }

@@ -1,6 +1,6 @@
 package com.rivvana.naqos_app.auth.model.wishlist
 
-data class Data(
+data class DataWishlist(
     val address: String,
     val city: City,
     val description: String,

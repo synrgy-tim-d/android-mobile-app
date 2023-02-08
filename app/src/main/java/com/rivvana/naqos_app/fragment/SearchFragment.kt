@@ -61,8 +61,8 @@ class SearchFragment : Fragment() {
     }
 
     private fun displayProduk() {
-        val arrayAdapter = ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_dropdown_item, arrSpinerRekomendasi)
-        val arrayAdapter2 = ArrayAdapter<String>(requireActivity(), android.R.layout.simple_spinner_dropdown_item, arrSpinerKosMurah)
+        val arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrSpinerRekomendasi)
+        val arrayAdapter2 = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrSpinerKosMurah)
 
         spinnerRekomendasi.adapter = arrayAdapter
         spinnerKosMurah.adapter = arrayAdapter2
@@ -104,10 +104,10 @@ class SearchFragment : Fragment() {
         val layoutManager2 = LinearLayoutManager(activity)
         layoutManager2.orientation = LinearLayoutManager.HORIZONTAL
 
-        rvRekomendasi.adapter = AdapterProduk(requireActivity(), listProduk)
+        rvRekomendasi.adapter = AdapterProduk(requireContext(), listProduk)
         rvRekomendasi.layoutManager = layoutManager
 
-        rvKosMurah.adapter = AdapterProduk(requireActivity(), listProduk)
+        rvKosMurah.adapter = AdapterProduk(requireContext(), listProduk)
         rvKosMurah.layoutManager = layoutManager2
     }
 
@@ -128,7 +128,7 @@ class SearchFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<ProdukKos>, t: Throwable) {
-                Log.d("RESPON GET ERROR", t.message.toString())
+                Log.d("ERROR DASHBOARD", t.message.toString())
             }
 
         })
