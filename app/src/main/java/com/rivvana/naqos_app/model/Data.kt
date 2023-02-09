@@ -21,7 +21,7 @@ data class Data(
     var name: String? = null,
     var ownerId: OwnerId? = null,
     var postalCode: String? = null,
-    var rooms: List<Rooms> = arrayListOf(),
+    var rooms: Rooms? = null,
     var subdistrict: String? = null,
     var updatedAt: Any? = null
 )
