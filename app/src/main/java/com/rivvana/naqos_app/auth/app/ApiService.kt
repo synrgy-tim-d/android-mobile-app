@@ -9,6 +9,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiService {
     @POST("auth/register")
@@ -34,6 +35,9 @@ interface ApiService {
 
     @POST("wishlists/add")
     fun addWishlist(@Body addWishlist: WishlistReq, @Header("Authorization") token: String): Call<WishlistResponse>
+
+    @GET("wishlists/status")
+    fun checkStatusWishlist(@Query("kostId") kostId : String): Call<com.rivvana.naqos_app.auth.model.statuswishlist.Data>
 
     @GET("wishlists/get")
     fun getWishlist(@Header("Authorization") token: String):Call<WishlistRespons>

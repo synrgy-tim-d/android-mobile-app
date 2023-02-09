@@ -34,7 +34,12 @@ class DetailActivity : AppCompatActivity() {
 
         sessionManager = SessionManager(this)
         buttonManager()
+        checkWishlistStatus()
         getInfo()
+    }
+
+    private fun checkWishlistStatus() {
+        TODO("Not yet implemented")
     }
 
     private fun buttonManager() {
@@ -102,7 +107,7 @@ class DetailActivity : AppCompatActivity() {
         binding.tvNamaPemilik.text = produk.ownerId?.fullname
         binding.tvNamaKos.text = "Pemilik "+produk.name
         binding.btnWa.text = produk.ownerId?.phoneNumber
-        binding.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(produk.rooms[0].pricePerMonthly!!.toInt()))
+//        binding.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(produk.rooms[0].pricePerMonthly!!.toInt()))
 
         //set img kos
         val img = produk.imageKosts[0].url

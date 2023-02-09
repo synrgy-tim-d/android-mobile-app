@@ -48,7 +48,7 @@ class AdapterProduk(
         holder.tvDesc.text = data[position].description
         holder.tvRate.text = data[position].kostRating.toString()
         holder.tvKota.text = data[position].city?.city
-        holder.tvHarga.text = data[position].rooms?.pricePerMonthly.toString()
+//        holder.tvHarga.text = data[position].rooms[0].pricePerMonthly.toString()
 //        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].rooms[0].pricePerMonthly!!.toInt()))
         //set image
         val img = data[position].imageKosts[0].url
