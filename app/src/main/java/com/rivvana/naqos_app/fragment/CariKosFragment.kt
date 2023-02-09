@@ -22,7 +22,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class CariKosFragment : Fragment() {
-    lateinit var listCity: List<DataX>
     var _binding: FragmentCariKosBinding? = null
     private val binding get() = _binding!!
 
@@ -33,45 +32,13 @@ class CariKosFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentCariKosBinding.inflate(inflater, container, false)
 
-        getDataCity()
         btnBack()
         return binding.root
     }
 
-    private fun getDataCity() {
-        ApiConfig.instanceRetrofit.getCity().enqueue(object :Callback<AllDataCity>{
-            override fun onResponse(call: Call<AllDataCity>, response: Response<AllDataCity>) {
-                val res = response.body()
-                if (res!=null){
-                    listCity = res.data
-                    displayCity()
-                    Log.d("RESPON GET BERHASIL", listCity.toString())
-                }else{
-                    Log.d("RESPON GET GAGAL", response.errorBody()!!.string())
-                }
-            }
-
-            override fun onFailure(call: Call<AllDataCity>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
-    }
-
-    private fun displayCity() {
-        val layoutManager = LinearLayoutManager(activity)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-
-        binding.rvCity.adapter = AdapterCity(requireActivity(), listCity)
-        binding.rvCity.layoutManager = layoutManager
-    }
 
     private fun btnBack() {
         binding.btnBack.setOnClickListener{
-//            val transaction = activity?.supportFragmentManager?.beginTransaction()
-//            transaction?.replace(R.id.container, SearchFragment())
-//            transaction?.commit()
-
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         }
