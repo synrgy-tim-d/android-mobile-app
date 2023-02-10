@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".fragment.PembayaranFragment">
 
@@ -12,12 +13,210 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <TextView
-        android:id="@+id/tv_nama_kos"
-        android:text="Nama Kos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:padding="@dimen/_10sdp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_nama_kos"
+                android:text="Nama Kos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <ImageView
+                android:layout_toLeftOf="@id/tv_loc"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/loc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/tv_loc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:text="Kota"
+                android:singleLine="true" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_booking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Booking ID: 00000000"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_gravity="center_horizontal"
+            android:foregroundGravity="center_horizontal"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_checkin"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ic_booking"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check in"/>
+
+            <TextView
+                android:id="@+id/tv_date_in"
+                app:layout_constraintTop_toBottomOf="@id/tv_checkin"
+                app:layout_constraintEnd_toStartOf="@id/ic_booking"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jan 17, 2023"/>
+
+            <ImageView
+                android:id="@+id/ic_booking"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_book"/>
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:id="@+id/tv_checkout"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ic_booking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check out"/>
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:id="@+id/tv_date_out"
+                app:layout_constraintTop_toBottomOf="@id/tv_checkin"
+                app:layout_constraintStart_toEndOf="@id/ic_booking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jan 24, 2023"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/tv_rincian"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rincian Pembayaran"/>
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_gravity="center_horizontal"
+            android:foregroundGravity="center_horizontal"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_harga_kos"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Harga Kos"/>
+
+            <TextView
+                android:id="@+id/tv_waktu_sewa"
+                app:layout_constraintTop_toBottomOf="@id/tv_harga_kos"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Waktu Kos"/>
+
+            <TextView
+                android:id="@+id/tv_total"
+                app:layout_constraintTop_toBottomOf="@id/tv_waktu_sewa"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginRight="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Pembayaran"/>
+
+            <TextView
+                android:id="@+id/tv_harga_kos_2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp.300.000/minggu"/>
+
+            <TextView
+                android:id="@+id/tv_waktu_sewa_2"
+                app:layout_constraintTop_toBottomOf="@id/tv_harga_kos_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1 minggu"/>
+
+            <TextView
+                android:id="@+id/tv_total_2"
+                app:layout_constraintTop_toBottomOf="@id/tv_waktu_sewa_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp.300.000"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_marginTop="@dimen/_20sdp"
+            android:id="@+id/tv_bayar"
+            android:text="Bayar Melalui"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        
+        <Spinner
+            android:layout_marginTop="15dp"
+            android:layout_width="200dp"
+            android:layout_height="50dp"/>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:textSize="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*Pastikan memilih opsi dengan benar sebab opsi yang telah dipilih tidak dapat dirubah, setelah memilih opsi, segera lakukan pembayaran"
+            android:lines="2"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="center|bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:gravity="center_horizontal|center"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bayar Kos"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

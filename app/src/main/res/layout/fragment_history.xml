@@ -1,44 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.HistoryFragment">
 
-    <ImageView
-        android:id="@+id/img_house"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/img_house"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    <include
+        android:id="@+id/layoutToolbar"
+        layout="@layout/layout_toolbar_main"/>
 
-    <TextView
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:id="@+id/tv_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="2"
-        android:text="Yah, Riwayat kamu masih kosong"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_house"
-        app:layout_constraintEnd_toEndOf="parent"/>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:padding="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:textColor="@color/black"
-        android:layout_marginTop="4dp"
-        android:id="@+id/tv_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="2"
-        android:textAlignment="center"
-        android:text="Yuk cari kos idaman kamu"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_header"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        <Button
+            android:text="Pemesanan"
+            android:id="@+id/btn_pemesanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:text="Menunggu Konfirmasi"
+            android:id="@+id/btn_konfirmasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:text="Pembayaran"
+            android:id="@+id/btn_pembayaran"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:text="Pembatalan"
+            android:id="@+id/btn_pembatalan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
