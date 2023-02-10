@@ -34,13 +34,44 @@ class DetailActivity : AppCompatActivity() {
 
         sessionManager = SessionManager(this)
         buttonManager()
-        checkWishlistStatus()
+        checkStatusWishlist()
         getInfo()
     }
 
-    private fun checkWishlistStatus() {
-        TODO("Not yet implemented")
+    private fun checkStatusWishlist() {
+        val data = intent.getStringExtra("extra")
+        val produk = Gson().fromJson<Data>(data, Data::class.java)
+        val wishlist = WishlistReq(
+            produk.id.toString()
+        )
+        ApiConfig.instanceRetrofit.checkStatusWishlist( kostId = "kostId ${wishlist}", token = "Bearer ${sessionManager.fetchAuthToken()}"
+        ).enqueue(object : Callback<com.rivvana.naqos_app.auth.model.statuswishlist.Data>{
+            override fun onResponse(
+                call: Call<com.rivvana.naqos_app.auth.model.statuswishlist.Data>,
+                response: Response<com.rivvana.naqos_app.auth.model.statuswishlist.Data>
+            ) {
+                Log.d("GET WISHLIST STATUS", response.body().toString())
+//                val respon = response.body()
+//                val responError = response.errorBody()
+//                if (respon!=null){
+//                    Log.d("GET WISHLIST STATUS", respon.toString())
+//                    Toast.makeText(this@DetailActivity, "${response.body().toString()}", Toast.LENGTH_SHORT).show()
+//                }else {
+//                    Log.d("ERROR WISHLIST STATUS", responError.toString())
+//                    Toast.makeText(this@DetailActivity, "Error "+responError.toString(), Toast.LENGTH_SHORT).show()
+//                }
+            }
+
+            override fun onFailure(
+                call: Call<com.rivvana.naqos_app.auth.model.statuswishlist.Data>,
+                t: Throwable
+            ) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
+
 
     private fun buttonManager() {
         btnSave()

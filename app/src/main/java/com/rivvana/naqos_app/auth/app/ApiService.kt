@@ -37,7 +37,7 @@ interface ApiService {
     fun addWishlist(@Body addWishlist: WishlistReq, @Header("Authorization") token: String): Call<WishlistResponse>
 
     @GET("wishlists/status")
-    fun checkStatusWishlist(@Query("kostId") kostId : String): Call<com.rivvana.naqos_app.auth.model.statuswishlist.Data>
+    fun checkStatusWishlist(@Query("kostId") kostId : String, @Header("Authorization") token: String): Call<com.rivvana.naqos_app.auth.model.statuswishlist.Data>
 
     @GET("wishlists/get")
     fun getWishlist(@Header("Authorization") token: String):Call<WishlistRespons>

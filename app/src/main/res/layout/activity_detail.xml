@@ -164,11 +164,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="FAQ"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="5dp"
-                android:id="@+id/rv_faq"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tv_q1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pertanyaan 1"/>
+            <TextView
+                android:id="@+id/tv_a1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jawaban 1"/>
+            <TextView
+                android:id="@+id/tv_q2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pertanyaan 2"/>
+            <TextView
+                android:id="@+id/tv_a2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jawaban 2"/>
+            <TextView
+                android:id="@+id/tv_q3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pertanyaan 3"/>
+            <TextView
+                android:id="@+id/tv_a3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jawaban 3"/>
             <TextView
                 android:textColor="@color/black"
                 android:layout_marginTop="10dp"
@@ -180,17 +205,7 @@
                 android:id="@+id/rv_fasilitas_kamar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
-            <TextView
-                android:textColor="@color/black"
-                android:layout_marginTop="10dp"
-                android:textSize="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fasilitas Bersama"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_fasilitas_bersama"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
             <TextView
                 android:textColor="@color/black"
                 android:layout_marginTop="10dp"
