@@ -41,8 +41,8 @@ class MainActivity : AppCompatActivity() {
         sessionManager = SessionManager(this)
 
         checkInternet()
-
         setupBottomNav()
+
         if (sessionManager.fetchAuthToken().isNullOrBlank()){
             binding.navView.menu.findItem(R.id.navigation_profile).setTitle("Masuk")
         }
@@ -115,7 +115,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-
     private fun callFragment(int: Int, fragment: Fragment) {
         menuItem = menu.getItem(int)
         menuItem.isChecked = true

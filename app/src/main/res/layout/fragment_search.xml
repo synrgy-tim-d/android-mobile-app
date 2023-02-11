@@ -37,6 +37,10 @@
                     android:src="@drawable/ic_baseline_search_24"/>
 
                 <TextView
+                    android:id="@+id/et_cari_kos"
+                    android:layout_marginRight="5dp"
+                    android:backgroundTint="@color/white"
+                    android:padding="2dp"
                     android:layout_marginLeft="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

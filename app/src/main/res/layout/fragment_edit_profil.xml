@@ -38,18 +38,6 @@
         app:layout_constraintTop_toBottomOf="@id/img_profile"/>
 
     <TextView
-        android:layout_marginTop="@dimen/_20sdp"
-        android:textStyle="bold"
-        android:textSize="16dp"
-        android:id="@+id/tv_editProfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit Profil"
-        android:layout_marginRight="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_profile"/>
-
-    <TextView
         android:textColor="@color/black"
         android:layout_marginTop="15dp"
         android:id="@+id/tv_namaLengkap"
@@ -60,7 +48,7 @@
         android:layout_marginLeft="40dp"
         app:layout_constraintTop_toBottomOf="@id/tv_infoAkun"/>
 
-    <TextView
+    <EditText
         android:id="@+id/et_namaLengkap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,7 +68,7 @@
         android:layout_marginLeft="40dp"
         app:layout_constraintTop_toBottomOf="@id/et_namaLengkap"/>
 
-    <TextView
+    <EditText
         android:id="@+id/et_nomorHP"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,85 +78,14 @@
         android:layout_marginRight="40dp"
         app:layout_constraintTop_toBottomOf="@id/tv_nomorHp"/>
 
-    <TextView
-        android:textColor="@color/black"
-        android:id="@+id/tv_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Email"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="40dp"
-        app:layout_constraintTop_toBottomOf="@id/et_nomorHP"/>
-
-    <TextView
-        android:id="@+id/et_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="astolfo@gmail.com"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_email"/>
-
-    <TextView
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        android:textSize="16dp"
-        android:id="@+id/tv_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login &amp; Security"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="20dp"
-        app:layout_constraintTop_toBottomOf="@id/et_email"/>
-
-    <TextView
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        android:textSize="16dp"
-        android:id="@+id/tv_gantiPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ganti Password"
-        android:layout_marginRight="20dp"
+    <Button
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_email"/>
-
-    <TextView
-        android:textColor="@color/black"
-        android:layout_marginTop="15dp"
-        android:id="@+id/tv_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Password"
+        android:id="@+id/btn_save"
+        android:text="Simpan"
+        app:layout_constraintTop_toBottomOf="@id/et_nomorHP"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="40dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_login"/>
-
-    <TextView
-        android:id="@+id/et_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="******"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_password"/>
-
-    <TextView
-        android:textColor="@color/red"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
-        android:textSize="16dp"
-        android:id="@+id/tv_logout"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        android:layout_marginRight="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_password"/>
-
+        android:layout_height="wrap_content"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,9 @@
 package com.rivvana.naqos_app.adapter
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +14,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.view.DetailActivity
-import com.rivvana.naqos_app.model.Produk
+import com.rivvana.naqos_app.model.Data
+import com.rivvana.naqos_app.model.ImageKost
+import com.rivvana.naqos_app.model.ProdukKos
 import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 class AdapterProduk(
-    var activity: Activity,
-    var data: ArrayList<Produk>
+    var context: Context,
+    var data: List<Data>
     ): RecyclerView.Adapter<AdapterProduk.Holder>() {
 
     class Holder(view: View): RecyclerView.ViewHolder(view){
@@ -40,27 +44,28 @@ class AdapterProduk(
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        //        holder.imgKos.setImageResource(dataposition].gambar)[
         holder.tvNama.text = data[position].name
-//        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].harga))
         holder.tvDesc.text = data[position].description
-        holder.tvKota.text = data[position].address
-//        val img = "https://be-naqos.up.railway.app/api/"+data[position].image
-//        Picasso.get()
-//            .load(img)
-//            .placeholder(R.drawable.dummy_rekomendasi_kos1)
-//            .error(R.drawable.dummy_rekomendasi_kos1)
-//            .into(holder.imgKos)
+        holder.tvRate.text = data[position].kostRating.toString()
+        holder.tvKota.text = data[position].city?.city
+//        holder.tvHarga.text = data[position].rooms[0].pricePerMonthly.toString()
+//        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].rooms[0].pricePerMonthly!!.toInt()))
+        //set image
+        val img = data[position].imageKosts[0].url
+        Log.d("ISI IMG", img.toString())
+        Picasso.get()
+            .load(img)
+            .placeholder(R.drawable.dummy_rekomendasi_kos1)
+            .error(R.drawable.dummy_rekomendasi_kos1)
+            .into(holder.imgKos)
 
         holder.layoutProduk.setOnClickListener{
-            val intent = Intent(activity, DetailActivity::class.java)
-            val str = Gson().toJson(data[position], Produk::class.java)
+            val intent = Intent(context, DetailActivity::class.java)
+            val str = Gson().toJson(data[position], Data::class.java)
             intent.putExtra("extra", str)
-            activity.startActivity(intent)
+            context.startActivity(intent)
         }
     }
 
-    override fun getItemCount(): Int {
-        return data.size
-    }
+    override fun getItemCount(): Int = 5
 }

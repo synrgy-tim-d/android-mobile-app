@@ -8,16 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ProgressBar
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.adapter.AdapterProduk
 import com.rivvana.naqos_app.auth.app.ApiConfig
-import com.rivvana.naqos_app.auth.model.ResponseModel
-import com.rivvana.naqos_app.model.Produk
+import com.rivvana.naqos_app.model.Data
+import com.rivvana.naqos_app.model.ImageKost
+import com.rivvana.naqos_app.model.ProdukKos
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,6 +33,9 @@ class SearchFragment : Fragment() {
 
     lateinit var spinnerRekomendasi: Spinner
     lateinit var spinnerKosMurah: Spinner
+    lateinit var listProduk: List<Data>
+
+    lateinit var btnCari:TextView
 
     val arrSpinerRekomendasi = arrayOf("Bekasi", "Jakarta", "Bandung", "Surabaya", "Tangerang", "Depok", "Semarang", "Bogor")
     val arrSpinerKosMurah= arrayOf("Bekasi", "Jakarta", "Bandung")
@@ -38,17 +45,25 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
-
         init(view)
         getProduk()
+        btnCariKos()
 
         return view
     }
 
-    private fun displayProduk() {
+    private fun btnCariKos() {
+        btnCari.setOnClickListener{
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.container, CariKosFragment())
+            transaction?.commit()
+        }
+    }
 
+    private fun displayProduk() {
         val arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrSpinerRekomendasi)
         val arrayAdapter2 = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrSpinerKosMurah)
+
         spinnerRekomendasi.adapter = arrayAdapter
         spinnerKosMurah.adapter = arrayAdapter2
         spinnerRekomendasi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -58,7 +73,7 @@ class SearchFragment : Fragment() {
                 position: Int,
                 id: Long
             ){
-                Toast.makeText(activity, "Daftar rekomendasi di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
+//                Toast.makeText(activity, "Daftar rekomendasi di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -74,7 +89,7 @@ class SearchFragment : Fragment() {
                 position: Int,
                 id: Long
             ){
-                Toast.makeText(activity, "Daftar kos murah di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
+//                Toast.makeText(activity, "Daftar kos murah di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -89,108 +104,42 @@ class SearchFragment : Fragment() {
         val layoutManager2 = LinearLayoutManager(activity)
         layoutManager2.orientation = LinearLayoutManager.HORIZONTAL
 
-        rvRekomendasi.adapter = AdapterProduk(requireActivity(), listProduk)
+        rvRekomendasi.adapter = AdapterProduk(requireContext(), listProduk)
         rvRekomendasi.layoutManager = layoutManager
 
-        rvKosMurah.adapter = AdapterProduk(requireActivity(), listProduk)
+        rvKosMurah.adapter = AdapterProduk(requireContext(), listProduk)
         rvKosMurah.layoutManager = layoutManager2
     }
 
-    private var listProduk: ArrayList<Produk> = ArrayList()
+
     private fun getProduk() {
 
-        ApiConfig.instanceRetrofit.getProduk().enqueue(object : Callback<ResponseModel>{
-            override fun onResponse(call: Call<ResponseModel>, response: Response<ResponseModel>) {
+        ApiConfig.instanceRetrofit.getProduk().enqueue(object : Callback<ProdukKos>{
+            override fun onResponse(call: Call<ProdukKos>, response: Response<ProdukKos>) {
                 val res = response.body()
                 if (res!=null){
-
-                    Log.d("RESPON GET BERHASIL", response.body().toString())
-                    listProduk = res.data
+                    listProduk = res.datakos
                     displayProduk()
+                    Log.d("RESPON GET LIST", listProduk.toString())
                 }else{
-                    Log.d("RESPON GET GAGAL", response.errorBody().toString())
+                    Log.d("RESPON GET GAGAL", response.errorBody()!!.string())
                 }
 
             }
 
-            override fun onFailure(call: Call<ResponseModel>, t: Throwable) {
-                Log.d("RESPON GET ERROR", t.message.toString())
+            override fun onFailure(call: Call<ProdukKos>, t: Throwable) {
+                Log.d("ERROR DASHBOARD", t.message.toString())
             }
 
         })
     }
 
     private fun init(view: View) {
+        btnCari = view.findViewById(R.id.et_cari_kos)
         rvRekomendasi = view.findViewById(R.id.rv_rekomendasi)
         rvKosMurah = view.findViewById(R.id.rv_kosmurah)
         spinnerRekomendasi = view.findViewById(R.id.spiner_rekomendasi)
         spinnerKosMurah = view.findViewById(R.id.spiner_kosmurah)
     }
-
-//    val arrRekomendasi: ArrayList<Rekomendasi> get() {
-//            val arr = ArrayList<Rekomendasi>()
-//            val p1 = Rekomendasi()
-//            p1.gambar = R.drawable.dummy_rekomendasi_kos1
-//            p1.nama = "Kos Bunga"
-//            p1.deskripsi = "Kosan khusus perempuan dan wanita termurah di Bekasi"
-//            p1.rate = "4.3"
-//            p1.kota = "Bekasi"
-//            p1.harga = "Rp.700.000/bln"
-//
-//            val p2 = Rekomendasi()
-//            p2.gambar = R.drawable.dummy_rekomendasi_kos2
-//            p2.nama = "Kos Elite"
-//            p2.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
-//            p2.rate = "4.4"
-//            p2.kota = "Bekasi"
-//            p2.harga = "Rp.1.200.000/bln"
-//
-//            val p3 = Rekomendasi()
-//            p3.gambar = R.drawable.dummy_rekomendasi_kos3
-//            p3.nama = "Kos Wkwkw"
-//            p3.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
-//            p3.rate = "4.1"
-//            p3.kota = "Bekasi"
-//            p3.harga = "Rp.2.000.000/bln"
-//
-//            arr.add(p1)
-//            arr.add(p2)
-//            arr.add(p3)
-//
-//            return arr
-//        }
-//
-//    val arrKosMurah: ArrayList<Rekomendasi> get() {
-//        val arr = ArrayList<Rekomendasi>()
-//        val p1 = Rekomendasi()
-//        p1.gambar = R.drawable.dummy_rekomendasi_kos1
-//        p1.nama = "Kos Bunga"
-//        p1.deskripsi = "Kosan khusus perempuan dan wanita termurah di Bekasi"
-//        p1.rate = "4.3"
-//        p1.kota = "Bekasi"
-//        p1.harga = "Rp.700.000/bln"
-//
-//        val p2 = Rekomendasi()
-//        p2.gambar = R.drawable.dummy_rekomendasi_kos2
-//        p2.nama = "Kos Elite"
-//        p2.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
-//        p2.rate = "4.4"
-//        p2.kota = "Bekasi"
-//        p2.harga = "Rp.1.200.000/bln"
-//
-//        val p3 = Rekomendasi()
-//        p3.gambar = R.drawable.dummy_rekomendasi_kos3
-//        p3.nama = "Kos Wkwkw"
-//        p3.deskripsi = "Kosan murah dengan sarana elite dan kualitas terjamin"
-//        p3.rate = "4.1"
-//        p3.kota = "Bekasi"
-//        p3.harga = "Rp.2.000.000/bln"
-//
-//        arr.add(p1)
-//        arr.add(p2)
-//        arr.add(p3)
-//
-//        return arr
-//    }
 
 }
