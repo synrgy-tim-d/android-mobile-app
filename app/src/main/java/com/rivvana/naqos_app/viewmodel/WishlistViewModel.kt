@@ -14,13 +14,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class WishlistViewModel : ViewModel() {
-    lateinit var recyclerListData: MutableLiveData<DataWishlist>
+    lateinit var recyclerListData: MutableLiveData<List<DataWishlist>>
     lateinit var sessionManager: SessionManager
+    lateinit var listWishlist: List<DataWishlist>
     init {
         recyclerListData = MutableLiveData()
     }
 
-    fun getRecyclerDataObserve() : MutableLiveData<DataWishlist>{
+    fun getRecyclerDataObserve() : MutableLiveData<List<DataWishlist>>{
         return recyclerListData
     }
 
@@ -33,6 +34,8 @@ class WishlistViewModel : ViewModel() {
             ) {
                 val res = response.body()
                 if (res!=null && sessionManager.getStatusLogin()){
+                    listWishlist = res.data
+                    recyclerListData.postValue(listWishlist)
                     Log.d("RESPON GET LIST", response.body().toString())
                 }
             }

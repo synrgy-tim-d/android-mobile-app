@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rivvana.naqos_app.adapter.AdapterWishlist
 import com.rivvana.naqos_app.auth.app.ApiConfig
@@ -13,6 +15,7 @@ import com.rivvana.naqos_app.auth.model.wishlist.DataWishlist
 import com.rivvana.naqos_app.auth.model.wishlist.WishlistRespons
 import com.rivvana.naqos_app.auth.viewmodel.SessionManager
 import com.rivvana.naqos_app.databinding.FragmentWishlistBinding
+import com.rivvana.naqos_app.viewmodel.WishlistViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
