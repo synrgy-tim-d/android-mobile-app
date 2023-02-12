@@ -1,6 +1,7 @@
 package com.rivvana.naqos_app.auth.app
 
 import com.rivvana.naqos_app.auth.model.*
+import com.rivvana.naqos_app.auth.model.statuswishlist.Status
 import com.rivvana.naqos_app.auth.model.wishlist.WishlistRespons
 import com.rivvana.naqos_app.model.AllDataCity
 import com.rivvana.naqos_app.model.ProdukKos
@@ -36,8 +37,11 @@ interface ApiService {
     @POST("wishlists/add")
     fun addWishlist(@Body addWishlist: WishlistReq, @Header("Authorization") token: String): Call<WishlistResponse>
 
-    @GET("wishlists/status")
-    fun checkStatusWishlist(@Query("kostId") kostId : String, @Header("Authorization") token: String): Call<com.rivvana.naqos_app.auth.model.statuswishlist.Data>
+    @GET("wishlists/status?")
+    fun checkStatusWishlist(
+        @Query("kostId") kostId : String,
+        @Header("Authorization") token: String
+    ):Call<Status>
 
     @GET("wishlists/get")
     fun getWishlist(@Header("Authorization") token: String):Call<WishlistRespons>

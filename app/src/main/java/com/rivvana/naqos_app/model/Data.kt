@@ -23,5 +23,11 @@ data class Data(
     var postalCode: String? = null,
     var rooms: List<Rooms> = arrayListOf(),
     var subdistrict: String? = null,
-    var updatedAt: Any? = null
+    var updatedAt: Any? = null,
+    var question1:String? = null,
+    var answer1: String? = null,
+    var question2:String? = null,
+    var answer2: String? = null,
+    var question3:String? = null,
+    var answer3: String? = null
 )
