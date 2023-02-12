@@ -68,7 +68,7 @@ class WishlistFragment : Fragment() {
         val layoutManager = LinearLayoutManager(activity)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
 
-        binding.rvWishlist.adapter = AdapterWishlist(requireActivity(), listWishlist)
+        binding.rvWishlist.adapter = AdapterWishlist(sessionManager, requireActivity(), listWishlist)
         binding.rvWishlist.layoutManager = layoutManager
 
     }

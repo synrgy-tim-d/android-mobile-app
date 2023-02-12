@@ -1,10 +1,12 @@
 package com.rivvana.naqos_app.auth.view
 
+import android.app.AlertDialog
+import android.content.Intent
 import  androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import com.google.gson.Gson
@@ -17,14 +19,10 @@ import com.rivvana.naqos_app.auth.viewmodel.SessionManager
 import com.rivvana.naqos_app.components.DialogInputFragment
 import com.rivvana.naqos_app.databinding.ActivityDetailBinding
 import com.rivvana.naqos_app.model.Data
-import com.rivvana.naqos_app.model.ImageKost
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.NumberFormat
-import java.util.*
-
 class DetailActivity : AppCompatActivity() {
     lateinit var binding : ActivityDetailBinding
     private lateinit var sessionManager: SessionManager
@@ -35,8 +33,10 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         sessionManager = SessionManager(this)
+        if (sessionManager.getStatusLogin()){
+            checkStatusWishlist()
+        }
         buttonManager()
-        checkStatusWishlist()
         getInfo()
     }
 
@@ -95,8 +95,29 @@ class DetailActivity : AppCompatActivity() {
 
     private fun btnSave() {
         binding.btnSave.setOnClickListener{
-            insert()
+            if (sessionManager.getStatusLogin()){
+                insert()
+            } else {
+                showDialog()
+            }
         }
+    }
+
+    private fun showDialog() {
+            val dialog = layoutInflater.inflate(R.layout.dialog_login, null)
+            val customDialog = AlertDialog.Builder(this)
+                .setView(dialog)
+                .show()
+
+            val btnDismiss = dialog.findViewById<Button>(R.id.btn_dismiss)
+            btnDismiss.setOnClickListener{
+                customDialog.dismiss()
+            }
+
+            val btnLogin = dialog.findViewById<Button>(R.id.btn_login)
+            btnLogin.setOnClickListener{
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
     }
 
     fun insert(){

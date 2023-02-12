@@ -7,6 +7,7 @@ import com.rivvana.naqos_app.model.AllDataCity
 import com.rivvana.naqos_app.model.ProdukKos
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
@@ -39,6 +40,12 @@ interface ApiService {
 
     @GET("wishlists/status?")
     fun checkStatusWishlist(
+        @Query("kostId") kostId : String,
+        @Header("Authorization") token: String
+    ):Call<Status>
+
+    @DELETE("wishlists/destroy?")
+    fun deleteWishlist(
         @Query("kostId") kostId : String,
         @Header("Authorization") token: String
     ):Call<Status>
