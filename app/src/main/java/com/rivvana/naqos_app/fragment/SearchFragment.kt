@@ -34,11 +34,11 @@ class SearchFragment : Fragment() {
     lateinit var spinnerRekomendasi: Spinner
     lateinit var spinnerKosMurah: Spinner
     lateinit var listProduk: List<Data>
-
+    lateinit var setKota: String
     lateinit var btnCari:TextView
 
-    val arrSpinerRekomendasi = arrayOf("Bekasi", "Jakarta", "Bandung", "Surabaya", "Tangerang", "Depok", "Semarang", "Bogor")
-    val arrSpinerKosMurah= arrayOf("Bekasi", "Jakarta", "Bandung")
+    val arrSpinerRekomendasi = arrayOf("Jakarta", "Bandung", "Surabaya", "Semarang", "Yogyakarta")
+    val arrSpinerKosMurah= arrayOf("Jakarta", "Bandung", "Surabaya", "Semarang", "Yogyakarta")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,75 +46,15 @@ class SearchFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
         init(view)
-        getProduk()
         btnCariKos()
-
+        setSpinner()
+        showKos()
         return view
     }
 
-    private fun btnCariKos() {
-        btnCari.setOnClickListener{
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.container, CariKosFragment())
-            transaction?.commit()
-        }
-    }
-
-    private fun displayProduk() {
-        val arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrSpinerRekomendasi)
-        val arrayAdapter2 = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrSpinerKosMurah)
-
-        spinnerRekomendasi.adapter = arrayAdapter
-        spinnerKosMurah.adapter = arrayAdapter2
-        spinnerRekomendasi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ){
-//                Toast.makeText(activity, "Daftar rekomendasi di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-
-            }
-
-        }
-
-        spinnerKosMurah.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ){
-//                Toast.makeText(activity, "Daftar kos murah di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-
-            }
-
-        }
-
-        val layoutManager = LinearLayoutManager(activity)
-        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-
-        val layoutManager2 = LinearLayoutManager(activity)
-        layoutManager2.orientation = LinearLayoutManager.HORIZONTAL
-
-        rvRekomendasi.adapter = AdapterProduk(requireContext(), listProduk)
-        rvRekomendasi.layoutManager = layoutManager
-
-        rvKosMurah.adapter = AdapterProduk(requireContext(), listProduk)
-        rvKosMurah.layoutManager = layoutManager2
-    }
-
-
-    private fun getProduk() {
-
-        ApiConfig.instanceRetrofit.getProduk().enqueue(object : Callback<ProdukKos>{
+    private fun showKos() {
+        ApiConfig.instanceRetrofit.getProduk(
+        ).enqueue(object : Callback<ProdukKos>{
             override fun onResponse(call: Call<ProdukKos>, response: Response<ProdukKos>) {
                 val res = response.body()
                 if (res!=null){
@@ -133,6 +73,80 @@ class SearchFragment : Fragment() {
 
         })
     }
+
+    private fun setSpinner() {
+        val arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrSpinerRekomendasi)
+        val arrayAdapter2 = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_dropdown_item, arrSpinerKosMurah)
+
+        spinnerRekomendasi.adapter = arrayAdapter
+        spinnerKosMurah.adapter = arrayAdapter2
+        spinnerRekomendasi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ){
+                if (position == 1){
+                    setKota = "Jakarta"
+                }else if (position == 2){
+                    setKota = "Bandung"
+                }else if (position == 3){
+                    setKota = "Surabaya"
+                }else if (position == 4){
+                    setKota = "Semarang"
+                }else{
+                    setKota = "Yogyakarta"
+                }
+
+//                Toast.makeText(activity, "Daftar rekomendasi di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+        }
+        spinnerKosMurah.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ){
+//                Toast.makeText(activity, "Daftar kos murah di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+
+            }
+
+        }
+
+    }
+
+    private fun btnCariKos() {
+        btnCari.setOnClickListener{
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.container, CariKosFragment())
+            transaction?.commit()
+        }
+    }
+
+    private fun displayProduk() {
+        val layoutManager = LinearLayoutManager(activity)
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+
+        val layoutManager2 = LinearLayoutManager(activity)
+        layoutManager2.orientation = LinearLayoutManager.HORIZONTAL
+
+        rvRekomendasi.adapter = AdapterProduk(requireContext(), listProduk)
+        rvRekomendasi.layoutManager = layoutManager
+
+        rvKosMurah.adapter = AdapterProduk(requireContext(), listProduk)
+        rvKosMurah.layoutManager = layoutManager2
+    }
+
 
     private fun init(view: View) {
         btnCari = view.findViewById(R.id.et_cari_kos)

@@ -44,7 +44,6 @@ class AdapterWishlist(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.tvNama.text = data[position].name
-
         holder.btnFav.setOnClickListener {
             ApiConfig.instanceRetrofit.deleteWishlist(kostId = data[position].id,
                 token = "Bearer ${sessionManager.fetchAuthToken()}"
@@ -55,11 +54,11 @@ class AdapterWishlist(
                     if (respon!=null){
                         Log.d("WISHLIST DELETE", respon.toString())
                         Log.d("WISHLIST DELETE", respon.message)
-                        Toast.makeText(activity, respon.toString(), Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(activity, respon.toString(), Toast.LENGTH_SHORT).show()
                         this.notify()
                     }else {
                         Log.d("WISHLIST DELETE ERROR", responError.toString())
-                        Toast.makeText(activity, "Error "+responError.toString(), Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(activity, "Error "+responError.toString(), Toast.LENGTH_SHORT).show()
                     }
                 }
 

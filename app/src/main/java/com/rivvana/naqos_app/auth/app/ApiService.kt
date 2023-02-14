@@ -1,6 +1,7 @@
 package com.rivvana.naqos_app.auth.app
 
 import com.rivvana.naqos_app.auth.model.*
+import com.rivvana.naqos_app.auth.model.pencarian.DataPencarian
 import com.rivvana.naqos_app.auth.model.statuswishlist.Status
 import com.rivvana.naqos_app.auth.model.wishlist.WishlistRespons
 import com.rivvana.naqos_app.model.AllDataCity
@@ -29,6 +30,11 @@ interface ApiService {
 
     @GET("public/kost")
     fun getProduk():Call<ProdukKos>
+
+    @GET("public/kost?")
+    fun getCariKos(
+        @Query("search", encoded = true) search: String,
+    ):Call<DataPencarian>
 
     @POST("auth/send-otp")
     fun otpRequest(

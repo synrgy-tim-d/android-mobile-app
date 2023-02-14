@@ -58,7 +58,14 @@ class DialogInputFragment : DialogFragment(){
         binding.spinnerDate.adapter = arrayAdapter
         binding.spinnerDate.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, parent: View?, position: Int, Id: Long) {
-                Toast.makeText(context, arrSpinnerBook[position], Toast.LENGTH_SHORT).show()
+                if (position == 0){
+                    binding.tvTotalHarga.text = "Rp.30.000"
+                } else if (position == 1){
+                    binding.tvTotalHarga.text = "Rp.300.000"
+                } else {
+                    binding.tvTotalHarga.text = "Rp.1.000.000"
+                }
+
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
