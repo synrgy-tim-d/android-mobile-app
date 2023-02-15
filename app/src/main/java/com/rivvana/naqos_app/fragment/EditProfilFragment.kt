@@ -1,5 +1,6 @@
 package com.rivvana.naqos_app.fragment
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rivvana.naqos_app.MainActivity
+import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.model.RegisterResponse
 import com.rivvana.naqos_app.auth.model.UpdateDataRequest
@@ -50,9 +52,8 @@ class EditProfilFragment : Fragment() {
                     call: Call<RegisterResponse>,
                     response: Response<RegisterResponse>
                 ) {
-                    Log.d("UBAH DATA", response.body().toString() )
-                    val intent = Intent(requireContext(), MainActivity::class.java)
-                    startActivity(intent)
+                    Log.d("UBAH DATA", response.body().toString())
+                    showDialog()
                 }
 
                 override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
@@ -60,6 +61,21 @@ class EditProfilFragment : Fragment() {
                 }
             })
         }
+    }
+
+    private fun showDialog() {
+        val sDialog = AlertDialog.Builder(context)
+        sDialog.setTitle("Data Berhasil diubah")
+        sDialog.setIcon(R.drawable.img_otp_success)
+        sDialog.setPositiveButton("Ok"){
+            sDialog, id ->
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        val alertDialog = sDialog.create()
+        alertDialog.show()
+
     }
 
     private fun backbtn() {

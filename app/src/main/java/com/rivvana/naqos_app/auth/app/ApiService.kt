@@ -38,9 +38,9 @@ interface ApiService {
     @GET("public/kost")
     fun getProduk():Call<ProdukKos>
 
-    @GET("public/kost?")
+    @GET("public/kost")
     fun getCariKos(
-        @Query("search", encoded = true) search: String,
+        @Query("search") search: String,
     ):Call<DataPencarian>
 
     @POST("auth/send-otp")

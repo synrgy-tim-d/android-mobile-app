@@ -36,8 +36,9 @@ class HasilPencarianFragment : Fragment() {
     }
 
     private fun getHasil() {
+        val pencarian = "%5B%22Jakarta%22%5D"
         ApiConfig.instanceRetrofit.getCariKos(
-            search = "Jakarta"
+            pencarian
         ).enqueue(object : Callback<DataPencarian>{
             override fun onResponse(call: Call<DataPencarian>, response: Response<DataPencarian>) {
                 Log.d("HASIL PENCARIAN", response.body().toString())
