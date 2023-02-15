@@ -9,10 +9,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.app.ApiConfig
-import com.rivvana.naqos_app.auth.model.User
 import com.rivvana.naqos_app.auth.model.UserResponse
 import com.rivvana.naqos_app.auth.view.LoginActivity
 import com.rivvana.naqos_app.auth.viewmodel.SessionManager
@@ -39,6 +37,11 @@ class ProfileFragment : Fragment() {
 
         fetchUser()
 
+        binding.tvEditProfil.setOnClickListener {
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.container, EditProfilFragment())
+            transaction?.commit()
+        }
         binding.tvLogout.setOnClickListener{
             showDialog()
         }
@@ -94,7 +97,6 @@ class ProfileFragment : Fragment() {
             sessionManager.removeToken()
             sessionManager.clearSession()
             startActivity(Intent(context, LoginActivity::class.java))
-
         }
     }
 

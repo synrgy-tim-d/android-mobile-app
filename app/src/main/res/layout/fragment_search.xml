@@ -77,13 +77,13 @@
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
-                android:src="@drawable/img_background_search"/>
+                android:src="@drawable/bg_dashboard"/>
 
             <ImageView
                 android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
-                android:src="@drawable/img_content_why"/>
+                android:src="@drawable/bg_content"/>
 
             <LinearLayout
                 android:layout_marginTop="15dp"

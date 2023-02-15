@@ -1,9 +1,12 @@
 package com.rivvana.naqos_app.auth.view
 
+import android.app.AlertDialog
+import android.content.Intent
 import  androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ArrayAdapter
+import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import com.google.gson.Gson
@@ -11,18 +14,15 @@ import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.model.WishlistReq
 import com.rivvana.naqos_app.auth.model.WishlistResponse
+import com.rivvana.naqos_app.auth.model.statuswishlist.Status
 import com.rivvana.naqos_app.auth.viewmodel.SessionManager
 import com.rivvana.naqos_app.components.DialogInputFragment
 import com.rivvana.naqos_app.databinding.ActivityDetailBinding
 import com.rivvana.naqos_app.model.Data
-import com.rivvana.naqos_app.model.ImageKost
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.text.NumberFormat
-import java.util.*
-
 class DetailActivity : AppCompatActivity() {
     lateinit var binding : ActivityDetailBinding
     private lateinit var sessionManager: SessionManager
@@ -33,40 +33,41 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         sessionManager = SessionManager(this)
+        if (sessionManager.getStatusLogin()){
+            checkStatusWishlist()
+        }
         buttonManager()
-        checkStatusWishlist()
         getInfo()
     }
 
     private fun checkStatusWishlist() {
         val data = intent.getStringExtra("extra")
         val produk = Gson().fromJson<Data>(data, Data::class.java)
-        val wishlist = WishlistReq(
-            produk.id.toString()
-        )
-        ApiConfig.instanceRetrofit.checkStatusWishlist( kostId = "kostId ${wishlist}", token = "Bearer ${sessionManager.fetchAuthToken()}"
-        ).enqueue(object : Callback<com.rivvana.naqos_app.auth.model.statuswishlist.Data>{
+        ApiConfig.instanceRetrofit.checkStatusWishlist(
+            kostId = produk.id.toString(),
+            token = "Bearer ${sessionManager.fetchAuthToken()}"
+        ).enqueue(object : Callback<Status>{
             override fun onResponse(
-                call: Call<com.rivvana.naqos_app.auth.model.statuswishlist.Data>,
-                response: Response<com.rivvana.naqos_app.auth.model.statuswishlist.Data>
+                call: Call<Status>,
+                response: Response<Status>
             ) {
-                Log.d("GET WISHLIST STATUS", response.body().toString())
-//                val respon = response.body()
-//                val responError = response.errorBody()
-//                if (respon!=null){
-//                    Log.d("GET WISHLIST STATUS", respon.toString())
-//                    Toast.makeText(this@DetailActivity, "${response.body().toString()}", Toast.LENGTH_SHORT).show()
-//                }else {
-//                    Log.d("ERROR WISHLIST STATUS", responError.toString())
+                val respon = response.body()
+                val responError = response.errorBody()
+                if (respon!=null){
+                    Log.d("GET WISHLIST STATUS", respon.toString())
+                    Log.d("GET WISHLIST STATUS", respon.message)
+//                    Toast.makeText(this@DetailActivity, respon.toString(), Toast.LENGTH_SHORT).show()
+                }else {
+                    Log.d("NULL WISHLIST STATUS", responError.toString())
 //                    Toast.makeText(this@DetailActivity, "Error "+responError.toString(), Toast.LENGTH_SHORT).show()
-//                }
+                }
             }
 
             override fun onFailure(
-                call: Call<com.rivvana.naqos_app.auth.model.statuswishlist.Data>,
+                call: Call<Status>,
                 t: Throwable
             ) {
-                TODO("Not yet implemented")
+                Log.d("ERROR WISHLIST STATUS", t.message.toString())
             }
 
         })
@@ -76,13 +77,57 @@ class DetailActivity : AppCompatActivity() {
     private fun buttonManager() {
         btnSave()
         btnSewa()
+        btnFAQ()
+    }
+
+    private fun btnFAQ() {
+        binding.tvFaq.setOnClickListener{
+            if (binding.tvQ1.visibility == View.VISIBLE){
+                binding.tvFaq.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.baseline_keyboard_arrow_down_24,0)
+                binding.tvQ1.visibility = View.GONE
+                binding.tvQ2.visibility = View.GONE
+                binding.tvQ3.visibility = View.GONE
+                binding.tvA1.visibility = View.GONE
+                binding.tvA2.visibility = View.GONE
+                binding.tvA3.visibility = View.GONE
+            } else {
+                binding.tvFaq.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.baseline_keyboard_arrow_up_24,0)
+                binding.tvQ1.visibility = View.VISIBLE
+                binding.tvQ2.visibility = View.VISIBLE
+                binding.tvQ3.visibility = View.VISIBLE
+                binding.tvA1.visibility = View.VISIBLE
+                binding.tvA2.visibility = View.VISIBLE
+                binding.tvA3.visibility = View.VISIBLE
+            }
+        }
     }
 
 
     private fun btnSave() {
         binding.btnSave.setOnClickListener{
-            insert()
+            if (sessionManager.getStatusLogin()){
+                insert()
+            } else {
+                showDialog()
+            }
         }
+    }
+
+    private fun showDialog() {
+            val dialog = layoutInflater.inflate(R.layout.dialog_login, null)
+            val customDialog = AlertDialog.Builder(this)
+                .setView(dialog)
+                .show()
+
+            val btnDismiss = dialog.findViewById<Button>(R.id.btn_dismiss)
+            btnDismiss.setOnClickListener{
+                customDialog.dismiss()
+            }
+
+            val btnLogin = dialog.findViewById<Button>(R.id.btn_login)
+            btnLogin.setOnClickListener{
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
     }
 
     fun insert(){
@@ -138,6 +183,12 @@ class DetailActivity : AppCompatActivity() {
         binding.tvNamaPemilik.text = produk.ownerId?.fullname
         binding.tvNamaKos.text = "Pemilik "+produk.name
         binding.btnWa.text = produk.ownerId?.phoneNumber
+        binding.tvQ1.text = produk.question1
+        binding.tvA1.text = produk.answer1
+        binding.tvQ2.text = produk.question2
+        binding.tvA2.text = produk.answer2
+        binding.tvQ3.text = produk.question3
+        binding.tvA3.text = produk.answer3
 //        binding.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(produk.rooms[0].pricePerMonthly!!.toInt()))
 
         //set img kos

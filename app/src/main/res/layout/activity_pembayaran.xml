@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".fragment.PembayaranFragment">
+    tools:context=".payment.PembayaranActivity">
 
     <ImageView
         android:id="@+id/img_kos_detail"
@@ -25,6 +25,8 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:textSize="22dp"
+                android:textColor="@color/black"
                 android:id="@+id/tv_nama_kos"
                 android:text="Nama Kos"
                 android:layout_width="wrap_content"
@@ -44,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="marquee"
-                android:text="Kota"
+                android:text="Jakarta"
                 android:singleLine="true" />
 
         </RelativeLayout>
@@ -53,7 +55,7 @@
             android:id="@+id/tv_booking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Booking ID: 00000000"/>
+            android:text="Booking ID: 00000001"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_marginTop="@dimen/_20sdp"
@@ -118,7 +120,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Rincian Pembayaran"/>
-        
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_gravity="center_horizontal"
@@ -186,8 +188,9 @@
             android:text="Bayar Melalui"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        
+
         <Spinner
+            android:id="@+id/spinner_payment"
             android:layout_marginTop="15dp"
             android:layout_width="200dp"
             android:layout_height="50dp"/>
@@ -207,6 +210,10 @@
             android:layout_height="match_parent">
 
             <Button
+                android:id="@+id/btn_bayar"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_button_rounded"
                 android:gravity="center_horizontal|center"
                 android:layout_gravity="bottom"
                 android:layout_width="match_parent"

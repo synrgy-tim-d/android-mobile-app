@@ -7,11 +7,9 @@
 
     <ImageView
         android:layout_marginTop="20dp"
-        android:src="@drawable/ic_confirm_logout"
+        android:src="@drawable/ic_dialog_login"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="Custom Dialog"
-        android:textSize="20sp"
+        android:layout_height="100dp"
         android:textColor="@android:color/white"
         android:gravity="center"/>
 
@@ -20,7 +18,7 @@
         android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Apakah kamu yakin ingin keluar?"
+        android:text="Kamu harus Login dulu"
         android:textSize="18sp"
         android:gravity="center"
         android:layout_marginTop="40dp"
@@ -31,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:lines="2"
-        android:text="Kamu akan memerlukan akses login \n untuk dapat masuk kembali"
+        android:text="Login sekarang agar kamu bisa \nmenambahkan kamar kos favoritmu"
         android:textSize="12sp"
         android:gravity="center"
         android:layout_marginBottom="40dp" />
@@ -48,19 +46,19 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btDismissCustomDialog"
+            android:id="@+id/btn_dismiss"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:background="?selectableItemBackground"
-            android:text="Batalkan" />
+            android:text="nanti aja" />
 
         <Button
             android:layout_marginLeft="15dp"
-            android:id="@+id/btLogoutCustomDialog"
+            android:id="@+id/btn_login"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:background="?selectableItemBackground"
-            android:text="Keluar" />
+            android:text="Ya" />
 
     </LinearLayout>
 
