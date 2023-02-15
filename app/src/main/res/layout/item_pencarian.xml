@@ -5,12 +5,14 @@
     android:layout_height="150dp">
 
     <LinearLayout
+        android:id="@+id/layout_cari"
         android:layout_margin="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
+            android:id="@+id/img_kos"
             android:src="@drawable/dummy_rekomendasi_kos1"
             android:layout_width="130dp"
             android:layout_height="110dp"/>
@@ -94,6 +96,7 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_harga"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:textAlignment="textEnd"

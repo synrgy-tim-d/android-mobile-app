@@ -18,8 +18,6 @@ class CariKosFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentCariKosBinding.inflate(inflater, container, false)
-
-        btnBack()
         btnManager()
         return binding.root
     }
@@ -30,14 +28,10 @@ class CariKosFragment : Fragment() {
             transaction?.replace(R.id.container, HasilPencarianFragment())
             transaction?.commit()
         }
-    }
 
-
-    private fun btnBack() {
         binding.btnBack.setOnClickListener{
             val intent = Intent(context, MainActivity::class.java)
             startActivity(intent)
         }
     }
-
 }

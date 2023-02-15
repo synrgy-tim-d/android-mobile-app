@@ -56,10 +56,10 @@ class DetailActivity : AppCompatActivity() {
                 if (respon!=null){
                     Log.d("GET WISHLIST STATUS", respon.toString())
                     Log.d("GET WISHLIST STATUS", respon.message)
-                    Toast.makeText(this@DetailActivity, respon.toString(), Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@DetailActivity, respon.toString(), Toast.LENGTH_SHORT).show()
                 }else {
                     Log.d("NULL WISHLIST STATUS", responError.toString())
-                    Toast.makeText(this@DetailActivity, "Error "+responError.toString(), Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this@DetailActivity, "Error "+responError.toString(), Toast.LENGTH_SHORT).show()
                 }
             }
 
@@ -85,9 +85,19 @@ class DetailActivity : AppCompatActivity() {
             if (binding.tvQ1.visibility == View.VISIBLE){
                 binding.tvFaq.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.baseline_keyboard_arrow_down_24,0)
                 binding.tvQ1.visibility = View.GONE
+                binding.tvQ2.visibility = View.GONE
+                binding.tvQ3.visibility = View.GONE
+                binding.tvA1.visibility = View.GONE
+                binding.tvA2.visibility = View.GONE
+                binding.tvA3.visibility = View.GONE
             } else {
                 binding.tvFaq.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.baseline_keyboard_arrow_up_24,0)
                 binding.tvQ1.visibility = View.VISIBLE
+                binding.tvQ2.visibility = View.VISIBLE
+                binding.tvQ3.visibility = View.VISIBLE
+                binding.tvA1.visibility = View.VISIBLE
+                binding.tvA2.visibility = View.VISIBLE
+                binding.tvA3.visibility = View.VISIBLE
             }
         }
     }

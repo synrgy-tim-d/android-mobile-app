@@ -1,6 +1,7 @@
 package com.rivvana.naqos_app.components
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.rivvana.naqos_app.databinding.FragmentDialogInputBinding
+import com.rivvana.naqos_app.payment.PembayaranActivity
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,6 +27,7 @@ class DialogInputFragment : DialogFragment(){
         _binding = FragmentDialogInputBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         initSpinner()
+        btnSewa()
 
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -51,6 +54,13 @@ class DialogInputFragment : DialogFragment(){
         }
 
         return binding.root
+    }
+
+    private fun btnSewa() {
+        binding.btnSewa.setOnClickListener {
+            val intent = Intent(requireActivity(), PembayaranActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun initSpinner() {
