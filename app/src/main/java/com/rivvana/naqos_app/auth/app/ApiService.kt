@@ -12,6 +12,7 @@ import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Query
 
 interface ApiService {
@@ -27,6 +28,11 @@ interface ApiService {
 
     @GET("users/get")
     fun getUser(@Header("Authorization") token: String):Call<UserResponse>
+
+    @PUT("users/update_data")
+    fun updateUser(
+        @Body updateData: UpdateDataRequest
+    ): Call<RegisterResponse>
 
     @GET("public/kost")
     fun getProduk():Call<ProdukKos>
