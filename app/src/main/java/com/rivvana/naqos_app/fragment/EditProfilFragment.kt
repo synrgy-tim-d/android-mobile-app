@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.rivvana.naqos_app.MainActivity
-import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.model.RegisterResponse
 import com.rivvana.naqos_app.auth.model.UpdateDataRequest
@@ -40,10 +39,12 @@ class EditProfilFragment : Fragment() {
 
     private fun savebtn() {
         binding.btnSave.setOnClickListener {
+            val update = UpdateDataRequest(
+                binding.etNamaLengkap.text.toString(),
+                binding.etNomorHp.text.toString()
+            )
             ApiConfig.instanceRetrofit.updateUser(
-                UpdateDataRequest(
-                    binding.etNamaLengkap.text.toString(),binding.etNomorHP.toString()
-                )
+                update, token = "Bearer ${sessionManager.fetchAuthToken()}"
             ).enqueue(object : Callback<RegisterResponse>{
                 override fun onResponse(
                     call: Call<RegisterResponse>,
@@ -55,7 +56,7 @@ class EditProfilFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<RegisterResponse>, t: Throwable) {
-                    TODO("Not yet implemented")
+                    Log.d("UBAH DATA", t.message.toString() )
                 }
             })
         }
@@ -83,7 +84,7 @@ class EditProfilFragment : Fragment() {
                         Log.d("RESPON USER BERHASIL", response.body().toString())
                         val user = sessionManager.getUser()
                         binding.etNamaLengkap.hint = user?.fullname
-                        binding.etNomorHP.hint = user?.phoneNumber
+                        binding.etNomorHp.hint = user?.phoneNumber
                     }
                 }
                 else {

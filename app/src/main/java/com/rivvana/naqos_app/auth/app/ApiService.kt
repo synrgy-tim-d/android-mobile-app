@@ -31,7 +31,8 @@ interface ApiService {
 
     @PUT("users/update_data")
     fun updateUser(
-        @Body updateData: UpdateDataRequest
+        @Body updateData: UpdateDataRequest,
+        @Header("Authorization") token: String,
     ): Call<RegisterResponse>
 
     @GET("public/kost")
