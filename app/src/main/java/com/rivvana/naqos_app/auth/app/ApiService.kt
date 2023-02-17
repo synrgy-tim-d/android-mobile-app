@@ -6,6 +6,8 @@ import com.rivvana.naqos_app.auth.model.statuswishlist.Status
 import com.rivvana.naqos_app.auth.model.wishlist.WishlistRespons
 import com.rivvana.naqos_app.model.AllDataCity
 import com.rivvana.naqos_app.model.ProdukKos
+import com.rivvana.naqos_app.profil.model.upAvResponse
+import com.rivvana.naqos_app.profil.model.upAvatarRequest
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -37,6 +39,11 @@ interface ApiService {
 
     @GET("public/kost")
     fun getProduk():Call<ProdukKos>
+
+    @PUT("users/avatar")
+    fun uploadAvatar(
+        @Body upAvatar: upAvatarRequest
+    ):Call<upAvResponse>
 
     @GET("public/kost")
     fun getCariKos(

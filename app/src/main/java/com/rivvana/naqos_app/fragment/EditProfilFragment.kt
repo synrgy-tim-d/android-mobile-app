@@ -2,13 +2,17 @@ package com.rivvana.naqos_app.fragment
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.rivvana.naqos_app.MainActivity
+import com.rivvana.naqos_app.Manifest
 import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.model.RegisterResponse
@@ -33,10 +37,17 @@ class EditProfilFragment : Fragment() {
         binding.layoutToolbar.tvToolbar.text = "Edit Profile"
         sessionManager = context?.let { SessionManager(it) }!!
         fetchUser()
+        uploadbtn()
         backbtn()
         savebtn()
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    private fun uploadbtn() {
+        binding.imgCamera.setOnClickListener {
+
+        }
     }
 
     private fun savebtn() {
