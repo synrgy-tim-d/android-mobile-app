@@ -1,5 +1,6 @@
 package com.rivvana.naqos_app.fragment
 
+import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -9,10 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.rivvana.naqos_app.MainActivity
-import com.rivvana.naqos_app.Manifest
 import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.model.RegisterResponse
@@ -28,6 +26,10 @@ class EditProfilFragment : Fragment() {
     private var _binding : FragmentEditProfilBinding? = null
     private val binding get() = _binding!!
     private lateinit var sessionManager: SessionManager
+
+    companion object {
+        val IMAGE_REQUEST_CODE = 1_000;
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +48,16 @@ class EditProfilFragment : Fragment() {
 
     private fun uploadbtn() {
         binding.imgCamera.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "image/*"
+            startActivityForResult(intent, IMAGE_REQUEST_CODE)
+        }
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK) {
+            binding.imgProfile.setImageURI(data?.data)
         }
     }
 
