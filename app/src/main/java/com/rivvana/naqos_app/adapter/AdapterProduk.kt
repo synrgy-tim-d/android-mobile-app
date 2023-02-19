@@ -34,6 +34,7 @@ class AdapterProduk(
         val tvRate = view.findViewById<TextView>(R.id.tv_rate)
         val tvKota = view.findViewById<TextView>(R.id.tv_loc)
         val tvHarga = view.findViewById<TextView>(R.id.tv_harga)
+        val imgTipe = view.findViewById<ImageView>(R.id.img_tipe)
         val layoutProduk = view.findViewById<CardView>(R.id.layout_produk)
 
     }
@@ -48,8 +49,14 @@ class AdapterProduk(
         holder.tvDesc.text = data[position].description
         holder.tvRate.text = data[position].kostRating.toString()
         holder.tvKota.text = data[position].city?.city
-//        holder.tvHarga.text = data[position].rooms[0].pricePerMonthly.toString()
-//        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].rooms[0].pricePerMonthly!!.toInt()))
+//        holder.tvHarga.text = data[position].pricePerMonthly.toString()
+        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].pricePerMonthly!!.toInt()))
+        if (data[position].kostType == "KOS_PUTRA"){
+            holder.imgTipe.setImageResource(R.drawable.ic_tipe_putra)
+        }else if (data[position].kostType == "KOS_CAMPURAN"){
+            holder.imgTipe.setImageResource(R.drawable.ic_tipe_campuran)
+        }
+
         //set image
         val img = data[position].imageKosts[0].url
         Log.d("ISI IMG", img.toString())

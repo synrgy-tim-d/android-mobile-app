@@ -48,6 +48,7 @@ interface ApiService {
     @GET("public/kost")
     fun getCariKos(
         @Query("search", encoded = true) search: String,
+        @Query("fields", encoded = true) fields: String,
     ):Call<ProdukKos>
 
     @POST("auth/send-otp")

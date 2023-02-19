@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.databinding.FragmentDialogInputBinding
 import com.rivvana.naqos_app.payment.PembayaranActivity
 import java.text.SimpleDateFormat
@@ -26,6 +28,7 @@ class DialogInputFragment : DialogFragment(){
     ): View? {
         _binding = FragmentDialogInputBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
+        binding.tvHarga.text = "500"
         initSpinner()
         btnSewa()
 

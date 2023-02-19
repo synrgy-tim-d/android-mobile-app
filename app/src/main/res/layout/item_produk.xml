@@ -1,23 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout_produk"
     android:layout_width="170dp"
     android:layout_marginVertical="1dp"
     android:layout_marginLeft="10dp"
     android:layout_height="wrap_content">
     
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/img_gambar"
             android:layout_width="170dp"
             android:layout_height="120dp"
             android:src="@drawable/dummy_rekomendasi_kos1"/>
+
+        <ImageView
+            android:id="@+id/img_tipe"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/ic_tipe_putri"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:text="Tipe Kos"/>
         
         <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_gambar"
             android:ellipsize="marquee"
             android:layout_marginTop="4dp"
             android:textStyle="bold"
@@ -30,6 +47,8 @@
             android:singleLine="true" />
 
         <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_nama"
             android:layout_marginTop="4dp"
             android:ellipsize="marquee"
             android:textSize="12dp"
@@ -42,6 +61,9 @@
             android:layout_height="wrap_content"/>
 
         <LinearLayout
+            android:id="@+id/layout_rate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc"
             android:layout_marginHorizontal="5dp"
             android:layout_marginTop="7dp"
             android:gravity="center_vertical"
@@ -79,6 +101,8 @@
         </LinearLayout>
 
         <TextView
+            app:layout_constraintTop_toBottomOf="@id/layout_rate"
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="7dp"
             android:layout_marginLeft="5dp"
             android:id="@+id/tv_harga"
@@ -87,8 +111,6 @@
             android:text="Rp.200.000/bln"
             android:layout_marginBottom="10dp"/>
 
-    </LinearLayout>
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

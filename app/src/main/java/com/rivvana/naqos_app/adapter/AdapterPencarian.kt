@@ -17,6 +17,8 @@ import com.rivvana.naqos_app.auth.model.Data
 import com.rivvana.naqos_app.auth.model.pencarian.DataP
 import com.rivvana.naqos_app.auth.view.DetailActivity
 import com.squareup.picasso.Picasso
+import java.text.NumberFormat
+import java.util.*
 
 class AdapterPencarian(
     var activity : Activity,
@@ -44,6 +46,7 @@ class AdapterPencarian(
         holder.tvNama.text = data[position].name
         holder.tvRate.text = data[position].kostRating.toString()
         holder.tvKota.text = data[position].city?.city
+        holder.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(data[position].pricePerMonthly!!.toInt()))
 
         val img = data[position].imageKosts[0].url
         Log.d("ISI IMG", img.toString())

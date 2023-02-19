@@ -23,6 +23,9 @@ import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.NumberFormat
+import java.util.*
+
 class DetailActivity : AppCompatActivity() {
     lateinit var binding : ActivityDetailBinding
     private lateinit var sessionManager: SessionManager
@@ -173,7 +176,7 @@ class DetailActivity : AppCompatActivity() {
         val data = intent.getStringExtra("extra")
         val produk = Gson().fromJson<Data>(data, Data::class.java)
         Log.d("RESPON PRODUK", produk.toString())
-
+        val imgTipe = findViewById<ImageView>(R.id.img_tipe)
         val imgKos = findViewById<ImageView>(R.id.img_kos_detail)
         val imgPKos = findViewById<ImageView>(R.id.img_profile)
         binding.tvNama.text = produk.name
@@ -189,7 +192,7 @@ class DetailActivity : AppCompatActivity() {
         binding.tvA2.text = produk.answer2
         binding.tvQ3.text = produk.question3
         binding.tvA3.text = produk.answer3
-//        binding.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(produk.rooms[0].pricePerMonthly!!.toInt()))
+        binding.tvHarga.text = NumberFormat.getCurrencyInstance(Locale("in", "ID")).format(Integer.valueOf(produk.pricePerMonthly!!.toInt()))
 
         //set img kos
         val img = produk.imageKosts[0].url
@@ -199,6 +202,11 @@ class DetailActivity : AppCompatActivity() {
             .error(R.drawable.dummy_rekomendasi_kos1)
             .into(imgKos)
 
+        if (produk.kostType == "KOS_PUTRA"){
+            binding.imgTipe.setImageResource(R.drawable.ic_tipe_putra)
+        }else if (produk.kostType == "KOS_CAMPURAN"){
+            binding.imgTipe.setImageResource(R.drawable.ic_tipe_campuran)
+        }
         //set image profile
         val imgProfile = produk.ownerId?.imgUrl
         Picasso.get()

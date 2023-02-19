@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.rivvana.naqos_app.MainActivity
+import com.rivvana.naqos_app.R
 import com.rivvana.naqos_app.adapter.AdapterPencarian
 import com.rivvana.naqos_app.auth.app.ApiConfig
 import com.rivvana.naqos_app.auth.model.Data
@@ -26,6 +28,7 @@ class HasilPencarianFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var sessionManager: SessionManager
     lateinit var listPencarian: List<com.rivvana.naqos_app.model.Data>
+    var adapterPencarian: AdapterPencarian? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +40,10 @@ class HasilPencarianFragment : Fragment() {
         sessionManager = context?.let { SessionManager(it) }!!
         btnBack()
         getHasil()
+        var jml = adapterPencarian?.itemCount.toString()
+        var hasil = view?.findViewById<TextView>(R.id.tv_hasil)
+        hasil?.text = "Menampilkan ${jml} hasil pencarian di Jakarta"
+
         return binding.root
     }
 
@@ -50,7 +57,8 @@ class HasilPencarianFragment : Fragment() {
     private fun getHasil() {
         val pencarian = "%5B%22Jakarta%22%5D"
         ApiConfig.instanceRetrofit.getCariKos(
-            pencarian
+            pencarian,
+            fields = "%5B%22city.city%22%5D"
         ).enqueue(object : Callback<ProdukKos>{
             override fun onResponse(call: Call<ProdukKos>, response: Response<ProdukKos>) {
                 val res = response.body()

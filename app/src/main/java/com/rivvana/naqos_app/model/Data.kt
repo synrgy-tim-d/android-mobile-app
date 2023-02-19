@@ -29,5 +29,8 @@ data class Data(
     var question2:String? = null,
     var answer2: String? = null,
     var question3:String? = null,
-    var answer3: String? = null
+    var answer3: String? = null,
+    var pricePerDaily: Double? = null,
+    var pricePerWeekly: Double? = null,
+    var pricePerMonthly: Double? = null,
 )

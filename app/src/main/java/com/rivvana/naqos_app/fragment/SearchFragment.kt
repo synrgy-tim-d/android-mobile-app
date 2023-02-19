@@ -34,7 +34,6 @@ class SearchFragment : Fragment() {
     lateinit var spinnerRekomendasi: Spinner
     lateinit var spinnerKosMurah: Spinner
     lateinit var listProduk: List<Data>
-    lateinit var setKota: String
     lateinit var btnCari:TextView
 
     val arrSpinerRekomendasi = arrayOf("Jakarta", "Bandung", "Surabaya", "Semarang", "Yogyakarta")
@@ -48,30 +47,7 @@ class SearchFragment : Fragment() {
         init(view)
         btnCariKos()
         setSpinner()
-        showKos()
         return view
-    }
-
-    private fun showKos() {
-        ApiConfig.instanceRetrofit.getProduk(
-        ).enqueue(object : Callback<ProdukKos>{
-            override fun onResponse(call: Call<ProdukKos>, response: Response<ProdukKos>) {
-                val res = response.body()
-                if (res!=null){
-                    listProduk = res.datakos
-                    displayProduk()
-                    Log.d("RESPON GET LIST", listProduk.toString())
-                }else{
-                    Log.d("RESPON GET GAGAL", response.errorBody()!!.string())
-                }
-
-            }
-
-            override fun onFailure(call: Call<ProdukKos>, t: Throwable) {
-                Log.d("ERROR DASHBOARD", t.message.toString())
-            }
-
-        })
     }
 
     private fun setSpinner() {
@@ -80,6 +56,7 @@ class SearchFragment : Fragment() {
 
         spinnerRekomendasi.adapter = arrayAdapter
         spinnerKosMurah.adapter = arrayAdapter2
+
         spinnerRekomendasi.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -88,15 +65,15 @@ class SearchFragment : Fragment() {
                 id: Long
             ){
                 if (position == 1){
-                    setKota = "Jakarta"
+                    showKos("%5B%22Bandung%22%5D")
                 }else if (position == 2){
-                    setKota = "Bandung"
+                    showKos("%5B%22Surabaya%22%5D")
                 }else if (position == 3){
-                    setKota = "Surabaya"
+                    showKos("%5B%22Semarang%22%5D")
                 }else if (position == 4){
-                    setKota = "Semarang"
+                    showKos("%5B%22Yogyakarta%22%5D")
                 }else{
-                    setKota = "Yogyakarta"
+                    showKos("%5B%22Jakarta%22%5D")
                 }
 
 //                Toast.makeText(activity, "Daftar rekomendasi di "+arrSpinerRekomendasi[position], Toast.LENGTH_SHORT).show()
@@ -123,6 +100,30 @@ class SearchFragment : Fragment() {
 
         }
 
+    }
+
+    private fun showKos(filter: String) {
+        ApiConfig.instanceRetrofit.getCariKos(
+            search = filter,
+            fields = "%5B%22city.city%22%5D"
+        ).enqueue(object : Callback<ProdukKos>{
+            override fun onResponse(call: Call<ProdukKos>, response: Response<ProdukKos>) {
+                val res = response.body()
+                if (res!=null){
+                    listProduk = res.datakos
+                    displayProduk()
+                    Log.d("RESPON GET LIST", listProduk.toString())
+                }else{
+                    Log.d("RESPON GET GAGAL", response.errorBody()!!.string())
+                }
+
+            }
+
+            override fun onFailure(call: Call<ProdukKos>, t: Throwable) {
+                Log.d("ERROR DASHBOARD", t.message.toString())
+            }
+
+        })
     }
 
     private fun btnCariKos() {
