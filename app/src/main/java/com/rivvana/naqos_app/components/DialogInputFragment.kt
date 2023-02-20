@@ -28,7 +28,7 @@ class DialogInputFragment : DialogFragment(){
     ): View? {
         _binding = FragmentDialogInputBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
-        binding.tvHarga.text = "500"
+        binding.tvHarga.text = "Rp.3.800.000"
         initSpinner()
         btnSewa()
 
@@ -72,11 +72,11 @@ class DialogInputFragment : DialogFragment(){
         binding.spinnerDate.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, parent: View?, position: Int, Id: Long) {
                 if (position == 0){
-                    binding.tvTotalHarga.text = "Rp.30.000"
+                    binding.tvTotalHarga.text = "Rp.250.000"
                 } else if (position == 1){
-                    binding.tvTotalHarga.text = "Rp.300.000"
+                    binding.tvTotalHarga.text = "Rp.1.400.000"
                 } else {
-                    binding.tvTotalHarga.text = "Rp.1.000.000"
+                    binding.tvTotalHarga.text = "Rp.3.800.000"
                 }
 
             }

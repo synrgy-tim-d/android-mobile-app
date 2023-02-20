@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".payment.SuccesActivity">
+    tools:context=".payment.UploadActivity">
 
     <ImageView
         android:scaleType="centerInside"
@@ -12,6 +12,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:src="@drawable/img_upload_bukti"/>
+        android:src="@drawable/upload_bukti"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
